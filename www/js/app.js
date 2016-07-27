@@ -31,7 +31,25 @@ angular.module('starter', ['ionic', 'firebase'])
     views: {
       'menuContent': {
         templateUrl: 'templates/home.html',
-        controller: 'loginCtrl'
+        controller: 'LoginCtrl'
+      }
+    }
+  })
+  .state('app.chat', {
+    url: '/chat',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/message.html',
+        controller: 'MessageCtrl'
+      }
+    }
+  })
+  .state('app.newchat', {
+    url: '/newchat',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/new-message.html',
+        controller: 'NewMessageCtrl'
       }
     }
   })

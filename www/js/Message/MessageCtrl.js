@@ -1,6 +1,6 @@
 angular.module('starter')
 
-.controller('RoomCtrl', function($scope, $routeParams, $timeout, angularFire) {
+.controller('MessageCtrl', function($scope, $routeParams, $timeout, angularFire) {
   $scope.newMessage = "";
   $scope.messages = [];
 

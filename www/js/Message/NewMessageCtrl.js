@@ -5,20 +5,20 @@ angular.module('starter')
   var ref = new Firebase('https://loveonapp.firebaseio.com/opened_rooms');
   var promise = angularFire(ref, $scope, "rooms");
 
-  $scope.newRoomName = "";
-  $scope.newRoomNameId = "";
-  $scope.newRoomDescription = "";
+  $scope.newChatName = "";
+  $scope.newChatNameId = "";
+  $scope.newChatDescription = "";
 
-  $scope.setNewRoomNameId = function() {
-    this.newRoomNameId = this.newRoomName.toLowerCase().replace(/\s/g,"-").replace(/[^a-z0-9\-]/g, '');
+  $scope.setnewChatNameId = function() {
+    this.newChatNameId = this.newChatName.toLowerCase().replace(/\s/g,"-").replace(/[^a-z0-9\-]/g, '');
   };
 
-  $scope.createRoom = function() {
+  $scope.createChat = function() {
     $scope.rooms.push({
       id: Math.floor(Math.random() * 5000001),
-      title: $scope.newRoomName,
-      slug: $scope.newRoomNameId,
-      description: $scope.newRoomDescription
+      title: $scope.newChatName,
+      slug: $scope.newChatNameId,
+      description: $scope.newChatDescription
     });
 
     $location.path('/home');
