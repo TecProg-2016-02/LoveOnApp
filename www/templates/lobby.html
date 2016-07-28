@@ -1,10 +1,10 @@
 <ion-view>
   <ion-content scroll="false">
     <list>
-      <item ng-repeat="room in rooms" type="item-text-wrap" href="#/rooms/{{room.id}}" ng-if="room.title">
+      <a ng-repeat="room in rooms" type="item-text-wrap" href="#/rooms/{{room.id}}" ng-if="room.title">
         <h3>{{room.title}}</h3>
         <p>{{room.description}}</p>
-      </item>
+      </a>
     </list>
   </ion-content>
 </ion-view>

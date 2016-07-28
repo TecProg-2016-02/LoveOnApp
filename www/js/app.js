@@ -80,6 +80,15 @@ angular.module('starter', ['ionic', 'firebase', 'ngResource', 'ngCordova'])
       }
     }
   })
+  .state('app.profile', {
+    url: '/profile',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/profile.html',
+        controller: 'LoginCtrl'
+      }
+    }
+  })
   ;
   $urlRouterProvider.otherwise("app/home");
 })

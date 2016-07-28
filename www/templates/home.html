@@ -14,7 +14,9 @@
         <input type="password" placeholder="Senha" class="height" ng-model="user.password">
       </label>
     </div>
-
+    <button ng-click="loginEmail(user)" class="button-block button-positive" style="font-size:18px;" ui-sref="app.profile">
+      Login
+    </button>
     <button class="button-block button-positive" style="font-size:18px;" ui-sref="app.register">
       Cadastre-se no App
     </button>
