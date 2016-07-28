@@ -63,14 +63,23 @@ angular.module('starter', ['ionic', 'firebase', 'ngResource', 'ngCordova'])
     }
   })
   .state('app.register', {
-      url: '/registerEmail',
-      views: {
-        'menuContent': {
-          templateUrl: 'templates/registerEmail.html',
-          controller: 'LoginCtrl'
-        }
+    url: '/registerEmail',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/registerEmail.html',
+        controller: 'LoginCtrl'
       }
-    })
-    ;
-    $urlRouterProvider.otherwise("app/home");
+    }
+  })
+  .state('app.activateaccount', {
+    url: '/activateAccount',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/activateAccount.html',
+        controller: 'LoginCtrl'
+      }
+    }
+  })
+  ;
+  $urlRouterProvider.otherwise("app/home");
 })

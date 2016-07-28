@@ -2,11 +2,10 @@ angular.module('starter')
 
 .controller('LoginCtrl', function($ionicPopup ,$scope, $state,
   $rootScope, $ionicLoading, factoryRegister, factoryLogin, serviceLogin,
-  serviceLoginSocial, serviceRegisterSocial) {
+  serviceLoginSocial, serviceRegisterSocial, factoryConfirmEmail) {
 
   var ref = new Firebase("https://appwego.firebaseio.com");
   $scope.loginFacebook = function() {
-
     ref.authWithOAuthPopup("facebook", function(error, authData) {
       if (error) {
         console.log("Login Failed!", error);
@@ -103,5 +102,29 @@ angular.module('starter')
       });
     });
   }
+
+  $scope.confirmEmail = function(confirm_token) {
+    $ionicLoading.show({
+      template: 'Loading...'
+    });
+    factoryConfirmEmail.get({
+      confirm_token: confirm_token
+    }, function(user) {
+      $ionicLoading.hide();
+      $ionicPopup.alert({
+        title: 'Sucesso!',
+        template: 'Cadastro efetuado com sucesso!'
+      });
+      $state.go('app.home');
+      console.log("BF create", user);
+    }, function(error) {
+      $ionicLoading.hide();
+      $ionicPopup.alert({
+        title: 'Erro!',
+        template: 'Cadastro falhou, verifique os dados ou se o email ja foi cadastrado'
+      });
+    });
+  }
+
 
 })
