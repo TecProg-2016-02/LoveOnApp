@@ -1,26 +1,31 @@
 angular.module('starter')
 
-.controller('NewMessageCtrl', function($scope, $location, angularFire) {
-  $scope.rooms = [];
+.controller('NewMessageCtrl', function($scope, $timeout, $firebase, $location) {
   var ref = new Firebase('https://loveonapp.firebaseio.com/opened_rooms');
-  var promise = angularFire(ref, $scope, "rooms");
+  $scope.rooms = $firebase(ref);
 
-  $scope.newChatName = "";
-  $scope.newChatNameId = "";
-  $scope.newChatDescription = "";
+  $scope.createRoom = function(roomName, roomDescription) {
+    if (!roomName) return;
 
-  $scope.setnewChatNameId = function() {
-    this.newChatNameId = this.newChatName.toLowerCase().replace(/\s/g,"-").replace(/[^a-z0-9\-]/g, '');
-  };
+    var roomId = Math.floor(Math.random() * 5000001);
 
-  $scope.createChat = function() {
-    $scope.rooms.push({
-      id: Math.floor(Math.random() * 5000001),
-      title: $scope.newChatName,
-      slug: $scope.newChatNameId,
-      description: $scope.newChatDescription
+    $scope.rooms.$add({
+      id: roomId,
+      title: roomName,
+      slug: roomName.split(/\s+/g).join('-'),
+      description: roomDescription
     });
 
-    $location.path('/home');
+    $location.path('/rooms/' + roomId);
   };
+
+  $scope.rightButtons = [
+    {
+      type: 'button-energized',
+      content: '<i class="icon ion-plus"></i>',
+      tap: function(e) {
+        $location.path("/new");
+      }
+    }
+  ];
 })

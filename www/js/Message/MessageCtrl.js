@@ -1,25 +1,66 @@
 angular.module('starter')
 
-.controller('MessageCtrl', function($scope, $routeParams, $timeout, angularFire) {
+.controller('MessageCtrl', function($scope, $stateParams, $timeout, $firebase, $location, $ionicScrollDelegate) {
+  var roomRef = new Firebase('https://loveonapp.firebaseio.com/opened_rooms/');
+  var messagesRef = new Firebase('https://loveonapp.firebaseio.com/rooms/' + $stateParams.roomId);
+
   $scope.newMessage = "";
-  $scope.messages = [];
-
-  var ref = new Firebase('https://loveonapp.firebaseio.com/rooms/' + $routeParams.roomId);
-  var promise = angularFire(ref, $scope, "messages");
-
+  $scope.roomsObj = $firebase(roomRef);
+  $scope.messagesObj = $firebase(messagesRef);
   $scope.username = 'User' + Math.floor(Math.random() * 501);
+
+  $scope.leftButtons = [
+    {
+      type: 'button-energized',
+      content: '<i class="icon ion-arrow-left-c"></i>',
+      tap: function(e) {
+        $location.path('/');
+      }
+    }
+  ]
+
+  var scrollBottom = function() {
+    // Resize and then scroll to the bottom
+    $ionicScrollDelegate.resize();
+    $timeout(function() {
+      $ionicScrollDelegate.scrollBottom();
+    });
+  };
+
+  $scope.$watch('messagesObj', function (value) {
+    var messagesObj = angular.fromJson(angular.toJson(value));
+    $timeout(function () {scrollBottom()});
+    $scope.messages = [];
+
+    angular.forEach(messagesObj, function (message, key) {
+      $scope.messages.push(message);
+    });
+
+    if ($scope.messages.length) {
+      loaded = true;
+    }
+  }, true);
+
+  $scope.$watch('roomsObj', function (value) {
+    var roomsObj = angular.fromJson(angular.toJson(value));
+    $scope.room = false;
+
+    angular.forEach(roomsObj, function (room, key) {
+      if ($scope.room) return;
+      if (room.id == $stateParams.roomId) {
+        $scope.room = room;
+      };
+    });
+  }, true);
+
   $scope.submitAddMessage = function() {
-    $scope.messages.push({
+    $scope.messagesObj.$add({
       created_by: this.username,
       content: this.newMessage,
       created_at: new Date()
     });
     this.newMessage = "";
-  };
 
-  $scope.onRefresh = function() {
-    var stop = $timeout(function() {
-      $scope.$broadcast('scroll.refreshComplete');
-    }, 1000);
+    scrollBottom();
   };
 })

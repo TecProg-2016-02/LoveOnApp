@@ -2,16 +2,12 @@
   <ion-content scroll="false">
     <refresher></refresher>
 
-    <div ng-repeat="message in messages" type="item-text-wrap">
-      <div class="card item-message">
-        <div class="item-message-header">
-          <div class="row">
-            <small class="col">{{message.created_by}}:</small>
-            <small class="col text-right">{{message.created_at | date: 'short' }}</small>
-          </div>
-        </div>
-        <div class="item-message-body item-text-wrap">
-          {{message.content}}
+    <div ng-repeat="message in messages | orderBy:'created_at'" type="item-text-wrap" ng-show="message.content">
+      <div class="item item-body message">
+        <div class="row">
+          <div class="col col-10 author">{{message.created_by}}</div>
+          <div class="col content">{{message.content}}</div>
+          <div class="col col-10 time">{{message.created_at}}</div>
         </div>
       </div>
     </div>
@@ -19,7 +15,7 @@
   </ion-content>
   <div class="bar bar-footer bar-stable" id="bar-footer-message-box">
     <div class="list list-inset">
-      <form ui-keypress="{13:'submitAddMessage($event)'}" data-ng-submit="submitAddMessage()">
+      <form ui-keypress="{13:'submitAddMessage($event)'}" data-ng-submit="submitAddMessage()" >
         <label class="item item-input">
           <input type="text" placeholder="your message ..." data-ng-model="newMessage">
           <button class="button button-positive">Send</button>

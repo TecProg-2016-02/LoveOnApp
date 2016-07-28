@@ -36,7 +36,7 @@ angular.module('starter', ['ionic', 'firebase'])
     }
   })
   .state('app.chat', {
-    url: '/chat',
+    url: '/rooms/:roomId',
     views: {
       'menuContent': {
         templateUrl: 'templates/message.html',
@@ -45,11 +45,20 @@ angular.module('starter', ['ionic', 'firebase'])
     }
   })
   .state('app.newchat', {
-    url: '/newchat',
+    url: '/new',
     views: {
       'menuContent': {
         templateUrl: 'templates/new-message.html',
         controller: 'NewMessageCtrl'
+      }
+    }
+  })
+  .state('app.lobby', {
+    url: '/lobby',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/lobby.html',
+        controller: 'LobbyCtrl'
       }
     }
   })
