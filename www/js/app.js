@@ -1,4 +1,4 @@
-angular.module('starter', ['ionic', 'firebase'])
+angular.module('starter', ['ionic', 'firebase', 'ngResource', 'ngCordova'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -62,6 +62,15 @@ angular.module('starter', ['ionic', 'firebase'])
       }
     }
   })
+  .state('app.register', {
+      url: '/registerEmail',
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/registerEmail.html',
+          controller: 'LoginCtrl'
+        }
+      }
+    })
     ;
     $urlRouterProvider.otherwise("app/home");
 })

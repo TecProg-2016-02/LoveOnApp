@@ -1,7 +1,23 @@
 <ion-view>
-  <ion-content scroll="false">
+  <ion-content scroll="false" >
     <a ui-sref="app.chat">chat</a>
     <a ui-sref="app.newchat">new chat</a>
     <a ui-sref="app.lobby">lobby</a>
+
+    <div>
+      <label class="inputs item item-input ion-person icon-left custom-icon balanced">
+        <input type="text" placeholder="E-mail" class="height" ng-model="user.email" >
+      </label>
+    </div>
+    <div>
+      <label class="inputs item item-input ion-locked icon-left custom-icon balanced">
+        <input type="password" placeholder="Senha" class="height" ng-model="user.password">
+      </label>
+    </div>
+
+    <button class="button-block button-positive" style="font-size:18px;" ui-sref="app.register">
+      Cadastre-se no App
+    </button>
+
   </ion-content>
 </ion-view>
