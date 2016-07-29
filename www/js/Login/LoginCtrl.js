@@ -69,6 +69,7 @@ angular.module('starter')
       );
       $ionicLoading.hide();
       $rootScope.user = user;
+      $rootScope.username = user.name;
       console.log(user);
       $state.go('app.profile');
       $ionicLoading.hide();

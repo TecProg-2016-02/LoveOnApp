@@ -1,6 +1,6 @@
 angular.module('starter')
 
-.controller('NewMessageCtrl', function($scope, $timeout, $firebaseArray, $firebaseObject, $location) {
+.controller('NewMessageCtrl', function($scope, $timeout, $firebaseArray, $firebaseObject, $location, $rootScope) {
   var ref = new Firebase('https://loveonapp.firebaseio.com/opened_rooms');
   console.log(ref);
   $scope.rooms = $firebaseArray(ref);
@@ -9,7 +9,7 @@ angular.module('starter')
     if (!roomName) return;
 
     var roomId = Math.floor(Math.random() * 5000001);
-
+    $rootScope.roomId = roomId;
     $scope.rooms.$add({
       id: roomId,
       title: roomName,

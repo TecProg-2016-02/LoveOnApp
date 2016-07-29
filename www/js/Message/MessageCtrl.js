@@ -1,13 +1,12 @@
 angular.module('starter')
 
-.controller('MessageCtrl', function($scope, $stateParams, $timeout, $firebaseObject, $firebaseArray, $location, $ionicScrollDelegate) {
+.controller('MessageCtrl', function($scope, $rootScope, $stateParams, $timeout, $firebaseObject, $firebaseArray, $location, $ionicScrollDelegate) {
   var roomRef = new Firebase('https://loveonapp.firebaseio.com/opened_rooms/');
-  var messagesRef = new Firebase('https://loveonapp.firebaseio.com/rooms/' + $stateParams.roomId);
+  var messagesRef = new Firebase('https://loveonapp.firebaseio.com/rooms/' + $rootScope.roomId);
 
   $scope.newMessage = "";
   $scope.roomsObj = $firebaseArray(roomRef);
   $scope.messagesObj = $firebaseArray(messagesRef);
-  $scope.username = 'User' + Math.floor(Math.random() * 501);
 
   $scope.leftButtons = [
     {
