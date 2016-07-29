@@ -1,8 +1,9 @@
 angular.module('starter')
 
-.controller('NewMessageCtrl', function($scope, $timeout, $firebase, $location) {
+.controller('NewMessageCtrl', function($scope, $timeout, $firebaseArray, $firebaseObject, $location) {
   var ref = new Firebase('https://loveonapp.firebaseio.com/opened_rooms');
-  $scope.rooms = $firebase(ref);
+  console.log(ref);
+  $scope.rooms = $firebaseArray(ref);
 
   $scope.createRoom = function(roomName, roomDescription) {
     if (!roomName) return;
@@ -18,7 +19,7 @@ angular.module('starter')
 
     $location.path('/rooms/' + roomId);
   };
-
+  console.log($scope.rooms);
   $scope.rightButtons = [
     {
       type: 'button-energized',

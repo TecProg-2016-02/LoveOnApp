@@ -1,8 +1,8 @@
 angular.module('starter')
 
-.controller('LobbyCtrl', function($scope, $timeout, $firebase, $location) {
+.controller('LobbyCtrl', function($scope, $timeout, $firebaseObject, $location) {
   var ref = new Firebase('https://loveonapp.firebaseio.com/opened_rooms');
-  $scope.rooms = $firebase(ref);
+  $scope.rooms = $firebaseObject(new Firebase('https://loveonapp.firebaseio.com/opened_rooms'));
 
   $scope.rightButtons = [
     {
