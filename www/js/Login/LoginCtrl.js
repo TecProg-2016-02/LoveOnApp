@@ -2,7 +2,7 @@ angular.module('starter')
 
 .controller('LoginCtrl', function($ionicPopup ,$scope, $state,
   $rootScope, $ionicLoading, factoryRegister, factoryLogin, serviceLogin,
-  serviceLoginSocial, serviceRegisterSocial, factoryConfirmEmail) {
+  serviceLoginSocial, serviceRegisterSocial, factoryConfirmEmail, $timeout) {
 
   var ref = new Firebase("https://appwego.firebaseio.com");
   $scope.loginFacebook = function() {
@@ -125,6 +125,85 @@ angular.module('starter')
         template: 'Cadastro falhou, verifique os dados ou se o email ja foi cadastrado'
       });
     });
+  }
+
+  $scope.updateProfile = function(user) {
+    factoryUpdate.update({
+      email: serviceLogin.getUser().email
+    }, {
+      user: user
+    }, function(user) {
+
+      console.log(user);
+    }, function(error) {
+      alert("erro", error.message);
+    });
+  }
+
+  $scope.alterarFoto = function() {
+
+    function setOptions(srcType) {
+      var options = {
+        // Some common settings are 20, 50, and 100
+        quality: 50,
+        destinationType: Camera.DestinationType.DATA_URL,
+        // In this app, dynamically set the picture source, Camera or photo gallery
+        sourceType: srcType,
+        encodingType: Camera.PictureSourceType.CAMERA,
+        mediaType: Camera.MediaType.PICTURE,
+        allowEdit: true,
+        correctOrientation: true //Corrects Android orientation quirks
+      }
+      return options;
+    }
+
+    function createNewFileEntry(imgUri) {
+      window.resolveLocalFileSystemURL(cordova.file.cacheDirectory, function success(dirEntry) {
+
+        // JPEG file
+        dirEntry.getFile("tempFile.jpeg", {
+          create: true,
+          exclusive: false
+        }, function(fileEntry) {
+
+          // Do something with it, like write to it, upload it, etc.
+          // writeFile(fileEntry, imgUri);
+          console.log("got file: " + fileEntry.fullPath);
+          // displayFileData(fileEntry.fullPath, "File copied to");
+
+        }, onErrorCreateFile);
+
+      }, onErrorResolveUrl);
+    }
+
+
+    var srcType = Camera.PictureSourceType.CAMERA;
+    var options = setOptions(srcType);
+    var func = createNewFileEntry;
+
+    navigator.camera.getPicture(function cameraSuccess(imageUri) {
+      $ionicLoading.show({
+        template: 'Recebendo suas informações... <ion-spinner icon="android"></ion-spinner>'
+      });
+
+
+      $timeout(function() {
+
+
+        $ionicLoading.hide();
+        $scope.$apply();
+        $scope.image = imageUri;
+        console.log("image",$scope.image);
+
+      }, 1000)
+
+
+    }, function cameraError(error) {
+      console.debug("Unable to obtain picture: " + error, "app");
+
+    }, options);
+
+
   }
 
 

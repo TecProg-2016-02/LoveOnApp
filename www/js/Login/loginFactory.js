@@ -1,3 +1,4 @@
+
 angular.module('starter')
 
 .factory('factoryRegister', function($resource) {
@@ -15,4 +16,12 @@ angular.module('starter')
       }
 
   })
+})
+
+.factory("factoryUpdate",function($resource,URL){
+  return $resource("http://localhost:3000/users/update", {}, {
+      'update': { method:'PATCH',
+                  params:{  email:'@email' }
+      }
+    })
 })

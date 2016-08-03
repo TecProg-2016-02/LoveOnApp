@@ -1,5 +1,5 @@
 <ion-view>
-  
+
   <ion-content scroll="false" ng-class="{expanded:$scope.isExpanded}">
     <div class="fields">
       <div class="distance">
@@ -25,6 +25,13 @@
         <label class="item item-input inputs-register">
           <input type="password" ng-model="user.password_confirmation">
         </label>
+      </div>
+      <div class="col col-40">
+        <span>Sexo:</span>
+        <select style="border-radius: 5px;margin-top:5px;"class="item item-select" ng-model="user.gender">
+          <option ng-selected="true">Masculino</option>
+          <option>Feminino</option>
+        </select>
       </div>
 
       <div class="row">
