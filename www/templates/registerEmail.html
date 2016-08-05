@@ -1,48 +1,50 @@
 <ion-view>
 
   <ion-content scroll="false" ng-class="{expanded:$scope.isExpanded}">
-    <div class="fields">
-      <div class="distance">
-        <span class="labels">Name:</span>
-        <label class="item item-input inputs-register">
-          <input type="text" ng-model='user.name' >
-        </label>
-      </div>
-      <div class="distance">
-        <span class="labels">Email:</span>
-        <label class="item item-input inputs-register">
-          <input type="text" ng-model='user.email' >
-        </label>
-      </div>
-      <div class="distance">
-        <span class="labels">Senha:</span>
-        <label class="item item-input inputs-register">
-          <input type="password" ng-model= "user.password">
-        </label>
-      </div>
-      <div class="distance">
-        <span class="labels">Confirmar Senha:</span>
-        <label class="item item-input inputs-register">
-          <input type="password" ng-model="user.password_confirmation">
-        </label>
-      </div>
-      <div class="col col-40">
-        <span>Sexo:</span>
-        <select style="border-radius: 5px;margin-top:5px;"class="item item-select" ng-model="user.gender">
-          <option ng-selected="true">Masculino</option>
-          <option>Feminino</option>
-        </select>
-      </div>
-
-      <div class="row">
-        <div class="col col-33"></div>
-        <div class="col col-33 col-center">
-          <input type="submit" class="button button-balanced button-block icon-left " ng-click="registerEmail(user)" value="Cadastrar" />
+    <div class="padding-register">
+      <div class="fields">
+        <div class="distance">
+          <span class="labels"></span>
+          <label class="item item-input inputs-register">
+            <input placeholder="Nome" type="text" ng-model='user.name'>
+          </label>
         </div>
-        <div class="col col-33"></div>
-      </div>
+        <div class="distance">
+          <span class="labels"></br></span>
+          <label class="item item-input inputs-register">
+            <input placeholder="E-mail" type="text" ng-model='user.email'>
+          </label>
+        </div>
+        <div class="distance">
+          <span class="labels"></br></span>
+          <label class="item item-input inputs-register">
+            <input placeholder="Senha" type="password" ng-model="user.password">
+          </label>
+        </div>
+        <div class="distance">
+          <span class="labels"></br></span>
+          <label class="item item-input inputs-register">
+            <input placeholder="Confirmar senha" type="password" ng-model="user.password_confirmation">
+          </label>
+        </div>
+        <div class="col col-40">
+          <span>Sexo:</span>
+          <select style="border-radius: 5px;margin-top:5px;" class="item item-select" ng-model="user.gender">
+            <option ng-selected="true">Masculino</option>
+            <option>Feminino</option>
+          </select>
+        </div>
 
+        <div class="row">
+          <div class="col col-33"></div>
+          <div class="col col-33 col-center">
+            <input type="submit" class="button button-balanced button-block icon-left " ng-click="registerEmail(user)" value="Cadastrar" />
+          </div>
+          <div class="col col-33"></div>
+        </div>
+
+      </div>
     </div>
-      <!-- Div para login com rede social  -->
+    <!-- Div para login com rede social  -->
   </ion-content>
 </ion-view>

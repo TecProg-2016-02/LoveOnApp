@@ -4,13 +4,14 @@ angular.module('starter')
 
   var user = {}
 
-  var setUser = function(name, email, token, birthday, gender, id) {
+  var setUser = function(name, email, token, birthday, gender, id, email_confirmed) {
     user.name = name,
     user.email = email,
     user.token = token,
     user.birthday = birthday,
     user.gender = gender,
-    user.id = id
+    user.id = id,
+    user.email_confirmed = email_confirmed
   }
 
   var getUser = function() {

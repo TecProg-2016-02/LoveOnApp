@@ -76,13 +76,19 @@ angular.module('starter')
         user.token,
         user.birthday,
         user.gender,
-        user.id
+        user.id,
+        user.email_confirmed
       );
       $ionicLoading.hide();
       $rootScope.user = user;
       $rootScope.username = user.name;
       console.log("Logado", serviceLogin.getUser());
-      $state.go('app.profile');
+      console.log(user.email_confirmed);
+      if(!user.email_confirmed) {
+        $state.go('app.activateaccount');
+      } else {
+        $state.go('app.profile');
+      }
       $ionicLoading.hide();
       $rootScope.logged = true;
     }, function(error) {
@@ -127,7 +133,7 @@ angular.module('starter')
         title: 'Sucesso!',
         template: 'Cadastro efetuado com sucesso!'
       });
-      $state.go('app.home');
+      $state.go('app.primeiraTelaEdit');
       console.log("BF create", user);
     }, function(error) {
       $ionicLoading.hide();

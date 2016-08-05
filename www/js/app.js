@@ -107,6 +107,24 @@ angular.module('starter', ['ionic', 'firebase', 'ngResource', 'ngCordova', 'ionM
       }
     }
   })
+  .state('app.location', {
+    url: '/location',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/location.html',
+        controller: 'locationsCtrl'
+      }
+    }
+  })
+  .state('app.primeiraTelaEdit', {
+    url: '/primeiraTelaEdit',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/primeiraTelaEdit.html',
+        controller: 'LoginCtrl'
+      }
+    }
+  })
   ;
   $urlRouterProvider.otherwise("app/home");
 })

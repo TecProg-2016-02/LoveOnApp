@@ -1,18 +1,18 @@
-<ion-view>
+<ion-view view-title="Confirme seu email">
   <ion-content scroll="false" ng-class="{expanded:$scope.isExpanded}">
-
-    <div class="card">
-      <div class="list">
-        <!-- <label class="item item-input">
-          <input type="text" placeholder="Email" ng-model= "user.email">
-        </label> -->
-        <label class="item item-input">
-          <input type="text" placeholder="Chave" ng-model= "confirm_token">
+    <div class="padding-register">
+      <div class="distance">
+        <span class="labels"></span>
+        <label class="item item-input inputs-register">
+          <input placeholder="Chave" type="text" ng-model='confirm_token'>
         </label>
-        <input type="submit" class="button button-dark button-block icon-left " ng-click="confirmEmail(confirm_token)" value="Entrar com a chave" />
-        <input type="submit" class="button button-dark button-block icon-left " ui-sref="app.home" value="Voltar" />
+
+        <div class="padding-bla">
+          <input type="submit" class="button button-block button-calm" ng-click="confirmEmail(confirm_token)" value="Entrar com a chave" />
+        </div>
       </div>
     </div>
+
       <!-- Div para login com rede social  -->
   </ion-content>
 </ion-view>
