@@ -1,23 +1,21 @@
-<ion-view>
-  <ion-content scroll="false" >
-    <a ui-sref="app.chat">chat</a>
+<ion-view hide-nav-bar="true">
+  <ion-content scroll="false" class="background-home">
+    <!-- <a ui-sref="app.chat">chat</a>
     <a ui-sref="app.newchat">new chat</a>
-    <a ui-sref="app.lobby">lobby</a>
+    <a ui-sref="app.lobby">lobby</a> -->
 
-    <div>
-      <label class="inputs item item-input ion-person icon-left custom-icon balanced">
-        <input type="text" placeholder="E-mail" class="height" ng-model="user.email" >
-      </label>
+        <div class="content">
+            <div class="app-icon"></div>
+        </div>
+  <div class="padding-login">
+    <div class="list">
+
+      <ion-md-input placeholder="E-mail" highlight-color="balanced" type="text" ng-model="user.email"></ion-md-input>
+      <ion-md-input placeholder="Senha" highlight-color="balanced" type="password" ng-model="user.password"></ion-md-input>
+      <input type="submit" class="button button-block" ng-click="loginEmail(user)" ui-sref="app.profile"/>
     </div>
-    <div>
-      <label class="inputs item item-input ion-locked icon-left custom-icon balanced">
-        <input type="password" placeholder="Senha" class="height" ng-model="user.password">
-      </label>
-    </div>
-    <button ng-click="loginEmail(user)" class="button-block button-positive" style="font-size:18px;" ui-sref="app.profile">
-      Login
-    </button>
-    <button class="button-block button-positive" style="font-size:18px;" ui-sref="app.register">
+  </div>
+    <!-- <button class="button-block button-positive" style="font-size:18px;" ui-sref="app.register">
       Cadastre-se no App
     </button>
     <button class="button-block button-positive" style="font-size:18px;" ui-sref="app.activateaccount">
@@ -28,7 +26,13 @@
     </button>
     <button class="button-block button-positive" style="font-size:18px;" ng-click="alterarFoto()">
     foto
-    </button>
+    </button> -->
+    <div class="foot-social">
+      <div class="padding-button">
+        <button class="button button-block button-positive" ng-click="loginFacebook()"><div class="margin-carai"><i class="icon ion-social-facebook"></i></div>Facebook</button>
+        <div class="margin-cadestro"><a ui-sref="app.register">Cadastre-se</a></div>
+      </div>
+    </div>
 
 
   </ion-content>
