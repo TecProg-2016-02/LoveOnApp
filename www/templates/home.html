@@ -12,7 +12,9 @@
 
       <ion-md-input placeholder="E-mail" highlight-color="balanced" type="text" ng-model="user.email"></ion-md-input>
       <ion-md-input placeholder="Senha" highlight-color="balanced" type="password" ng-model="user.password"></ion-md-input>
-      <input type="submit" class="button button-block" ng-click="loginEmail(user)" ui-sref="app.profile"/>
+      <div class="padding-bla">
+        <input type="submit" class="button button-block button-calm" ng-click="loginEmail(user)" ui-sref="app.profile"/>
+      </div>
     </div>
   </div>
     <!-- <button class="button-block button-positive" style="font-size:18px;" ui-sref="app.register">
@@ -27,7 +29,7 @@
     <button class="button-block button-positive" style="font-size:18px;" ng-click="alterarFoto()">
     foto
     </button> -->
-    <div class="foot-social">
+    <div class="foot-social hide-on-keyboard-open">
       <div class="padding-button">
         <button class="button button-block button-positive" ng-click="loginFacebook()"><div class="margin-carai"><i class="icon ion-social-facebook"></i></div>Facebook</button>
         <div class="margin-cadestro"><a ui-sref="app.register">Cadastre-se</a></div>

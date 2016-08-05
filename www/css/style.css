@@ -48,11 +48,16 @@ a,
 }
 
 .foot-social {
-  position: fixed;
-  background-color: #c9c9c9;
-  height: 120px;
-  width: 100%;
+  position: absolute;
+  right: 0;
   bottom: 0;
+  left: 0;
+  padding: 1rem;
+  background-color: #c9c9c9;
+}
+
+.padding-bla {
+  padding: 20px 40px;
 }
 
 /* Hero
