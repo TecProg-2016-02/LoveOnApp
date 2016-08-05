@@ -4,10 +4,10 @@ angular.module('starter')
 
   var user = {}
 
-  var setUser = function(name, email, auth_token, birthday, gender, id) {
+  var setUser = function(name, email, token, birthday, gender, id) {
     user.name = name,
     user.email = email,
-    user.auth_token = auth_token,
+    user.auth_token = token,
     user.birthday = birthday,
     user.gender = gender,
     user.id = id
@@ -28,12 +28,12 @@ angular.module('starter')
 
   var user = {}
 
-  var setUser = function(name, email, id_social) {
+  var setUser = function(name, email, id_facebook) {
     user.name = name,
     user.email = email,
-    user.id_social = id_social,
-    user.password = id_social,
-    user.password_confirmation = id_social
+    user.id_facebook = id_facebook,
+    user.password = id_facebook,
+    user.password_confirmation = id_facebook
   }
 
   var getUser = function() {
@@ -51,12 +51,12 @@ angular.module('starter')
 
   var user = {}
 
-  var setUser = function(name, email, id_social, gender, birthday, picture) {
+  var setUser = function(name, email, id_facebook, gender, birthday, picture) {
     user.name = name,
     user.email = email,
-    user.id_social = id_social,
-    user.password = id_social,
-    user.password_confirmation = id_social
+    user.id_facebook = id_facebook,
+    user.password = id_facebook,
+    user.password_confirmation = id_facebook
     user.gender = gender,
     user.birthday = birthday,
     user.picture = picture

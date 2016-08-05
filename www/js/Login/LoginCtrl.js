@@ -6,41 +6,52 @@ angular.module('starter')
 
   var ref = new Firebase("https://appwego.firebaseio.com");
   $scope.loginFacebook = function() {
-    ref.authWithOAuthPopup("facebook", function(error, authData) {
-      if (error) {
-        console.log("Login Failed!", error);
-      } else {
 
-        $state.go('app.profile');
-        console.log("Data from Firebase:", authData);
-        serviceLogin.setUser(
-          authData.facebook.displayName,
-          authData.facebook.email,
-          authData.facebook.id
-        );
-        serviceRegisterSocial.setUser(
-          authData.facebook.displayName,
-          authData.facebook.email,
-          authData.facebook.id
-        );
-        console.log("Usr:", serviceRegisterSocial.getUser());
-        factoryRegister.save(serviceRegisterSocial.getUser(), function(user) {
-          $ionicLoading.hide();
-          $scope.loginEmail(serviceRegisterSocial.getUser());
+      ref.authWithOAuthPopup("facebook", function(error, authData) {
+        if (error) {
+          console.log("Login Failed!", error);
+        } else {
+          // $scope.url = "https://graph.facebook.com/"+ authData.facebook.id +"/picture?width=700&height=700";
+          // $scope.getImageDataURL($scope.url, $scope.onSuccess, $scope.onError);
+
+          $state.go('app.profile');
+          console.log("Data from Firebase:", authData);
+          serviceLogin.setUser(
+            authData.facebook.displayName,
+            authData.facebook.email,
+            authData.facebook.id,
+            authData.facebook.cachedUserProfile.birthday,
+            authData.facebook.cachedUserProfile.gender
+          );
+          serviceRegisterSocial.setUser(
+            authData.facebook.displayName,
+            authData.facebook.email,
+            authData.facebook.id,
+            authData.facebook.cachedUserProfile.gender,
+            new Date(authData.facebook.cachedUserProfile.birthday)
+          );
+          console.log("Usr:", serviceRegisterSocial.getUser());
+          factoryRegister.save(serviceRegisterSocial.getUser(), function(user) {
+            $ionicLoading.hide();
+            $scope.loginEmail(serviceRegisterSocial.getUser());
+            $state.go('app.home');
+          }, function(error) {
+            $ionicLoading.hide();
+            $ionicPopup.alert({
+              title: 'Ops!',
+              template: 'Erro ao se comunicar com o servidor!'
+            });
+            $state.go('app.home');
+          });
           $state.go('app.home');
-        }, function(error) {
-          $ionicLoading.hide();
-          $state.go('app.home');
-        });
-        $state.go('app.home');
-        $rootScope.user = serviceLogin.getUser();
-        console.log("User:", $rootScope.user);
-      }
-    }, {
-      remember: "sessionOnly",
-      scope: "email, user_friends, user_birthday, user_photos"
-    });
-  }
+          $rootScope.user = serviceLogin.getUser();
+          console.log("User:", $rootScope.user);
+        }
+      }, {
+        remember: "sessionOnly",
+        scope: "email, user_friends, user_birthday, user_photos"
+      });
+    }
 
 
   $scope.minDate = new Date(2105, 6, 1);
