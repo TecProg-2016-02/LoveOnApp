@@ -9,8 +9,8 @@ angular.module('starter')
     })
 })
 
-.factory('factoryCompany', function($resource) {
-  return $resource("http://localhost:3000/location/show/", {}, {
+.factory('factoryLocation', function($resource) {
+  return $resource("http://localhost:3000/locations/show/", {}, {
       'get': { method:'GET',
                   params:{  name:'@name' }
       }
@@ -19,11 +19,11 @@ angular.module('starter')
 })
 
 .factory('factoryCheckin', function($resource) {
-  return $resource("http://localhost:3000/location/checkin")
+  return $resource("http://localhost:3000/locations/checkin")
 })
 
 .factory('factoryCheckins', function($resource) {
-  return $resource("http://localhost:3000/location/checkins/", {}, {
+  return $resource("http://localhost:3000/locations/user/checkins/", {}, {
       'get': {
                   method:'GET',
                   params:{  auth_token:'@auth_token' },

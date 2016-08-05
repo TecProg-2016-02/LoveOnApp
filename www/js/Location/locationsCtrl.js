@@ -1,7 +1,8 @@
 angular.module('starter')
 
 .controller('locationsCtrl', function($ionicPopup ,$scope, $state, $stateParams,
-  $rootScope, $ionicLoading, serviceLogin, factoryLocations, factoryCheckins, factoryLocation) {
+  $rootScope, $ionicLoading, serviceLogin, factoryLocations, factoryCheckins,
+  factoryLocation, factoryCheckin) {
 
   $scope.allLocations = function() {
     factoryLocations.get(function(locations) {
@@ -34,16 +35,12 @@ angular.module('starter')
   };
 
   $scope.viewLocation = function(name) {
-    $rootScope.isRated = false;
-    factoryCompany.get({
+    factoryLocation.get({
       name: name
     }, function(location) {
       $ionicLoading.hide();
       console.log(location);
       $rootScope.loc = location;
-      console.log($rootScope.isOwner);
-      console.log($rootScope.comp);
-      $ionicLoading.hide();
     }, function(error) {
       $ionicLoading.hide();
       $ionicPopup.alert({
@@ -59,12 +56,11 @@ angular.module('starter')
     var checkin = {};
 
     checkin.user_token = serviceLogin.getUser().token;
-    checkin.location_token = location.token;
-    checkin.id = location.id;
+    checkin.location_id = location.id;
     $ionicLoading.show({
       template: 'Loading...'
     });
-    factoryFavorite.save(checkin, function(checkin) {
+    factoryCheckin.save(checkin, function(checkin) {
       $ionicLoading.hide();
       $ionicPopup.alert({
         title: 'Sucesso!',
