@@ -1,4 +1,4 @@
-angular.module('starter', ['ionic', 'firebase', 'ngResource', 'ngCordova'])
+angular.module('starter', ['ionic', 'firebase', 'ngResource', 'ngCordova', 'ionMdInput'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
