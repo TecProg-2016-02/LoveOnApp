@@ -98,6 +98,15 @@ angular.module('starter', ['ionic', 'firebase', 'ngResource', 'ngCordova', 'ionM
       }
     }
   })
+  .state('app.locations', {
+    url: '/locations',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/locations.html',
+        controller: 'locationsCtrl'
+      }
+    }
+  })
   ;
   $urlRouterProvider.otherwise("app/home");
 })

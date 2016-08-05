@@ -7,7 +7,7 @@ angular.module('starter')
   var setUser = function(name, email, token, birthday, gender, id) {
     user.name = name,
     user.email = email,
-    user.auth_token = token,
+    user.token = token,
     user.birthday = birthday,
     user.gender = gender,
     user.id = id

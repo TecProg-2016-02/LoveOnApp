@@ -73,7 +73,7 @@ angular.module('starter')
       serviceLogin.setUser(
         user.name,
         user.email,
-        user.auth_token,
+        user.token,
         user.birthday,
         user.gender,
         user.id
@@ -81,7 +81,7 @@ angular.module('starter')
       $ionicLoading.hide();
       $rootScope.user = user;
       $rootScope.username = user.name;
-      console.log(user);
+      console.log("Logado", serviceLogin.getUser());
       $state.go('app.profile');
       $ionicLoading.hide();
       $rootScope.logged = true;
