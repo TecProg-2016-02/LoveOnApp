@@ -27,6 +27,11 @@
             <input placeholder="Confirmar senha" type="password" ng-model="user.password_confirmation">
           </label>
         </div>
+        <div class="distance">
+          <ionic-datepicker ion-datetime-picker date="dateValue" min="minDate" max="maxDate" callback="datePickerCallback" date ng-model="user.birthday">
+            <button class="button button-block icon-right ion-calendar"> {{ user.birthday | date:'dd/MM/yy' }}</button>
+          </ionic-datepicker>
+        </div>
         <div class="col col-40">
           <span>Sexo:</span>
           <select style="border-radius: 5px;margin-top:5px;" class="item item-select" ng-model="user.gender">
@@ -35,13 +40,7 @@
           </select>
         </div>
 
-        <div class="row">
-          <div class="col col-33"></div>
-          <div class="col col-33 col-center">
             <input type="submit" class="button button-balanced button-block icon-left " ng-click="registerEmail(user)" value="Cadastrar" />
-          </div>
-          <div class="col col-33"></div>
-        </div>
 
       </div>
     </div>

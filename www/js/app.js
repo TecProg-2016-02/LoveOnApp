@@ -1,4 +1,4 @@
-angular.module('starter', ['ionic', 'firebase', 'ngResource', 'ngCordova', 'ionMdInput'])
+angular.module('starter', ['ionic', 'firebase', 'ngResource', 'ngCordova', 'ionMdInput', 'ion-datetime-picker'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {

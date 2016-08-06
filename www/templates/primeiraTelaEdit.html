@@ -1,0 +1,75 @@
+<ion-view hide-nav-bar="true">
+  <ion-content class="background-home">
+    <div class="center-carai">
+      <div class="circle-number">1
+      </div>
+    </div>
+    <div class="margin-grey">
+      Primeiro passo
+    </div>
+    <div class="damn">
+      Configure seu perfil
+    </div>
+    <div class="profile-image padding">
+      <img ng-src="data:image/jpeg;base64,{{image}}" err-src="/img/ionic.png" />
+    </div>
+    <button class="profile-edit-button" ng-click="alterarFoto()">Alterar foto</button>
+    <div class="padding-tela1">
+      <div class="fields">
+        <div class="distance">
+          <span class="labels"></span>
+          <label class="item item-input inputs-register">
+            <input placeholder="Nome" type="text" ng-model='user.name'>
+          </label>
+        </div>
+        <div class="distance">
+          <span class="labels"></br></span>
+          <ionic-datepicker ion-datetime-picker date="dateValue" min="minDate" max="maxDate" callback="datePickerCallback" date ng-model="user.birthday">
+            <button class="button button-block icon-right ion-calendar"> {{ user.birthday | date:'dd/MM/yy' }}</button>
+          </ionic-datepicker>
+        </div>
+        <div class="distance">
+          <span class="labels"></br></span>
+          <label class="item item-input inputs-register">
+            <input placeholder="Bairro" type="text">
+          </label>
+        </div>
+        <div class="distance">
+          <span class="labels"></br></span>
+          <label class="item item-input inputs-register">
+            <input placeholder="Cidade" type="text">
+          </label>
+        </div>
+
+        <div class="row">
+
+          <div class="col col-50">
+            <span class="labels"></br></span>
+            <label class="item item-input inputs-register">
+              <input placeholder="Altura" type="text">
+            </label>
+          </div>
+          <div class="col col-50">
+            <span class="labels"></br></span>
+            <label class="item item-input inputs-register">
+              <input placeholder="Peso" type="text">
+            </label>
+          </div>
+        </div>
+        <div class="distance">
+          <span class="labels"></br></span>
+          <label class="item item-input">
+            <textarea placeholder="Descrição"></textarea>
+          </label>
+        </div>
+        <div class="col col-40">
+          <span>Sexo:</span>
+          <select style="border-radius: 5px;margin-top:5px;" class="item item-select" ng-model="user.gender">
+            <option ng-selected="true">Masculino</option>
+            <option>Feminino</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>
