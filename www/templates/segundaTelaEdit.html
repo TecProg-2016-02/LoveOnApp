@@ -1,0 +1,36 @@
+<ion-view hide-nav-bar="true">
+  <ion-content class="background-home">
+    <div class="center-carai">
+      <div class="circle-number">2
+      </div>
+    </div>
+    <div class="margin-grey">
+      Segundo passo
+    </div>
+    <div class="damn">
+      Configurar busca
+    </div>
+    <div class="margin-grey-light">
+      Procurando por
+    </div>
+    <div class="row">
+      <div class="col col-50">
+        <div>
+          <i class="icon ion-man man-class"></i>
+        </div>
+      </div>
+      <div class="col col-50">
+        <div class="">
+          <i class="icon ion-woman woman-class"></i>
+        </div>
+      </div>
+    </div>
+    <div class="padding-tela1">
+      <ionic-datepicker ion-datetime-picker date="dateValue" min="minDate" max="maxDate" callback="datePickerCallback" date ng-model="user.birthday">
+        <button class="button button-block icon-right ion-calendar"> {{ user.birthday | date:'dd/MM/yy' }}</button>
+      </ionic-datepicker>
+      <span class="labels"></br></span>
+      <button class="sparara2" ui-sref="">Concluir</button>
+    </div>
+  </ion-content>
+</ion-view>

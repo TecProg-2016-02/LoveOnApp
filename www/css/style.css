@@ -11,11 +11,47 @@
   width: 100%;
 }
 
+.man-class {
+  position: relative;
+  left: calc(100% - 30px);
+  font-size: 70pt;
+}
+
+.man-class:active {
+  color: green;
+}
+
+.woman-class {
+  text-align: center;
+  font-size: 70pt;
+}
+
+.woman-class:active {
+  color: purple;
+}
+
 .sparara {
+  border: 0;
   background-color: #abb1b1;
   position: absolute;
   padding: 10px 50px;
   right: 50px;
+}
+
+.sparara2 {
+  position: relative;
+  margin-left: calc(50% - 75px);
+  border: 0;
+  background-color: #329664;
+  color:white;
+  padding: 10px 50px;
+}
+
+.margin-grey-light {
+  color: #ccc;
+  text-align: center;
+  font-size: 15pt;
+  margin-top: 30px;
 }
 
 .profile-edit-button {
