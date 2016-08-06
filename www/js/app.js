@@ -125,6 +125,15 @@ angular.module('starter', ['ionic', 'firebase', 'ngResource', 'ngCordova', 'ionM
       }
     }
   })
+  .state('app.segundaTelaEdit', {
+    url: '/segundaTelaEdit',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/segundaTelaEdit.html',
+        controller: 'LoginCtrl'
+      }
+    }
+  })
   ;
   $urlRouterProvider.otherwise("app/home");
 })

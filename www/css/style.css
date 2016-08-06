@@ -11,6 +11,13 @@
   width: 100%;
 }
 
+.sparara {
+  background-color: #abb1b1;
+  position: absolute;
+  padding: 10px 50px;
+  right: 50px;
+}
+
 .profile-edit-button {
   position: relative;
   background-color: Transparent;
