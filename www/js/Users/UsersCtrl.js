@@ -1,7 +1,8 @@
 angular.module('starter')
 
 .controller('UsersCtrl', function($ionicPopup ,$scope, $state, $firebaseArray,
-  $rootScope, $ionicLoading, serviceLogin, factoryInteract, factoryUsers, $timeout) {
+  $rootScope, $ionicLoading, serviceLogin, factoryInteract, factoryUsers,
+  $timeout, $ionicScrollDelegate) {
 
   var ref = new Firebase('https://loveonapp.firebaseio.com/opened_rooms');
   // var roomRef = new Firebase('https://loveonapp.firebaseio.com/opened_rooms/');

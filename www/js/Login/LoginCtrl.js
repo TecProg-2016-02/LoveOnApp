@@ -81,8 +81,12 @@ angular.module('starter')
       );
       $ionicLoading.hide();
       $rootScope.user = user;
+      $rootScope.matches = user.matches;
+      for (var i = 0; i < user.matches.length; i++) {
+        $rootScope.matches[i].roomId=user.matches_token[i].token;
+      }
       $rootScope.username = user.name;
-      console.log("Logado", user);
+      console.log("Logado", $rootScope.user);
       console.log(user.email_confirmed);
       if(!user.email_confirmed) {
         // $state.go('app.activateaccount');
