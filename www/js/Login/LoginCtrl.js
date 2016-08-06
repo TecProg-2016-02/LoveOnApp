@@ -82,10 +82,11 @@ angular.module('starter')
       $ionicLoading.hide();
       $rootScope.user = user;
       $rootScope.username = user.name;
-      console.log("Logado", serviceLogin.getUser());
+      console.log("Logado", user);
       console.log(user.email_confirmed);
       if(!user.email_confirmed) {
-        $state.go('app.activateaccount');
+        // $state.go('app.activateaccount');
+        $state.go('app.profile');
       } else {
         $state.go('app.profile');
       }

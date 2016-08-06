@@ -1,7 +1,8 @@
 <ion-view>
   <ion-content overflow-scroll="false">
     <ion-list ng-repeat="location in locations">
-      <div scroll="false" class="company-navigation" data-tap-disabled="true" ng-click="viewLocation(location.name);doCheckin(location)">
+      <div scroll="false" class="company-navigation" data-tap-disabled="true"
+        ng-click="viewLocation(location.name);doCheckin(location)">
         <h2>{{location.name}}</h2>
         <img ng-src="{{location.image}}"/>
       </div>

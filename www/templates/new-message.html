@@ -10,9 +10,13 @@
                 <span class="input-label">Chat room description</span>
                 <input type="text" placeholder="e.g. How to do recursion" ng-model="newRoomDescription" >
             </label>
+            <label class="item item-input item-stacked-label">
+                <span class="input-label">roomId</span>
+                <input type="text" placeholder="roomId" ng-model="roomId" >
+            </label>
         </div>
         <div class="padding">
-            <button class="button button-full button-positive" ng-click="createRoom(newRoomName, newRoomDescription)">Submit</button>
+            <button class="button button-full button-positive" ng-click="createRoom(newRoomName, newRoomDescription, roomId)">Submit</button>
         </div>
     </form>
   </ion-content>
