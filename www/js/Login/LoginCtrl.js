@@ -2,7 +2,7 @@ angular.module('starter')
 
 .controller('LoginCtrl', function($ionicPopup ,$scope, $state, factoryLogout,
   $rootScope, $ionicLoading, factoryRegister, factoryLogin, serviceLogin,
-  serviceLoginSocial, serviceRegisterSocial, factoryConfirmEmail, $timeout) {
+  serviceLoginSocial, serviceRegisterSocial, factoryConfirmEmail, $timeout, factoryUpdate) {
 
   var ref = new Firebase("https://appwego.firebaseio.com");
   $scope.loginFacebook = function() {
@@ -177,8 +177,9 @@ angular.module('starter')
   }
 
   $scope.updateProfile = function(user) {
+    user.avatar = $rootScope.user.avatar;
     factoryUpdate.update({
-      email: serviceLogin.getUser().email
+      token: serviceLogin.getUser().token
     }, {
       user: user
     }, function(user) {
@@ -241,8 +242,8 @@ angular.module('starter')
 
         $ionicLoading.hide();
         $scope.$apply();
-        $scope.image = imageUri;
-        console.log("image",$scope.image);
+        $rootScope.user.avatar = imageUri;
+        console.log("image",$rootScope.user.avatar);
 
       }, 1000)
 

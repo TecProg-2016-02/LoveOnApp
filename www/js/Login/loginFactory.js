@@ -20,10 +20,10 @@ angular.module('starter')
   })
 })
 
-.factory("factoryUpdate",function($resource,URL){
+.factory("factoryUpdate",function($resource){
   return $resource("http://localhost:3000/users/update", {}, {
       'update': { method:'PATCH',
-                  params:{  email:'@email' }
+                  params:{  token:'@token' }
       }
     })
 })

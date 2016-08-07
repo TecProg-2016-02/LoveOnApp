@@ -143,6 +143,15 @@ angular.module('starter', ['ionic', 'firebase', 'ngResource', 'ngCordova', 'ionM
       }
     }
   })
+  .state('app.editprofile', {
+    url: '/editprofile',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/editProfile.html',
+        controller: 'LoginCtrl'
+      }
+    }
+  })
   ;
   $urlRouterProvider.otherwise("app/home");
 })

@@ -1,11 +1,10 @@
 <ion-view>
   <ion-content ng-init="allLocations()"overflow-scroll="false">
     <ion-list ng-repeat="location in locations">
-      <div scroll="false" class="company-navigation" data-tap-disabled="true"
-        ng-click="viewLocation(location.name);doCheckin(location)">
-        <h2>{{location.name}}</h2>
+      <a class="item item-thumbnail-left" ng-click="viewLocation(location.name);doCheckin(location)">
         <img ng-src="{{location.image}}"/>
-      </div>
+        <h2>{{location.name}}</h2>
+      </a>
     </ion-list>
   </ion-content>
 </ion-view>
