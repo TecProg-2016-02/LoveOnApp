@@ -12,7 +12,7 @@ angular.module('starter')
   $scope.createRoom = function(roomId) {
     if (!roomId) return;
 
-    $rootScope.roomId = roomId;
+    // $rootScope.roomId = roomId;
     $scope.rooms.$add({
       id: roomId,
       slug: roomId.split(/\s+/g).join('-')
@@ -45,33 +45,37 @@ angular.module('starter')
   };
 
   $scope.chatRoom = function(roomId) {
-    var messagesRef = new Firebase('https://loveonapp.firebaseio.com/rooms/' + roomId);
-    $scope.messagesObj = $firebaseArray(messagesRef);
-    $scope.$watch('messagesObj', function (value) {
-      var messagesObj = angular.fromJson(angular.toJson(value));
-      $timeout(function () {scrollBottom()});
-      $scope.messages = [];
-
-      angular.forEach(messagesObj, function (message, key) {
-        $scope.messages.push(message);
-      });
-
-      if ($scope.messages.length) {
-        loaded = true;
-      }
-    }, true);
+    $rootScope.roomId = roomId;
   }
+  console.log("sala",$rootScope.roomId);
+  var messagesRef = new Firebase('https://loveonapp.firebaseio.com/rooms/' + $rootScope.roomId);
+  $rootScope.messagesObj = $firebaseArray(messagesRef);
+  console.log($rootScope.messagesObj);
+  $scope.$watch('messagesObj', function (value) {
+    var messagesObj = angular.fromJson(angular.toJson(value));
+    $timeout(function () {scrollBottom()});
+    $scope.messages = [];
+
+    angular.forEach(messagesObj, function (message, key) {
+      $scope.messages.push(message);
+    });
+
+    if ($scope.messages.length) {
+      loaded = true;
+    }
+  }, true);
 
   $scope.submitAddMessage = function() {
-    $scope.messagesObj.$add({
+    $rootScope.messagesObj.$add({
       created_by: this.username,
       content: this.newMessage,
-      created_at: new Date()
+      created_at: Date.now()
     });
     this.newMessage = "";
 
     scrollBottom();
   };
+
   $scope.addInteraction = function(user) {
     var interaction = {};
 

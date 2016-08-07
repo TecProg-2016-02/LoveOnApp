@@ -40,7 +40,7 @@ angular.module('starter', ['ionic', 'firebase', 'ngResource', 'ngCordova', 'ionM
     views: {
       'menuContent': {
         templateUrl: 'templates/message.html',
-        controller: 'MessageCtrl'
+        controller: 'UsersCtrl'
       }
     }
   })
