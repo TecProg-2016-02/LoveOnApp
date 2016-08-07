@@ -1,12 +1,14 @@
 angular.module('starter')
 
-.controller('LoginCtrl', function($ionicPopup ,$scope, $state,
+.controller('LoginCtrl', function($ionicPopup ,$scope, $state, factoryLogout,
   $rootScope, $ionicLoading, factoryRegister, factoryLogin, serviceLogin,
   serviceLoginSocial, serviceRegisterSocial, factoryConfirmEmail, $timeout) {
 
   var ref = new Firebase("https://appwego.firebaseio.com");
   $scope.loginFacebook = function() {
-
+    $ionicLoading.show({
+      template: 'Loading...'
+    });
       ref.authWithOAuthPopup("facebook", function(error, authData) {
         if (error) {
           console.log("Login Failed!", error);
@@ -96,6 +98,31 @@ angular.module('starter')
       }
       $ionicLoading.hide();
       $rootScope.logged = true;
+    }, function(error) {
+      $ionicLoading.hide();
+      $ionicPopup.alert({
+        title: 'Erro!',
+        template: 'Login Falhou'
+      });
+    })
+  }
+
+  $scope.logout = function() {
+    $ionicLoading.show({
+      template: 'Loading...'
+    });
+    factoryLogout.get(serviceLogin.getUser(), function(user) {
+      serviceLogin.setUser(
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      );
+      $ionicLoading.hide();
+      console.log("logout",user);
     }, function(error) {
       $ionicLoading.hide();
       $ionicPopup.alert({

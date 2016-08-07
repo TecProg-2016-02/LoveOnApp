@@ -8,7 +8,9 @@ angular.module('starter')
 .factory('factoryLogin', function($resource) {
   return $resource("http://localhost:3000/users/login/:email")
 })
-
+.factory('factoryLogout', function($resource) {
+  return $resource("http://localhost:3000/users/logout")
+})
 .factory('factoryConfirmEmail', function($resource) {
   return $resource("http://localhost:3000/users/confirm_email/", {}, {
       'get': { method:'GET',
