@@ -97,7 +97,7 @@ angular.module('starter')
         $state.go('app.profile');
       }
       $ionicLoading.hide();
-      $rootScope.logged = true;
+      $rootScope.isLogged = true;
     }, function(error) {
       $ionicLoading.hide();
       $ionicPopup.alert({

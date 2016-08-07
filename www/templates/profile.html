@@ -1,11 +1,8 @@
 <ion-view>
-  <div class="bar bar-header background">
-    <h1 class="title"><img class="img-header"src="img/logo_horizontal.png" alt=""></h1>
-  </div>
   <ion-content overflow-scroll="false">
     <div class="profile-info text-center">
-      <img ng-src="{{fbimage}}" class="profile-image" />
-      <img class="profile-image" ng-if="fblogged" ng-src="https://graph.facebook.com/{{ user.idFacebook }}/picture?width=700&height=700">
+      <!-- <img ng-src="{{fbimage}}" class="profile-image" /> -->
+      <!-- <img class="profile-image" ng-if="fblogged" ng-src="https://graph.facebook.com/{{ user.idFacebook }}/picture?width=700&height=700"> -->
       <img class="profile-image" ng-if="!fblogged" ng-src="img/ionic.png">
       <h2>{{user.name}}</h2>
       <p>{{user.email}}</p>
@@ -16,24 +13,10 @@
       </button>
     </div>
     <div class="button-bar">
-      <button ng-controller="UsersCtrl" class="button button-small button-positive light-bg waves-effect waves-button waves-light" ui-sref="app.matches">
-        Matches
-      </button>
-    </div>
-    <div class="button-bar">
       <button ng-controller="UsersCtrl" class="button button-small button-positive light-bg waves-effect waves-button waves-light" ng-click="allUsers()"ui-sref="app.users">
         Usuarios
       </button>
     </div>
-    <div class="button-bar">
-      <button ng-controller="locationsCtrl" class="button button-small button-positive light-bg waves-effect waves-button waves-light" ng-click="allLocations()"ui-sref="app.locations">
-        lugares
-      </button>
-    </div>
-    <div class="button-bar">
-      <button class="button button-small button-positive light-bg waves-effect waves-button waves-light" ui-sref="app.chat">
-       home
-      </button>
-    </div>
   </ion-content>
+
 </ion-view>

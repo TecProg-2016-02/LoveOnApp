@@ -1,5 +1,5 @@
 <ion-view>
-  <ion-content overflow-scroll="false">
+  <ion-content ng-init="allLocations()"overflow-scroll="false">
     <ion-list ng-repeat="location in locations">
       <div scroll="false" class="company-navigation" data-tap-disabled="true"
         ng-click="viewLocation(location.name);doCheckin(location)">

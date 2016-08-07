@@ -48,6 +48,25 @@
 
   </head>
   <body ng-app="starter">
-    <ion-nav-view></ion-nav-view>
+    <ion-nav-view>
+      <ion-tabs ng-if="isLogged" class="tabs-positive tabs-icon-top">
+
+        <ion-tab ng-controller="locationsCtrl" icon-on="ion-compass"
+          icon-off="ion-compass" ng-click="allLocations()">
+        </ion-tab>
+
+        <ion-tab icon-on="ion-chatbubble-working" icon-off="ion-chatbubble-working"
+          ui-sref="app.matches">
+        </ion-tab>
+
+        <ion-tab icon-on="ion-ios-gear" icon-off="ion-ios-gear-outline">
+        </ion-tab>
+
+        <ion-tab icon-on="ion-ios-person" icon-off="ion-ios-person-outline"
+          ui-sref="app.profile">
+        </ion-tab>
+
+      </ion-tabs>
+    </ion-nav-view>
   </body>
 </html>

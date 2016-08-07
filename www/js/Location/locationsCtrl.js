@@ -10,6 +10,7 @@ angular.module('starter')
       $rootScope.locations = locations;
       console.log($rootScope.locations);
       $ionicLoading.hide();
+      $state.go('app.locations');
     }, function(error) {
       $ionicLoading.hide();
       $ionicPopup.alert({
