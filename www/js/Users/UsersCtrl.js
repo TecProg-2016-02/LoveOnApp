@@ -49,8 +49,17 @@ angular.module('starter')
   }
   console.log("sala",$rootScope.roomId);
   var messagesRef = new Firebase('https://loveonapp.firebaseio.com/rooms/' + $rootScope.roomId);
+  var ref = messagesRef;
   $rootScope.messagesObj = $firebaseArray(messagesRef);
   console.log($rootScope.messagesObj);
+
+  var now = Date.now();
+  var cutoff = now - 7 * 24 * 60 * 60 * 1000;
+  var old = ref.orderByChild('created_at').endAt(cutoff).limitToLast(1);
+  var listener = old.on('child_added', function(shot) {
+      shot.ref().remove();
+  });
+
   $scope.$watch('messagesObj', function (value) {
     var messagesObj = angular.fromJson(angular.toJson(value));
     $timeout(function () {scrollBottom()});
