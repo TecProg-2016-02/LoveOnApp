@@ -1,27 +1,30 @@
-<ion-view>
-  <ion-content overflow-scroll="false">
-    <div class="profile-info text-center">
-      <!-- <img ng-src="{{fbimage}}" class="profile-image" /> -->
-      <!-- <img class="profile-image" ng-if="fblogged" ng-src="https://graph.facebook.com/{{ user.idFacebook }}/picture?width=700&height=700"> -->
-      <img class="profile-image" ng-if="!fblogged" ng-src="img/ionic.png">
-      <h2>{{user.name}}</h2>
-      <p>{{user.email}}</p>
-    </div>
-    <div class="button-bar">
-      <button class="button button-small button-positive light-bg waves-effect waves-button waves-light" ng-click="logout()">
-        Logout
-      </button>
-    </div>
-    <div class="button-bar">
-      <button ng-controller="UsersCtrl" class="button button-small button-positive light-bg waves-effect waves-button waves-light" ng-click="allUsers()"ui-sref="app.users">
-        Usuarios
-      </button>
-    </div>
-    <div class="button-bar">
-      <button class="button button-small button-positive light-bg waves-effect waves-button waves-light" ui-sref="app.editprofile">
-        Editar Perfil
-      </button>
-    </div>
-  </ion-content>
+<ion-view view-title="Profile">
+    <ion-content>
+        <div class="hero slide-up" style="background-image: url('img/login.png');">
+            <div class="blabla">
+                <div class="avatar" style="background-image: url('img/ionic.png');"></div>
+                <h3><a class="light">{{user.name}}</a></h3>
+                <h4>{{user.age}} anos</h4>
+            </div>
+        </div>
+        <span class="labels"></br></span>
 
+        <div class="tabs tabs-light tabs-icon-only static">
+            <a class="tab-item">
+                <i class="icon ion-ios-location"></i>
+            </a>
+            <a class="tab-item">
+                <i class="icon ion-ios-location"></i>
+            </a>
+            <a class="tab-item">
+                <i class="icon ion-ios-location"></i>
+            </a>
+            <a class="tab-item">
+                <i class="icon ion-ios-location"></i>
+            </a>
+            <a class="tab-item">
+                <i class="icon"></i>
+            </a>
+        </div>
+    </ion-content>
 </ion-view>

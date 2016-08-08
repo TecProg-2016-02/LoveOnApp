@@ -21,6 +21,18 @@
   color: green;
 }
 
+.light {
+  position: relative;
+  font-size: 18pt;
+  top: 40px;
+  left: 40px;
+}
+
+.blabla {
+  position: relative;
+  top: 40px;
+}
+
 .woman-class {
   text-align: center;
   font-size: 70pt;
@@ -471,10 +483,10 @@ a,
   background-size: cover;
   border-radius: 50%;
   display: inline-block;
-  height: 56px;
+  height: 120px;
   left: 16px;
   position: absolute;
-  width: 56px; }
+  width: 120px; }
 
 /* List: Gallery
 ==================================*/
