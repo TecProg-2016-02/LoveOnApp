@@ -23,7 +23,9 @@
     "ionic-plugin-keyboard",
     "cordova-plugin-background-mode",
     "cordova-plugin-camera",
-    "cordova-plugin-inappbrowser"
+    "cordova-plugin-inappbrowser",
+    "cordova-plugin-image-picker",
+    "com-badrit-base64"
   ],
   "cordovaPlatforms": [
     "android",

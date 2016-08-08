@@ -2,7 +2,8 @@ angular.module('starter')
 
 .controller('LoginCtrl', function($ionicPopup ,$scope, $state, factoryLogout,
   $rootScope, $ionicLoading, factoryRegister, factoryLogin, serviceLogin,
-  serviceLoginSocial, serviceRegisterSocial, factoryConfirmEmail, $timeout, factoryUpdate) {
+  serviceLoginSocial, serviceRegisterSocial, factoryConfirmEmail, $timeout,
+  factoryUpdate, $cordovaCamera, $cordovaImagePicker) {
 
   var ref = new Firebase("https://appwego.firebaseio.com");
   $scope.loginFacebook = function() {
@@ -13,8 +14,8 @@ angular.module('starter')
         if (error) {
           console.log("Login Failed!", error);
         } else {
-          // $scope.url = "https://graph.facebook.com/"+ authData.facebook.id +"/picture?width=700&height=700";
-          // $scope.getImageDataURL($scope.url, $scope.onSuccess, $scope.onError);
+          $scope.url = "https://graph.facebook.com/"+ authData.facebook.id +"/picture?width=700&height=700";
+          $scope.getImageDataURL($scope.url, $scope.onSuccess, $scope.onError);
 
           $state.go('app.profile');
           console.log("Data from Firebase:", authData);
@@ -54,6 +55,37 @@ angular.module('starter')
         scope: "email, user_friends, user_birthday, user_photos"
       });
     }
+
+    $scope.selImages = function() {
+       var options = {
+         maximumImagesCount: 10,
+         width: 800,
+         height: 800,
+         quality: 80
+       };
+
+       $cordovaImagePicker.getPictures(options)
+         .then(function (results) {
+             for (var i = 0; i < results.length; i++) {
+                //  console.log('Image URI: ' + results[i]);
+                 $scope.imagens.push(results[i]);
+                // Encode URI to Base64
+                window.plugins.Base64.encodeFile(results[i], function(base64){
+                   // Save images in Base64
+                   $scope.images.push(base64);
+                   $scope.imag = $scope.images[0];
+                });
+
+             }
+             $scope.$apply();
+
+         }, function(error) {
+             // error getting photos
+         });
+         $scope.$apply();
+         console.log("Base64:\n\n\n",$scope.images);
+
+     };
 
 
   $scope.minDate = new Date(2105, 6, 1);
@@ -178,6 +210,7 @@ angular.module('starter')
 
   $scope.updateProfile = function(user) {
     user.avatar = $rootScope.user.avatar;
+    user.gallery = $scope.images;
     factoryUpdate.update({
       token: serviceLogin.getUser().token
     }, {
@@ -189,7 +222,8 @@ angular.module('starter')
       alert("erro", error.message);
     });
   }
-
+  $scope.images = [];
+  $scope.imagens = [];
   $scope.alterarFoto = function() {
 
     function setOptions(srcType) {
@@ -256,5 +290,36 @@ angular.module('starter')
 
   }
 
+  $scope.onSuccess = function(e){
+    $rootScope.fbimage = e.data;
+ };
 
+  $scope.onError = function(e){
+    console.log("erro", e.message);
+  };
+
+  $scope.getImageDataURL = function(url, success, error) {
+    var data, canvas, ctx;
+    var img = new Image();
+    img.setAttribute('crossOrigin', 'anonymous');
+    img.src = url;
+    img.onload = function(){
+      canvas = document.createElement('canvas');
+      canvas.width = img.width;
+      canvas.height = img.height;
+      ctx = canvas.getContext("2d");
+      ctx.drawImage(img, 0, 0);
+      try{
+        data = canvas.toDataURL();
+        success({image:img, data:data});
+      }catch(e){
+        error(e);
+      }
+    }
+    try{
+      img.src = url;
+    }catch(e){
+      error(e);
+    }
+  };
 })

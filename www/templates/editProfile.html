@@ -54,6 +54,12 @@
           </label>
         </div>
       </div>
+      <div>
+      <p ng-repeat="img in images">
+        <img ng-src="{{img}}"/>
+      </p>
+      <button class=" btCamera font button button-block button-positive icon ion-ios-camera" ng-click="selImages()"> Câmera</button>
+    </div>
     <span class="labels"></br></span>
         <button class="sparara" ng-click="updateProfile(user)">Salvar</button>
         <span class="labels"></br></span>
