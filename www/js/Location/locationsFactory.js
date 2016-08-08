@@ -1,7 +1,7 @@
 angular.module('starter')
 
 .factory('factoryLocations', function($resource) {
-  return $resource("http://87503027.ngrok.io/locations/", {}, {
+  return $resource("http://localhost:3000/locations/", {}, {
       'get': {
               method:'GET',
               isArray:true
@@ -10,7 +10,7 @@ angular.module('starter')
 })
 
 .factory('factoryLocation', function($resource) {
-  return $resource("http://87503027.ngrok.io/locations/show/", {}, {
+  return $resource("http://localhost:3000/locations/show/", {}, {
       'get': { method:'GET',
                   params:{  name:'@name' }
       }
@@ -19,11 +19,11 @@ angular.module('starter')
 })
 
 .factory('factoryCheckin', function($resource) {
-  return $resource("http://87503027.ngrok.io/locations/checkin")
+  return $resource("http://localhost:3000/locations/checkin")
 })
 
 .factory('factoryCheckins', function($resource) {
-  return $resource("http://87503027.ngrok.io/locations/user/checkins/", {}, {
+  return $resource("http://localhost:3000/locations/user/checkins/", {}, {
       'get': {
                   method:'GET',
                   params:{  auth_token:'@auth_token' },
