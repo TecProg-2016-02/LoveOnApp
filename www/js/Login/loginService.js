@@ -4,7 +4,7 @@ angular.module('starter')
 
   var user = {}
 
-  var setUser = function(name, email, token, birthday, gender, id, email_confirmed) {
+  var setUser = function(name, email, token, birthday, gender, id, email_confirmed, avatar) {
     user.name = name,
     user.email = email,
     user.token = token,
@@ -12,6 +12,7 @@ angular.module('starter')
     user.gender = gender,
     user.id = id,
     user.email_confirmed = email_confirmed
+    user.avatar = avatar
   }
 
   var getUser = function() {
@@ -52,7 +53,7 @@ angular.module('starter')
 
   var user = {}
 
-  var setUser = function(name, email, id_facebook, gender, birthday, picture) {
+  var setUser = function(name, email, id_facebook, gender, birthday, avatar) {
     user.name = name,
     user.email = email,
     user.id_facebook = id_facebook,
@@ -60,7 +61,7 @@ angular.module('starter')
     user.password_confirmation = id_facebook
     user.gender = gender,
     user.birthday = birthday,
-    user.picture = picture
+    user.avatar = avatar
   }
 
   var getUser = function() {

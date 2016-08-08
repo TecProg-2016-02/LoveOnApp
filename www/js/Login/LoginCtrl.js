@@ -5,6 +5,22 @@ angular.module('starter')
   serviceLoginSocial, serviceRegisterSocial, factoryConfirmEmail, $timeout,
   factoryUpdate, $cordovaCamera, $cordovaImagePicker) {
 
+  var toDataURL = function(src, callback, outputFormat) {
+    var img = new Image();
+    img.crossOrigin = 'Anonymous';
+    img.onload = function() {
+      var canvas = document.createElement('CANVAS');
+      var ctx = canvas.getContext('2d');
+      var dataURL;
+      canvas.height = this.height;
+      canvas.width = this.width;
+      ctx.drawImage(this, 0, 0);
+      dataURL = canvas.toDataURL(outputFormat);
+      callback(dataURL);
+      return dataURL
+    };
+    img.src = src;
+  }
   var ref = new Firebase("https://appwego.firebaseio.com");
   $scope.loginFacebook = function() {
     $ionicLoading.show({
@@ -14,41 +30,48 @@ angular.module('starter')
         if (error) {
           console.log("Login Failed!", error);
         } else {
-          $scope.url = "https://graph.facebook.com/"+ authData.facebook.id +"/picture?width=700&height=700";
-          $scope.getImageDataURL($scope.url, $scope.onSuccess, $scope.onError);
+          toDataURL(authData.facebook.profileImageURL, function(base64Img) {
+            $scope.fbimage = (base64Img.slice(22, base64Img.length));
+            console.log($scope.fbimage);
+            $scope.$apply();
+          });
+          $timeout(function () {
+            $state.go('app.profile');
+            console.log("Data from Firebase:", authData);
 
-          $state.go('app.profile');
-          console.log("Data from Firebase:", authData);
-          serviceLogin.setUser(
-            authData.facebook.displayName,
-            authData.facebook.email,
-            authData.facebook.id,
-            authData.facebook.cachedUserProfile.birthday,
-            authData.facebook.cachedUserProfile.gender
-          );
-          serviceRegisterSocial.setUser(
-            authData.facebook.displayName,
-            authData.facebook.email,
-            authData.facebook.id,
-            authData.facebook.cachedUserProfile.gender,
-            new Date(authData.facebook.cachedUserProfile.birthday)
-          );
-          console.log("Usr:", serviceRegisterSocial.getUser());
-          factoryRegister.save(serviceRegisterSocial.getUser(), function(user) {
-            $ionicLoading.hide();
-            $scope.loginEmail(serviceRegisterSocial.getUser());
-            $state.go('app.home');
-          }, function(error) {
-            $ionicLoading.hide();
-            $ionicPopup.alert({
-              title: 'Ops!',
-              template: 'Erro ao se comunicar com o servidor!'
+            serviceLogin.setUser(
+              authData.facebook.displayName,
+              authData.facebook.email,
+              authData.facebook.id,
+              authData.facebook.cachedUserProfile.birthday,
+              authData.facebook.cachedUserProfile.gender,
+              $scope.fbimage
+            );
+            serviceRegisterSocial.setUser(
+              authData.facebook.displayName,
+              authData.facebook.email,
+              authData.facebook.id,
+              authData.facebook.cachedUserProfile.gender,
+              new Date(authData.facebook.cachedUserProfile.birthday),
+              $scope.fbimage
+            );
+            console.log("Usr:", serviceRegisterSocial.getUser());
+            factoryRegister.save(serviceRegisterSocial.getUser(), function(user) {
+              $ionicLoading.hide();
+              $scope.loginEmail(serviceRegisterSocial.getUser());
+              $state.go('app.home');
+            }, function(error) {
+              $ionicLoading.hide();
+              $ionicPopup.alert({
+                title: 'Ops!',
+                template: 'Erro ao se comunicar com o servidor!'
+              });
+              $state.go('app.home');
             });
             $state.go('app.home');
-          });
-          $state.go('app.home');
-          $rootScope.user = serviceLogin.getUser();
-          console.log("User:", $rootScope.user);
+            $rootScope.user = serviceLogin.getUser();
+            console.log("User:", $rootScope.user);
+          }, 4000);
         }
       }, {
         remember: "sessionOnly",
@@ -111,7 +134,8 @@ angular.module('starter')
         user.birthday,
         user.gender,
         user.id,
-        user.email_confirmed
+        user.email_confirmed,
+        user.avatar
       );
       $ionicLoading.hide();
       $rootScope.user = user;
@@ -145,6 +169,7 @@ angular.module('starter')
     });
     factoryLogout.get(serviceLogin.getUser(), function(user) {
       serviceLogin.setUser(
+        null,
         null,
         null,
         null,
@@ -290,36 +315,5 @@ angular.module('starter')
 
   }
 
-  $scope.onSuccess = function(e){
-    $rootScope.fbimage = e.data;
- };
 
-  $scope.onError = function(e){
-    console.log("erro", e.message);
-  };
-
-  $scope.getImageDataURL = function(url, success, error) {
-    var data, canvas, ctx;
-    var img = new Image();
-    img.setAttribute('crossOrigin', 'anonymous');
-    img.src = url;
-    img.onload = function(){
-      canvas = document.createElement('canvas');
-      canvas.width = img.width;
-      canvas.height = img.height;
-      ctx = canvas.getContext("2d");
-      ctx.drawImage(img, 0, 0);
-      try{
-        data = canvas.toDataURL();
-        success({image:img, data:data});
-      }catch(e){
-        error(e);
-      }
-    }
-    try{
-      img.src = url;
-    }catch(e){
-      error(e);
-    }
-  };
-})
+});
