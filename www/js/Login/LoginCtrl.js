@@ -61,7 +61,10 @@ angular.module('starter')
             console.log("Usr:", serviceRegisterSocial.getUser());
             factoryRegister.save(serviceRegisterSocial.getUser(), function(user) {
               $ionicLoading.hide();
-              $scope.loginEmail(serviceRegisterSocial.getUser());
+              var user ={};
+              user.email = serviceRegisterSocial.getUser().email;
+              user.password = serviceRegisterSocial.getUser().password;
+              $scope.loginEmail(user);
               $state.go('app.home');
             }, function(error) {
               $ionicLoading.hide();
@@ -196,6 +199,7 @@ angular.module('starter')
     $ionicLoading.show({
       template: 'Loading...'
     });
+
     factoryRegister.save(user, function(user) {
       $ionicLoading.hide();
       $ionicPopup.alert({
