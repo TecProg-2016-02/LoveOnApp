@@ -57,8 +57,7 @@ angular.module('starter')
     var checkin = {};
 
     checkin.user_token = serviceLogin.getUser().token;
-    checkin.location_id = location.id;
-    checkin.id = location.id;
+    checkin.location_token = location.token;
     $ionicLoading.show({
       template: 'Loading...'
     });

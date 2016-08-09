@@ -26,11 +26,14 @@
       </div>
     </div>
     <div class="padding-tela1">
-      <ionic-datepicker ion-datetime-picker date="dateValue" min="minDate" max="maxDate" callback="datePickerCallback" date ng-model="user.birthday">
-        <button class="button button-block icon-right ion-calendar"> {{ user.birthday | date:'dd/MM/yy' }}</button>
-      </ionic-datepicker>
+      <div class="item range">
+        <i class="icon ion-volume-low"></i>
+        <input type="range" name="age" ng-model="range" min="18" max="100" value="28">
+        <i class="icon ion-volume-high"></i>
+      </div>
+      {{range}} 
       <span class="labels"></br></span>
-      <button class="sparara2" ui-sref="">Concluir</button>
+      <button class="sparara2" ng-click="alerta(range)">Concluir</button>
     </div>
   </ion-content>
 </ion-view>

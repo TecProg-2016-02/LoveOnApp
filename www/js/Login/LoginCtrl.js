@@ -5,6 +5,10 @@ angular.module('starter')
   serviceLoginSocial, serviceRegisterSocial, factoryConfirmEmail, $timeout,
   factoryUpdate, $cordovaCamera, $cordovaImagePicker) {
 
+  $scope.alerta = function(text) {
+    alert(text);
+  };
+
   var toDataURL = function(src, callback, outputFormat) {
     var img = new Image();
     img.crossOrigin = 'Anonymous';
@@ -32,7 +36,6 @@ angular.module('starter')
         } else {
           toDataURL(authData.facebook.profileImageURL, function(base64Img) {
             $scope.fbimage = (base64Img.slice(22, base64Img.length));
-            console.log($scope.fbimage);
             $scope.$apply();
           });
           $timeout(function () {
