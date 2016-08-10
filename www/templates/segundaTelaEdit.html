@@ -15,25 +15,30 @@
     </div>
     <div class="row">
       <div class="col col-50">
-        <div>
+        <div class="man-class" ng-if="!user.search_male" ng-click="user.search_male = !user.search_male">
+          <i class="icon ion-man"></i>
+        </div>
+        <div class="man-class-active" ng-if="user.search_male" ng-click="user.search_male = !user.search_male" ng-model="user.search_male">
           <i class="icon ion-man man-class"></i>
         </div>
       </div>
       <div class="col col-50">
-        <div class="">
+        <div ng-if="!user.search_female" ng-click="user.search_female = !user.search_female">
+          <i class="icon ion-woman woman-class"></i>
+        </div>
+        <div class="woman-class-active" ng-if="user.search_female" ng-click="user.search_female = !user.search_female" ng-model="user.search_female">
           <i class="icon ion-woman woman-class"></i>
         </div>
       </div>
     </div>
     <div class="padding-tela1">
       <div class="item range">
-        <i class="icon ion-volume-low"></i>
-        <input type="range" name="age" ng-model="range" min="18" max="100" value="28">
-        <i class="icon ion-volume-high"></i>
+        <i class="icon ion-calendar"></i>
+        <input type="range" name="age" ng-model="user.search_range" min="18" max="100" value="28">
       </div>
-      {{range}} 
+      {{range}}
       <span class="labels"></br></span>
-      <button class="sparara2" ng-click="alerta(range)">Concluir</button>
+      <button class="sparara2" ng-click="updateProfile(user)" ui-sref="app.profile">Concluir</button>
     </div>
   </ion-content>
 </ion-view>

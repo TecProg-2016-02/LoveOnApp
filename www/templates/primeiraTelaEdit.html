@@ -31,13 +31,13 @@
         <div class="distance">
           <span class="labels"></br></span>
           <label class="item item-input inputs-register">
-            <input placeholder="Bairro" type="text">
+            <input placeholder="Bairro" type="text" ng-model='user.district'>
           </label>
         </div>
         <div class="distance">
           <span class="labels"></br></span>
           <label class="item item-input inputs-register">
-            <input placeholder="Cidade" type="text">
+            <input placeholder="Cidade" type="text" ng-model='user.city'>
           </label>
         </div>
 
@@ -46,25 +46,25 @@
           <div class="col col-50">
             <span class="labels"></br></span>
             <label class="item item-input inputs-register">
-              <input placeholder="Altura" type="text">
+              <input placeholder="Altura" type="text" ng-model='user.height'>
             </label>
           </div>
           <div class="col col-50">
             <span class="labels"></br></span>
             <label class="item item-input inputs-register">
-              <input placeholder="Peso" type="text">
+              <input placeholder="Peso" type="text" ng-model='user.weight'>
             </label>
           </div>
         </div>
         <div class="distance">
           <span class="labels"></br></span>
           <label class="item item-input">
-            <textarea placeholder="Descrição"></textarea>
+            <textarea placeholder="Descrição" ng-model='user.description'></textarea>
           </label>
         </div>
       </div>
     <span class="labels"></br></span>
-        <button class="sparara" ui-sref="app.segundaTelaEdit">Continuar</button>
+        <button class="sparara" ui-sref="app.segundaTelaEdit" ng-click="updateProfile(user)">Continuar</button>
         <span class="labels"></br></span>
         <span class="labels"></br></span>
     </div>
