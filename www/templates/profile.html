@@ -1,4 +1,4 @@
-<ion-view view-title="Profile">
+<ion-view view-title="Meu Perfil">
     <ion-content>
         <div class="hero slide-up" style="background-image: url('img/login.png');">
             <div class="blabla">
@@ -32,4 +32,22 @@
         <a ui-sref="app.editprofile">Cadastre-se</a>
         <ion-gallery ion-gallery-items="galleryitems" ion-gallery-toggle="false"></ion-gallery>
     </ion-content>
+    <ion-tabs ng-if="isLogged" class="tabs-light tabs-icon-only">
+
+      <ion-tab ng-controller="locationsCtrl" icon-on="ion-compass"
+        icon-off="ion-compass" ng-click="allLocations()">
+      </ion-tab>
+
+      <ion-tab icon-on="ion-chatbubble-working" icon-off="ion-chatbubble-working"
+        ui-sref="app.matches">
+      </ion-tab>
+
+      <ion-tab icon-on="ion-ios-gear" icon-off="ion-ios-gear-outline">
+      </ion-tab>
+
+      <ion-tab icon-on="ion-ios-person" icon-off="ion-ios-person-outline"
+        ui-sref="app.profile">
+      </ion-tab>
+
+    </ion-tabs>
 </ion-view>
