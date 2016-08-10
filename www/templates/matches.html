@@ -5,7 +5,7 @@
     <div class="list">
       <ion-list ng-repeat="match in matches">
         <div class="item item-avatar item-button-right">
-          <img src="/img/ionic.png" ui-sref="app.profile" >
+          <img src="{{match.avatar}}" ng-controller="UsersCtrl" ng-click="viewUser(match.token)" >
           <h2>{{match.name}}</h2>
           <p>{{match.description}}</p>
           <button class="button button-positive" ng-click="chatRoom(match.roomId)" ui-sref="app.chat">

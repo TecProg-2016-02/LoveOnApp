@@ -1,6 +1,6 @@
-<ion-view view-title="Meu Perfil">
+<ion-view view-title="Meu Curriculum">
     <ion-content>
-        <div class="hero slide-up" style="background-image: url('img/login.png');">
+        <div class="hero slide-up" style="background-image: url('img/blue.png');">
             <div class="blabla">
                 <div class="avatar" style="background-image: url('data:image/jpeg;base64,{{user.avatar}}');"></div>
                 <h3><a class="light">{{user.name}}</a></h3>
@@ -29,7 +29,7 @@
                 <i class="icon"></i>
             </a>
         </div>
-        <a ui-sref="app.editprofile">Cadastre-se</a>
+        <!-- <a ui-sref="app.editprofile">Cadastre-se</a> -->
         <ion-gallery ion-gallery-items="galleryitems" ion-gallery-toggle="false"></ion-gallery>
     </ion-content>
     <ion-tabs ng-if="isLogged" class="tabs-light tabs-icon-only">

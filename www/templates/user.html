@@ -1,16 +1,15 @@
-<ion-view view-title="Profile">
+<ion-view view-title="{{userp.name}}">
     <ion-content>
-        <div class="hero slide-up" style="background-image: url('img/login.png');">
+        <div class="hero slide-up" style="background-image: url('img/blue.png');">
             <div class="blabla">
-                <div class="avatar" style="background-image: url('img/ionic.png');"ng-click="follow(userp)"></div>
+                <div class="avatar" style="background-image: url('data:image/jpeg;base64,{{userp.avatar}}');" ng-if="userp.avatar !== null"></div>
+                <div class="avatar" err="img/ionic.png" ng-if="userp.avatar === null"></div>
                 <h3><a class="light">{{userp.name}}</a></h3>
-                <h4>{{userp.age}} anos</h4>
+                <h4><div class="meucu">{{userp.age}} anos</div></h4>
+                <button class="cuzaum button button-assertive" ng-click="follow(userp)">Seguir</button>
             </div>
         </div>
         <span class="labels"></br></span>
-        <p ng-repeat="img in userp.gallery">
-          <img ng-src="{{img}}"/>
-        </p>
         <div class="tabs tabs-light tabs-icon-only static">
             <a class="tab-item">
                 <i class="icon ion-ios-location"></i>
@@ -28,6 +27,8 @@
                 <i class="icon"></i>
             </a>
         </div>
-        <a class="button"ng-click="follow(userp)">Seguir</a>
+        <p ng-repeat="img in userp.gallery">
+          <img ng-src="{{img}}"/>
+        </p>
     </ion-content>
 </ion-view>

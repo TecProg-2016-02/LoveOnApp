@@ -5,7 +5,7 @@ angular.module('starter')
 })
 
 .factory('factoryUsers', function($resource,URL) {
-  return $resource(URL+"users/all", {}, {
+  return $resource(URL+"/users/all", {}, {
       'get': {
               method:'GET',
               isArray:true
@@ -13,11 +13,11 @@ angular.module('starter')
     })
 })
 .factory('factoryUser', function($resource,URL) {
-  return $resource(URL+"users/show")
+  return $resource(URL+"/users/show")
 })
 
 .factory('factoryFollow', function($resource,URL) {
-  return $resource(URL+'users/follow')
+  return $resource(URL+'/users/follow')
 })
 
 // .factory('factoryConfirmEmail', function($resource,URL) {
