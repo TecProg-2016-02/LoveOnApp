@@ -17,6 +17,26 @@
           </button>
         </div>
       </ion-list>
+      <ion-list ng-repeat="user in loc.male_users">
+        <div class="item item-avatar item-button-right">
+          <img ng-src="data:image/jpeg;base64,{{user.avatar}}"ng-controller="UsersCtrl" ng-click="viewUser(user.token)"/>
+          <h2>{{user.name}}</h2>
+          <p>{{user.description}}</p>
+          <button ng-controller="UsersCtrl" class="button button-positive" ng-click="addInteraction(user)">
+            <i class="icon ion-chatbubbles" ></i>
+          </button>
+        </div>
+      </ion-list>
+      <ion-list ng-repeat="user in loc.female_users">
+        <div class="item item-avatar item-button-right">
+          <img ng-src="data:image/jpeg;base64,{{user.avatar}}"ng-controller="UsersCtrl" ng-click="viewUser(user.token)"/>
+          <h2>{{user.name}}</h2>
+          <p>{{user.description}}</p>
+          <button ng-controller="UsersCtrl" class="button button-positive" ng-click="addInteraction(user)">
+            <i class="icon ion-chatbubbles" ></i>
+          </button>
+        </div>
+      </ion-list>
     </div>
   </ion-content>
 </ion-view>

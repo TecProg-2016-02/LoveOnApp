@@ -1,18 +1,18 @@
 
 angular.module('starter')
 
-.factory('factoryRegister', function($resource) {
-  return $resource("http://007cac0b.ngrok.io/users/create")
+.factory('factoryRegister', function($resource,URL) {
+  return $resource(URL+"/users/create")
 })
 
-.factory('factoryLogin', function($resource) {
-  return $resource("http://007cac0b.ngrok.io/users/login/:email")
+.factory('factoryLogin', function($resource,URL) {
+  return $resource(URL+"/users/login/:email")
 })
-.factory('factoryLogout', function($resource) {
-  return $resource("http://007cac0b.ngrok.io/users/logout")
+.factory('factoryLogout', function($resource,URL) {
+  return $resource(URL+"/users/logout")
 })
-.factory('factoryConfirmEmail', function($resource) {
-  return $resource("http://007cac0b.ngrok.io/users/confirm_email/", {}, {
+.factory('factoryConfirmEmail', function($resource,URL) {
+  return $resource(URL+"/users/confirm_email/", {}, {
       'get': { method:'GET',
                   params:{  confirm_token:'@confirm_token' }
       }
@@ -20,8 +20,8 @@ angular.module('starter')
   })
 })
 
-.factory("factoryUpdate",function($resource){
-  return $resource("http://007cac0b.ngrok.io/users/update", {}, {
+.factory("factoryUpdate", function($resource,URL) {
+  return $resource(URL+"/users/update", {}, {
       'update': { method:'PATCH',
                   params:{  token:'@token' }
       }

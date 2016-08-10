@@ -35,22 +35,17 @@ angular.module('starter')
     })
   };
 
-  $scope.viewLocation = function(name) {
-    factoryLocation.get({
-      name: name
-    }, function(location) {
+  $scope.viewLocation = function(params) {
+    params.user_token = $rootScope.user.token;
+    factoryLocation.save(params, function(location) {
       $ionicLoading.hide();
       console.log(location);
       $rootScope.loc = location;
+      $state.go('app.location');
     }, function(error) {
       $ionicLoading.hide();
-      $ionicPopup.alert({
-        title: 'Erro!',
-        template: 'Falhou'
-      });
     })
 
-    $state.go('app.location');
   };
 
   $scope.doCheckin = function(location) {

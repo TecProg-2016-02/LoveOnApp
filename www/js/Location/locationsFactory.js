@@ -1,7 +1,7 @@
 angular.module('starter')
 
-.factory('factoryLocations', function($resource) {
-  return $resource("http://007cac0b.ngrok.io/locations/", {}, {
+.factory('factoryLocations', function($resource,URL) {
+  return $resource(URL+"/locations/", {}, {
       'get': {
               method:'GET',
               isArray:true
@@ -9,21 +9,16 @@ angular.module('starter')
     })
 })
 
-.factory('factoryLocation', function($resource) {
-  return $resource("http://007cac0b.ngrok.io/locations/show/", {}, {
-      'get': { method:'GET',
-                  params:{  name:'@name' }
-      }
-
-  })
+.factory('factoryLocation', function($resource,URL) {
+  return $resource(URL+"/locations/show/")
 })
 
-.factory('factoryCheckin', function($resource) {
-  return $resource("http://007cac0b.ngrok.io/locations/checkin")
+.factory('factoryCheckin', function($resource,URL) {
+  return $resource(URL+"/locations/checkin")
 })
 
-.factory('factoryCheckins', function($resource) {
-  return $resource("http://007cac0b.ngrok.io/locations/user/checkins/", {}, {
+.factory('factoryCheckins', function($resource,URL) {
+  return $resource(URL+"/locations/user/checkins/", {}, {
       'get': {
                   method:'GET',
                   params:{  auth_token:'@auth_token' },

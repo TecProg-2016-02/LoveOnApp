@@ -1,27 +1,27 @@
 angular.module('starter')
 
-.factory('factoryInteract', function($resource) {
-  return $resource("http://007cac0b.ngrok.io/users/interact")
+.factory('factoryInteract', function($resource,URL) {
+  return $resource(URL+"users/interact")
 })
 
-.factory('factoryUsers', function($resource) {
-  return $resource("http://007cac0b.ngrok.io/users/all", {}, {
+.factory('factoryUsers', function($resource,URL) {
+  return $resource(URL+"users/all", {}, {
       'get': {
               method:'GET',
               isArray:true
             }
     })
 })
-.factory('factoryUser', function($resource) {
-  return $resource("http://007cac0b.ngrok.io/users/show")
+.factory('factoryUser', function($resource,URL) {
+  return $resource(URL+"users/show")
 })
 
-.factory('factoryFollow', function($resource) {
-  return $resource("http://007cac0b.ngrok.io/users/follow")
+.factory('factoryFollow', function($resource,URL) {
+  return $resource(URL+'users/follow')
 })
 
-// .factory('factoryConfirmEmail', function($resource) {
-//   return $resource("http://007cac0b.ngrok.io/users/confirm_email/", {}, {
+// .factory('factoryConfirmEmail', function($resource,URL) {
+//   return $resource(URL+users/confirm_email/", {}, {
 //       'get': { method:'GET',
 //                   params:{  confirm_token:'@confirm_token' }
 //       }
