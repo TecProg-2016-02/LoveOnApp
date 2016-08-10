@@ -80,6 +80,60 @@ angular.module('starter')
         scope: "email, user_friends, user_birthday, user_photos"
       });
     }
+    $scope.loginGoogle = function() {
+      $ionicLoading.show({
+        template: 'Loading...'
+      });
+        ref.authWithOAuthPopup("google", function(error, authData) {
+          if (error) {
+            console.log("Login Failed!", error);
+          } else {
+            toDataURL(authData.google.profileImageURL, function(base64Img) {
+              $scope.fbimage = (base64Img.slice(22, base64Img.length));
+              $rootScope.$apply();
+            });
+            $timeout(function () {
+              console.log("Data from Firebase:", authData);
+
+              serviceLogin.setUser(
+                authData.google.displayName,
+                authData.google.email,
+                authData.google.id,
+                authData.google.cachedUserProfile.birthday,
+                authData.google.cachedUserProfile.gender,
+                $scope.fbimage
+              );
+              serviceRegisterSocial.setUser(
+                authData.google.displayName,
+                authData.google.email,
+                authData.google.id,
+                authData.google.cachedUserProfile.gender,
+                new Date(authData.google.cachedUserProfile.birthday),
+                $scope.fbimage
+              );
+              console.log("Usr:", serviceRegisterSocial.getUser());
+              factoryRegister.save(serviceRegisterSocial.getUser(), function(user) {
+                $ionicLoading.hide();
+                var user ={};
+                user.email = serviceRegisterSocial.getUser().email;
+                user.password = serviceRegisterSocial.getUser().password;
+                $scope.loginEmail(user);
+              }, function(error) {
+                $ionicLoading.hide();
+                $ionicPopup.alert({
+                  title: 'Ops!',
+                  template: 'Erro ao se comunicar com o servidor!'
+                });
+              });
+              $rootScope.user = serviceLogin.getUser();
+              console.log("User:", $rootScope.user);
+            }, 4000);
+          }
+        }, {
+          remember: "sessionOnly",
+          scope: "email, profile"
+        });
+      }
 
     $scope.selImages = function() {
        var options = {
