@@ -10,12 +10,8 @@
         </div>
   <div class="padding-login">
     <div class="list">
-
-      <ion-md-input placeholder="E-mail" highlight-color="balanced" type="text" ng-model="user.email"></ion-md-input>
-      <ion-md-input placeholder="Senha" highlight-color="balanced" type="password" ng-model="user.password"></ion-md-input>
-      <div class="padding-bla">
-        <input type="submit" class="button button-block button-calm" ng-click="loginEmail(user)"/>
-      </div>
+      <button class="button button-block button-assertive" ng-click="loginGoogle()"><div class="margin-carai"><i class="icon ion-social-google"></i></div>Google</button>
+      <button class="button button-block button-positive" ng-click="loginFacebook()"><div class="margin-carai"><i class="icon ion-social-facebook"></i></div>Facebook</button>
     </div>
   </div>
     <!-- <button class="button-block button-positive" style="font-size:18px;" ui-sref="app.register">
@@ -30,13 +26,13 @@
     <button class="button-block button-positive" style="font-size:18px;" ng-click="alterarFoto()">
     foto
     </button> -->
-    <div class="foot-social hide-on-keyboard-open">
+    <!-- <div class="foot-social hide-on-keyboard-open">
       <div class="padding-button">
         <button class="button button-block button-assertive" ng-click="loginGoogle()"><div class="margin-carai"><i class="icon ion-social-google"></i></div>Google</button>
         <button class="button button-block button-positive" ng-click="loginFacebook()"><div class="margin-carai"><i class="icon ion-social-facebook"></i></div>Facebook</button>
         <div class="margin-cadestro"><a ui-sref="app.register">Cadastre-se</a></div>
       </div>
-    </div>
+    </div> -->
 
 
   </ion-content>

@@ -78,7 +78,8 @@ angular.module('starter')
     $rootScope.messagesObj.$add({
       created_by: this.username,
       content: this.newMessage,
-      created_at: Date.now()
+      created_at: Date.now(),
+      email: this.user.email
     });
     this.newMessage = "";
 

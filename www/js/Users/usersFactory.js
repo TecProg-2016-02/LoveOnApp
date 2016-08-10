@@ -1,7 +1,7 @@
 angular.module('starter')
 
 .factory('factoryInteract', function($resource,URL) {
-  return $resource(URL+"users/interact")
+  return $resource(URL+"/users/interact")
 })
 
 .factory('factoryUsers', function($resource,URL) {
