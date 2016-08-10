@@ -25,7 +25,7 @@ angular.module('starter')
     };
     img.src = src;
   }
-  var ref = new Firebase("https://appwego.firebaseio.com");
+  var ref = new Firebase("https://loveonapp.firebaseio.com");
   $scope.loginFacebook = function() {
     $ionicLoading.show({
       template: 'Loading...'
@@ -36,7 +36,7 @@ angular.module('starter')
         } else {
           toDataURL(authData.facebook.profileImageURL, function(base64Img) {
             $scope.fbimage = (base64Img.slice(22, base64Img.length));
-            $scope.$apply();
+            $rootScope.$apply();
           });
           $timeout(function () {
             $state.go('app.profile');
@@ -106,8 +106,9 @@ angular.module('starter')
                 });
 
              }
-             $scope.$apply();
-
+            if(!$scope.$$phase) {
+              $rootScope.$apply();
+            }
          }, function(error) {
              // error getting photos
          });

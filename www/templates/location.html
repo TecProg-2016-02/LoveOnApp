@@ -9,7 +9,7 @@
     <div class="list">
       <ion-list ng-repeat="user in loc.users">
         <div class="item item-avatar item-button-right">
-          <img ng-src="data:image/jpeg;base64,{{user.avatar}}"/>
+          <img ng-src="data:image/jpeg;base64,{{user.avatar}}"ng-controller="UsersCtrl" ng-click="viewUser(user.token)"/>
           <h2>{{user.name}}</h2>
           <p>{{user.description}}</p>
           <button ng-controller="UsersCtrl" class="button button-positive" ng-click="addInteraction(user)">

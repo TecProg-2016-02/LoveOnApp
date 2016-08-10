@@ -7,7 +7,7 @@
         <div class="item item-avatar item-button-right">
           <img src="/img/ionic.png" ui-sref="app.profile" >
           <h2>{{match.name}}</h2>
-          <p>Back off, man. I'm a scientist.</p>
+          <p>{{match.description}}</p>
           <button class="button button-positive" ng-click="chatRoom(match.roomId)" ui-sref="app.chat">
             <i class="icon ion-chatbubbles" ></i>
           </button>

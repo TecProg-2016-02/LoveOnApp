@@ -152,6 +152,15 @@ angular.module('starter', ['ionic', 'firebase', 'ngResource', 'ngCordova', 'ionM
       }
     }
   })
+  .state('app.user', {
+    url: '/user',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/user.html',
+        controller: 'UsersCtrl'
+      }
+    }
+  })
   ;
   $urlRouterProvider.otherwise("app/home");
 })

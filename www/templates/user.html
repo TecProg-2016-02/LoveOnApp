@@ -2,13 +2,13 @@
     <ion-content>
         <div class="hero slide-up" style="background-image: url('img/login.png');">
             <div class="blabla">
-                <div class="avatar" style="background-image: url('img/ionic.png');"></div>
-                <h3><a class="light">{{user.name}}</a></h3>
-                <h4>{{user.age}} anos</h4>
+                <div class="avatar" style="background-image: url('img/ionic.png');"ng-click="follow(userp)"></div>
+                <h3><a class="light">{{userp.name}}</a></h3>
+                <h4>{{userp.age}} anos</h4>
             </div>
         </div>
         <span class="labels"></br></span>
-        <p ng-repeat="img in user.gallery">
+        <p ng-repeat="img in userp.gallery">
           <img ng-src="{{img}}"/>
         </p>
         <div class="tabs tabs-light tabs-icon-only static">
@@ -28,6 +28,6 @@
                 <i class="icon"></i>
             </a>
         </div>
-        <a ui-sref="app.editprofile">Cadastre-se</a>
+        <a class="button"ng-click="follow(userp)">Seguir</a>
     </ion-content>
 </ion-view>

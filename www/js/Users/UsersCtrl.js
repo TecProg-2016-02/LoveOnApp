@@ -2,7 +2,7 @@ angular.module('starter')
 
 .controller('UsersCtrl', function($ionicPopup ,$scope, $state, $firebaseArray,
   $rootScope, $ionicLoading, serviceLogin, factoryInteract, factoryUsers,
-  $timeout, $ionicScrollDelegate) {
+  $timeout, factoryUser, factoryFollow, $ionicScrollDelegate) {
 
   var ref = new Firebase('https://loveonapp.firebaseio.com/opened_rooms');
   // var roomRef = new Firebase('https://loveonapp.firebaseio.com/opened_rooms/');
@@ -128,5 +128,40 @@ angular.module('starter')
       });
     })
   }
+
+  $scope.viewUser = function(token) {
+    factoryUser.get({
+      token: token
+    }, function(user) {
+      $ionicLoading.hide();
+      $rootScope.userp = user;
+      console.log($rootScope.userp);
+      $state.go('app.user');
+    }, function(error) {
+      $ionicLoading.hide();
+      $ionicPopup.alert({
+        title: 'Erro!',
+        template: 'Falhou'
+      });
+    })
+  };
+
+  $scope.follow = function(user) {
+    user.main_user_auth_token = serviceLogin.getUser().token;
+    factoryFollow.save(user, function(user) {
+      $ionicLoading.hide();
+      $ionicPopup.alert({
+        title: 'Sucesso!',
+        template: 'Voce esta seguindo {{user.name}}!'
+      });
+      console.log("BF create", user);
+    }, function(error) {
+      $ionicLoading.hide();
+      $ionicPopup.alert({
+        title: 'Erro!',
+        template: 'Você já está seguindo {{user.name}}'
+      });
+    });
+  };
 
 })

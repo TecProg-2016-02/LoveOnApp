@@ -12,6 +12,14 @@ angular.module('starter')
             }
     })
 })
+.factory('factoryUser', function($resource) {
+  return $resource("http://localhost:3000/users/show")
+})
+
+.factory('factoryFollow', function($resource) {
+  return $resource("http://localhost:3000/users/follow")
+})
+
 // .factory('factoryConfirmEmail', function($resource) {
 //   return $resource("http://localhost:3000/users/confirm_email/", {}, {
 //       'get': { method:'GET',
