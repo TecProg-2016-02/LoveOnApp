@@ -106,9 +106,11 @@ angular.module('starter')
                 });
 
              }
-            if(!$scope.$$phase) {
-              $rootScope.$apply();
-            }
+             $timeout(function() {
+               if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') {
+                 $scope.$apply();
+               }
+             }, 2000)
          }, function(error) {
              // error getting photos
          });
@@ -150,6 +152,15 @@ angular.module('starter')
       for (var i = 0; i < user.matches.length; i++) {
         $rootScope.matches[i].roomId=user.matches_token[i].token;
       }
+      $rootScope.galleryitems=[];
+      console.log("gallery", user.gallery);
+      for (var i = 0; i < user.gallery.length; i++) {
+        $rootScope.galleryitems.push({
+          src: user.gallery[i],
+          sub: ''
+        });
+      }
+
       $rootScope.username = user.name;
       console.log("Logado", $rootScope.user);
       console.log(user.email_confirmed);
@@ -243,7 +254,11 @@ angular.module('starter')
 
   $scope.updateProfile = function(user) {
     user.avatar = $rootScope.user.avatar;
-    user.gallery = $scope.images;
+    user.gallery = $rootScope.user.gallery;
+    for (var i = 0; i < $scope.images.length; i++) {
+      user.gallery.push($scope.images[i]);
+    }
+
     factoryUpdate.update({
       token: serviceLogin.getUser().token
     }, {

@@ -8,9 +8,10 @@
             </div>
         </div>
         <span class="labels"></br></span>
-        <p ng-repeat="img in user.gallery">
+
+        <!-- <p ng-repeat="img in user.gallery">
           <img ng-src="{{img}}"/>
-        </p>
+        </p> -->
         <div class="tabs tabs-light tabs-icon-only static">
             <a class="tab-item">
                 <i class="icon ion-ios-location"></i>
@@ -29,5 +30,6 @@
             </a>
         </div>
         <a ui-sref="app.editprofile">Cadastre-se</a>
+        <ion-gallery ion-gallery-items="galleryitems" ion-gallery-toggle="false"></ion-gallery>
     </ion-content>
 </ion-view>
