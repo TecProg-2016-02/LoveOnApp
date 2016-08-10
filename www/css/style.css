@@ -12,13 +12,35 @@
   width: 100%;
 }
 
+.popup-buttons.row {
+  background-color: orange;
+}
+
+.popup-buttons .button{
+  background-color: orange;
+}
+
+.popup-buttons.row:active {
+  background-color: orange;
+}
+
+.popup-buttons .button:active{
+  background-color: orange;
+}
+
+.meucu {
+  position: relative;
+  left: 30px;
+  top: 35px;
+}
+
 .man-class {
   position: relative;
   left: calc(100% - 30px);
   font-size: 70pt;
 }
 
-.man-class:active {
+.man-class-active {
   color: green;
 }
 
@@ -39,7 +61,7 @@
   font-size: 70pt;
 }
 
-.woman-class:active {
+.woman-class-active {
   color: purple;
 }
 
@@ -182,7 +204,7 @@ a,
   bottom: 0;
   left: 0;
   padding: 1rem;
-  background-color: #c9c9c9;
+  background-color: #fbfbfb;
 }
 
 .padding-bla {
@@ -305,7 +327,7 @@ a,
 
 .app-icon {
     background-color: #fff;
-    background: url('../img/login.png') center;
+    background: url('../img/icon.png') center;
     background-size: cover;
     height: 150px;
     margin: 40px auto;

@@ -39,7 +39,6 @@ angular.module('starter')
             $rootScope.$apply();
           });
           $timeout(function () {
-            $state.go('app.profile');
             console.log("Data from Firebase:", authData);
 
             serviceLogin.setUser(
@@ -65,16 +64,13 @@ angular.module('starter')
               user.email = serviceRegisterSocial.getUser().email;
               user.password = serviceRegisterSocial.getUser().password;
               $scope.loginEmail(user);
-              $state.go('app.home');
             }, function(error) {
               $ionicLoading.hide();
               $ionicPopup.alert({
                 title: 'Ops!',
                 template: 'Erro ao se comunicar com o servidor!'
               });
-              $state.go('app.home');
             });
-            $state.go('app.home');
             $rootScope.user = serviceLogin.getUser();
             console.log("User:", $rootScope.user);
           }, 4000);
@@ -165,8 +161,7 @@ angular.module('starter')
       console.log("Logado", $rootScope.user);
       console.log(user.email_confirmed);
       if(!user.email_confirmed) {
-        // $state.go('app.activateaccount');
-        $state.go('app.profile');
+        $state.go('app.activateaccount');
       } else {
         $state.go('app.profile');
       }
