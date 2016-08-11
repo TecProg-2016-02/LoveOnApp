@@ -6,31 +6,38 @@
                 <h3><a class="light">{{user.name}}</a></h3>
                 <h4><div class="meucu">{{user.age}} anos</div></h4>
             </div>
+            <div class="tabs tabs-light tabs-icon-only static ">
+                <a class="tab-item">
+                    <i class="icon mcfly"></i>
+                </a>
+                <a class="tab-item">
+                    <i class="icon mcfly"></i>
+                </a>
+                <a class="tab-item">
+                    <i class="icon mcfly"></i>
+                </a>
+                <a class="tab-item">
+                    <i class="icon mcfly"></i>
+                </a>
+                <a class="tab-item">
+                    <i class="icon"></i>
+                </a>
+            </div>
         </div>
         <span class="labels"></br></span>
 
         <!-- <p ng-repeat="img in user.gallery">
           <img ng-src="{{img}}"/>
         </p> -->
-        <div class="tabs tabs-light tabs-icon-only static ">
-            <a class="tab-item">
-                <i class="icon mcfly"></i>
-            </a>
-            <a class="tab-item">
-                <i class="icon mcfly"></i>
-            </a>
-            <a class="tab-item">
-                <i class="icon mcfly"></i>
-            </a>
-            <a class="tab-item">
-                <i class="icon mcfly"></i>
-            </a>
-            <a class="tab-item">
-                <i class="icon"></i>
-            </a>
-        </div>
+
+
         <!-- <a ui-sref="app.editprofile">Cadastre-se</a> -->
         <ion-gallery ion-gallery-items="galleryitems" ion-gallery-toggle="false"></ion-gallery>
+        <h1>Onde estou:</h1>
+        <a class="item item-thumbnail-left" ng-controller="locationsCtrl"ng-click="viewLocation(user.last_place)">
+          <img ng-src="{{user.last_place.image}}"/>
+          <h2>{{user.last_place.name}}</h2>
+        </a>
     </ion-content>
     <ion-tabs ng-if="isLogged" class="tabs-light tabs-icon-only tabs-color-positive">
 
@@ -39,7 +46,7 @@
       </ion-tab>
 
       <ion-tab icon-on="ion-chatbubble-working" icon-off="ion-chatbubble-working"
-        ui-sref="app.matches">
+        ui-sref="app.matches" ng-controller="LoginCtrl" ng-click="reloadUser('app.matches')">
       </ion-tab>
 
       <ion-tab icon-on="ion-camera" icon-off="ion-camera"
@@ -47,7 +54,7 @@
       </ion-tab>
 
       <ion-tab icon-on="ion-ios-bell" icon-off="ion-ios-bell"
-        ui-sref="">
+        ui-sref="app.notifications" ng-controller="LoginCtrl" ng-click="reloadUser('app.notifications')">
       </ion-tab>
 
       <ion-tab icon-on="ion-ios-person" icon-off="ion-ios-person-outline"

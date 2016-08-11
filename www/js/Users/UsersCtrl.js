@@ -133,9 +133,16 @@ angular.module('starter')
   $scope.viewUser = function(token) {
     factoryUser.get({
       token: token
-    }, function(user) {
+    }, function(userp) {
       $ionicLoading.hide();
-      $rootScope.userp = user;
+      $rootScope.userp = userp;
+      $rootScope.usergallery=[];
+      for (var i = 0; i < userp.gallery.length; i++) {
+        $rootScope.usergallery.push({
+          src: userp.gallery[i],
+          sub: ''
+        });
+      }
       console.log($rootScope.userp);
       $state.go('app.user');
     }, function(error) {

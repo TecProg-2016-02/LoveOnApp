@@ -165,6 +165,15 @@ angular.module('starter', ['ionic', 'firebase', 'ngResource', 'ngCordova', 'ionM
       }
     }
   })
+  .state('app.notifications', {
+    url: '/notifications',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/notifications.html',
+        controller: 'LoginCtrl'
+      }
+    }
+  })
   ;
   $urlRouterProvider.otherwise("app/home");
 })

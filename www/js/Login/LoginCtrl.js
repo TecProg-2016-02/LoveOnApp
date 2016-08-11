@@ -139,6 +139,49 @@ angular.module('starter')
         });
       }
 
+    $scope.reloadUser=function(state){
+      var user={};
+      user.email = serviceRegisterSocial.getUser().email;
+      user.password = serviceRegisterSocial.getUser().password;
+      console.log(user);
+      $ionicLoading.show({
+        template: 'Loading...'
+      });
+      factoryLogin.get(user, function(user) {
+        serviceLogin.setUser(
+          user.name,
+          user.email,
+          user.token,
+          user.birthday,
+          user.gender,
+          user.id,
+          user.email_confirmed,
+          user.avatar
+        );
+        $ionicLoading.hide();
+        $rootScope.user = user;
+        $rootScope.matches = user.matches;
+        for (var i = 0; i < user.matches.length; i++) {
+          $rootScope.matches[i].roomId=user.matches_token[i].token;
+        }
+        $rootScope.galleryitems=[];
+        console.log("gallery", user.gallery);
+        for (var i = 0; i < user.gallery.length; i++) {
+          $rootScope.galleryitems.push({
+            src: user.gallery[i],
+            sub: ''
+          });
+        }
+        $state.go(state);
+        $ionicLoading.hide();
+      }, function(error) {
+        $ionicLoading.hide();
+        $ionicPopup.alert({
+          title: 'Erro!',
+          template: 'Falha ai carregar dados'
+        });
+      })
+    };
     $scope.selImages = function() {
        var options = {
          maximumImagesCount: 10,
@@ -225,7 +268,7 @@ angular.module('starter')
       $ionicLoading.hide();
       $ionicPopup.alert({
         title: 'Erro!',
-        template: 'Login Falhou'
+        template: 'Falha ai carregar dados'
       });
     })
   }
@@ -249,10 +292,6 @@ angular.module('starter')
       console.log("logout",user);
     }, function(error) {
       $ionicLoading.hide();
-      $ionicPopup.alert({
-        title: 'Erro!',
-        template: 'Login Falhou'
-      });
     })
   }
 

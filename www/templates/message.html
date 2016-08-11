@@ -42,7 +42,7 @@
     </ion-tab>
 
     <ion-tab icon-on="ion-chatbubble-working" icon-off="ion-chatbubble-working"
-      ui-sref="app.matches">
+      ui-sref="app.matches" ng-controller="LoginCtrl" ng-click="reloadUser('app.matches')">
     </ion-tab>
 
     <ion-tab icon-on="ion-camera" icon-off="ion-camera"
@@ -50,7 +50,7 @@
     </ion-tab>
 
     <ion-tab icon-on="ion-ios-bell" icon-off="ion-ios-bell"
-      ui-sref="">
+      ui-sref="app.notifications" ng-controller="LoginCtrl" ng-click="reloadUser('app.notifications')">
     </ion-tab>
 
     <ion-tab icon-on="ion-ios-person" icon-off="ion-ios-person-outline"

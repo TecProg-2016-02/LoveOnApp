@@ -1,13 +1,13 @@
-<ion-view view-title="Matches">
+<ion-view view-title="Notificações">
 
   <ion-content overflow-scroll="false">
 
     <div class="list">
       <ion-list ng-repeat="match in matches">
         <div class="item item-avatar item-button-right">
-          <img src="{{match.avatar}}" ng-controller="UsersCtrl" ng-click="viewUser(match.token)" >
-          <h2>{{match.name}}</h2>
-          <p>{{match.description}}</p>
+          <img src="{{user.follower.avatar}}" ng-controller="UsersCtrl" ng-click="viewUser(match.token)" >
+          <h2>{{user.follower.name}}</h2>
+          <p>está te seguindo.</p>
           <button class="button button-positive" ng-click="chatRoom(match.roomId)" ui-sref="app.chat">
             <i class="icon ion-chatbubbles" ></i>
           </button>
