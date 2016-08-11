@@ -7,41 +7,38 @@
     </div>
     <img ng-src="{{loc.image}}"/>
     <div class="list">
-      <div class="row responsive-md">
-        <div class="col col-50" ng-repeat="user in loc.users">
+      <div class="row responsive-md" ng-if="$index % 2 === 0">
+        <div class="col col-50" ng-repeat="user in loc.users" width="100%">
           <div>
             <img ng-src="data:image/jpeg;base64,{{user.avatar}}"ng-controller="UsersCtrl" ng-click="viewUser(user.token)"/>
-            <h2>{{user.name}}</h2>
+            <!-- <h2>{{user.name}}</h2>
             <p>{{user.description}}</p>
             <button ng-controller="UsersCtrl" class="button button-positive" ng-click="addInteraction(user)">
               <i class="icon ion-chatbubbles" ></i>
-            </button>
+            </button> -->
           </div>
         </div>
-      </div>
-      <div class="row responsive-md">
-        <div class="col col-50" ng-repeat="user in loc.female_users">
+        <div class="col col-50" ng-repeat="user in loc.female_users" width="100%">
           <div>
             <img ng-src="data:image/jpeg;base64,{{user.avatar}}"ng-controller="UsersCtrl" ng-click="viewUser(user.token)"/>
-            <h2>{{user.name}}</h2>
+            <!-- <h2>{{user.name}}</h2>
             <p>{{user.description}}</p>
             <button ng-controller="UsersCtrl" class="button button-positive" ng-click="addInteraction(user)">
               <i class="icon ion-chatbubbles" ></i>
-            </button>
+            </button> -->
           </div>
         </div>
-      </div>
-      <div class="row responsive-md">
-        <div class="col col-50" ng-repeat="user in loc.male_users">
+        <div class="col col-50" ng-repeat="user in loc.male_users" width="100%">
           <div>
             <img ng-src="data:image/jpeg;base64,{{user.avatar}}"ng-controller="UsersCtrl" ng-click="viewUser(user.token)"/>
-            <h2>{{user.name}}</h2>
+            <!-- <h2>{{user.name}}</h2>
             <p>{{user.description}}</p>
             <button ng-controller="UsersCtrl" class="button button-positive" ng-click="addInteraction(user)">
               <i class="icon ion-chatbubbles" ></i>
-            </button>
+            </button> -->
           </div>
         </div>
       </div>
+    </div>
   </ion-content>
 </ion-view>
