@@ -94,7 +94,7 @@ angular.module('starter')
     interaction.like = true;
     console.log("interação",interaction);
     $ionicLoading.show({
-      template: 'Loading...'
+      template: 'Carregando... <ion-spinner icon="android"></ion-spinner>'
     });
     factoryInteract.save(interaction, function(interaction) {
       $ionicLoading.hide();
@@ -131,6 +131,9 @@ angular.module('starter')
   }
 
   $scope.viewUser = function(token) {
+    $ionicLoading.show({
+      template: 'Carregando... <ion-spinner icon="android"></ion-spinner>'
+    });
     factoryUser.get({
       token: token
     }, function(userp) {

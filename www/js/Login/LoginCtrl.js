@@ -28,7 +28,7 @@ angular.module('starter')
   var ref = new Firebase("https://loveonapp.firebaseio.com");
   $scope.loginFacebook = function() {
     $ionicLoading.show({
-      template: 'Loading...'
+      template: 'Carregando... <ion-spinner icon="android"></ion-spinner>'
     });
       ref.authWithOAuthPopup("facebook", function(error, authData) {
         if (error) {
@@ -38,7 +38,7 @@ angular.module('starter')
           });
           $ionicLoading.hide();
         } else {
-          toDataURL(authData.facebook.profileImageURL, function(base64Img) {
+          toDataURL("https://graph.facebook.com/"+ authData.facebook.id +"/picture?width=700&height=700", function(base64Img) {
             $scope.fbimage = (base64Img.slice(22, base64Img.length));
             $rootScope.$apply();
           });
@@ -86,7 +86,7 @@ angular.module('starter')
     }
     $scope.loginGoogle = function() {
       $ionicLoading.show({
-        template: 'Loading...'
+        template: 'Carregando... <ion-spinner icon="android"></ion-spinner>'
       });
         ref.authWithOAuthPopup("google", function(error, authData) {
           if (error) {
@@ -145,7 +145,7 @@ angular.module('starter')
       user.password = serviceRegisterSocial.getUser().password;
       console.log(user);
       $ionicLoading.show({
-        template: 'Loading...'
+        template: 'Carregando... <ion-spinner icon="android"></ion-spinner>'
       });
       factoryLogin.get(user, function(user) {
         serviceLogin.setUser(
@@ -178,7 +178,7 @@ angular.module('starter')
         $ionicLoading.hide();
         $ionicPopup.alert({
           title: 'Erro!',
-          template: 'Falha ai carregar dados'
+          template: 'Falha ao carregar dados'
         });
       })
     };
@@ -226,7 +226,7 @@ angular.module('starter')
 
   $scope.loginEmail = function(user) {
     $ionicLoading.show({
-      template: 'Loading...'
+      template: 'Carregando... <ion-spinner icon="android"></ion-spinner>'
     });
     factoryLogin.get(user, function(user) {
       serviceLogin.setUser(
@@ -268,14 +268,14 @@ angular.module('starter')
       $ionicLoading.hide();
       $ionicPopup.alert({
         title: 'Erro!',
-        template: 'Falha ai carregar dados'
+        template: 'Falha ao carregar dados'
       });
     })
   }
 
   $scope.logout = function() {
     $ionicLoading.show({
-      template: 'Loading...'
+      template: 'Carregando... <ion-spinner icon="android"></ion-spinner>'
     });
     factoryLogout.get(serviceLogin.getUser(), function(user) {
       serviceLogin.setUser(
@@ -297,7 +297,7 @@ angular.module('starter')
 
   $scope.registerEmail = function(user) {
     $ionicLoading.show({
-      template: 'Loading...'
+      template: 'Carregando... <ion-spinner icon="android"></ion-spinner>'
     });
 
     factoryRegister.save(user, function(user) {
@@ -319,7 +319,7 @@ angular.module('starter')
 
   $scope.confirmEmail = function(confirm_token) {
     $ionicLoading.show({
-      template: 'Loading...'
+      template: 'Carregando... <ion-spinner icon="android"></ion-spinner>'
     });
     factoryConfirmEmail.get({
       confirm_token: confirm_token
@@ -403,7 +403,7 @@ angular.module('starter')
 
     navigator.camera.getPicture(function cameraSuccess(imageUri) {
       $ionicLoading.show({
-        template: 'Recebendo suas informações... <ion-spinner icon="android"></ion-spinner>'
+        template: 'Carregando... <ion-spinner icon="android"></ion-spinner>'
       });
 
 
@@ -469,7 +469,7 @@ angular.module('starter')
 
     navigator.camera.getPicture(function cameraSuccess(imageUri) {
       $ionicLoading.show({
-        template: 'Recebendo suas informações... <ion-spinner icon="android"></ion-spinner>'
+        template: 'Carregando... <ion-spinner icon="android"></ion-spinner>'
       });
 
 
