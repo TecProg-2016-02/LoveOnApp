@@ -12,16 +12,16 @@
         <span class="labels"></br></span>
         <div class="tabs tabs-light tabs-icon-only static">
             <a class="tab-item">
-                <i class="icon ion-ios-location"></i>
+                <i class="icon mcfly"></i>
             </a>
             <a class="tab-item">
-                <i class="icon ion-ios-location"></i>
+                <i class="icon mcfly"></i>
             </a>
             <a class="tab-item">
-                <i class="icon ion-ios-location"></i>
+                <i class="icon mcfly"></i>
             </a>
             <a class="tab-item">
-                <i class="icon ion-ios-location"></i>
+                <i class="icon mcfly"></i>
             </a>
             <a class="tab-item">
                 <i class="icon"></i>
@@ -31,4 +31,27 @@
           <img ng-src="{{img}}"/>
         </p>
     </ion-content>
+    <ion-tabs ng-if="isLogged" class="tabs-light tabs-icon-only tabs-color-positive">
+
+      <ion-tab ng-controller="locationsCtrl" icon-on="ion-compass"
+        icon-off="ion-compass" ng-click="allLocations()">
+      </ion-tab>
+
+      <ion-tab icon-on="ion-chatbubble-working" icon-off="ion-chatbubble-working"
+        ui-sref="app.matches">
+      </ion-tab>
+
+      <ion-tab icon-on="ion-camera" icon-off="ion-camera"
+        ui-sref="">
+      </ion-tab>
+
+      <ion-tab icon-on="ion-ios-bell" icon-off="ion-ios-bell"
+        ui-sref="">
+      </ion-tab>
+
+      <ion-tab icon-on="ion-ios-person" icon-off="ion-ios-person-outline"
+        ui-sref="app.profile">
+      </ion-tab>
+
+    </ion-tabs>
 </ion-view>
