@@ -11,6 +11,13 @@
 #bar-footer-message-box .list {
   width: 100%;
 }
+.tabs .tab-item .icon.mcfly {
+  background-repeat: no-repeat;
+  background-position: 50%;
+  height: 100%;
+  background-image: url('/img/local_map.png');
+  background-size:contain;
+}
 .cuzaum {
   position: relative;
   left: calc(50% - 50px);

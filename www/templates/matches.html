@@ -15,7 +15,7 @@
       </ion-list>
     </div>
   </ion-content>
-  <ion-tabs ng-if="isLogged" class="tabs-light tabs-icon-only">
+  <ion-tabs ng-if="isLogged" class="tabs-light tabs-icon-only tabs-color-positive">
 
     <ion-tab ng-controller="locationsCtrl" icon-on="ion-compass"
       icon-off="ion-compass" ng-click="allLocations()">
@@ -23,6 +23,14 @@
 
     <ion-tab icon-on="ion-chatbubble-working" icon-off="ion-chatbubble-working"
       ui-sref="app.matches">
+    </ion-tab>
+
+    <ion-tab icon-on="ion-camera" icon-off="ion-camera"
+      ui-sref="">
+    </ion-tab>
+
+    <ion-tab icon-on="ion-ios-bell" icon-off="ion-ios-bell"
+      ui-sref="">
     </ion-tab>
 
     <ion-tab icon-on="ion-ios-person" icon-off="ion-ios-person-outline"
