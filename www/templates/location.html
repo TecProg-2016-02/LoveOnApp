@@ -7,36 +7,41 @@
     </div>
     <img ng-src="{{loc.image}}"/>
     <div class="list">
-      <ion-list ng-repeat="user in loc.users">
-        <div class="item item-avatar item-button-right">
-          <img ng-src="data:image/jpeg;base64,{{user.avatar}}"ng-controller="UsersCtrl" ng-click="viewUser(user.token)"/>
-          <h2>{{user.name}}</h2>
-          <p>{{user.description}}</p>
-          <button ng-controller="UsersCtrl" class="button button-positive" ng-click="addInteraction(user)">
-            <i class="icon ion-chatbubbles" ></i>
-          </button>
+      <div class="row responsive-md">
+        <div class="col col-50" ng-repeat="user in loc.users">
+          <div>
+            <img ng-src="data:image/jpeg;base64,{{user.avatar}}"ng-controller="UsersCtrl" ng-click="viewUser(user.token)"/>
+            <h2>{{user.name}}</h2>
+            <p>{{user.description}}</p>
+            <button ng-controller="UsersCtrl" class="button button-positive" ng-click="addInteraction(user)">
+              <i class="icon ion-chatbubbles" ></i>
+            </button>
+          </div>
         </div>
-      </ion-list>
-      <ion-list ng-repeat="user in loc.male_users">
-        <div class="item item-avatar item-button-right">
-          <img ng-src="data:image/jpeg;base64,{{user.avatar}}"ng-controller="UsersCtrl" ng-click="viewUser(user.token)"/>
-          <h2>{{user.name}}</h2>
-          <p>{{user.description}}</p>
-          <button ng-controller="UsersCtrl" class="button button-positive" ng-click="addInteraction(user)">
-            <i class="icon ion-chatbubbles" ></i>
-          </button>
+      </div>
+      <div class="row responsive-md">
+        <div class="col col-50" ng-repeat="user in loc.female_users">
+          <div>
+            <img ng-src="data:image/jpeg;base64,{{user.avatar}}"ng-controller="UsersCtrl" ng-click="viewUser(user.token)"/>
+            <h2>{{user.name}}</h2>
+            <p>{{user.description}}</p>
+            <button ng-controller="UsersCtrl" class="button button-positive" ng-click="addInteraction(user)">
+              <i class="icon ion-chatbubbles" ></i>
+            </button>
+          </div>
         </div>
-      </ion-list>
-      <ion-list ng-repeat="user in loc.female_users">
-        <div class="item item-avatar item-button-right">
-          <img ng-src="data:image/jpeg;base64,{{user.avatar}}"ng-controller="UsersCtrl" ng-click="viewUser(user.token)"/>
-          <h2>{{user.name}}</h2>
-          <p>{{user.description}}</p>
-          <button ng-controller="UsersCtrl" class="button button-positive" ng-click="addInteraction(user)">
-            <i class="icon ion-chatbubbles" ></i>
-          </button>
+      </div>
+      <div class="row responsive-md">
+        <div class="col col-50" ng-repeat="user in loc.male_users">
+          <div>
+            <img ng-src="data:image/jpeg;base64,{{user.avatar}}"ng-controller="UsersCtrl" ng-click="viewUser(user.token)"/>
+            <h2>{{user.name}}</h2>
+            <p>{{user.description}}</p>
+            <button ng-controller="UsersCtrl" class="button button-positive" ng-click="addInteraction(user)">
+              <i class="icon ion-chatbubbles" ></i>
+            </button>
+          </div>
         </div>
-      </ion-list>
-    </div>
+      </div>
   </ion-content>
 </ion-view>

@@ -5,6 +5,9 @@ angular.module('starter')
   factoryLocation, factoryCheckin) {
 
   $scope.allLocations = function() {
+    $ionicLoading.show({
+      template: 'Loading...'
+    });
     factoryLocations.get(function(locations) {
       $ionicLoading.hide();
       $rootScope.locations = locations;
