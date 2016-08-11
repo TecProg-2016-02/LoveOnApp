@@ -15,7 +15,7 @@ angular.module('starter')
       $ionicLoading.hide();
       $ionicPopup.alert({
         title: 'Erro!',
-        template: 'Falhou'
+        template: 'Falha de comunicação com o banco'
       });
     })
   }
@@ -30,7 +30,7 @@ angular.module('starter')
       $ionicLoading.hide();
       $ionicPopup.alert({
         title: 'Erro!',
-        template: 'Falhou'
+        template: 'Falha de comunicação com o banco'
       });
     })
   };
@@ -50,7 +50,6 @@ angular.module('starter')
 
   $scope.doCheckin = function(location) {
     var checkin = {};
-
     checkin.user_token = serviceLogin.getUser().token;
     checkin.location_token = location.token;
     $ionicLoading.show({
@@ -60,15 +59,19 @@ angular.module('starter')
       $ionicLoading.hide();
       $ionicPopup.alert({
         title: 'Sucesso!',
-        template: 'Adicionado aos favoritos!'
+        template: 'Você fez checkin neste local,\n'+
+          'só poderá fazer checkin novamente dentro de 30 minutos!'
       });
+      $scope.viewLocation(location);
       console.log("BF create", checkin);
     }, function(error) {
       $ionicLoading.hide();
       $ionicPopup.alert({
         title: 'Erro!',
-        template: 'Não foi possivel adicionar aos favoritos!'
+        template: 'Não é possível trocar de localização,\n'+
+          ' aguarde 30 minutos!'
       });
+      $state.go('app.locations');
     });
   }
 

@@ -32,7 +32,11 @@ angular.module('starter')
     });
       ref.authWithOAuthPopup("facebook", function(error, authData) {
         if (error) {
-          console.log("Login Failed!", error);
+          $ionicPopup.alert({
+            title: 'Ops!',
+            template: 'Login cancelado!'
+          });
+          $ionicLoading.hide();
         } else {
           toDataURL(authData.facebook.profileImageURL, function(base64Img) {
             $scope.fbimage = (base64Img.slice(22, base64Img.length));
@@ -68,7 +72,7 @@ angular.module('starter')
               $ionicLoading.hide();
               $ionicPopup.alert({
                 title: 'Ops!',
-                template: 'Erro ao se comunicar com o servidor!'
+                template: 'Erro! Verifique se sua conta foi criada com Google+, ou tente novamente!'
               });
             });
             $rootScope.user = serviceLogin.getUser();
@@ -122,7 +126,7 @@ angular.module('starter')
                 $ionicLoading.hide();
                 $ionicPopup.alert({
                   title: 'Ops!',
-                  template: 'Erro ao se comunicar com o servidor!'
+                  template: 'Erro! Verifique se sua conta foi criada com Facebook, ou tente novamente!'
                 });
               });
               $rootScope.user = serviceLogin.getUser();
@@ -165,13 +169,9 @@ angular.module('starter')
              // error getting photos
          });
          $scope.$apply();
-         console.log("Base64:\n\n\n",$scope.images);
 
      };
 
-
-  $scope.minDate = new Date(2105, 6, 1);
-  $scope.maxDate = new Date(2015, 6, 31);
 
   $scope.datePickerCallback = function (val) {
     if (!val) {
@@ -215,7 +215,7 @@ angular.module('starter')
       console.log("Logado", $rootScope.user);
       console.log(user.email_confirmed);
       if(!user.email_confirmed) {
-        $state.go('app.activateaccount');
+        $state.go('app.primeiraTelaEdit');
       } else {
         $state.go('app.profile');
       }

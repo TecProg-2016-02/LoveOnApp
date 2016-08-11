@@ -110,7 +110,7 @@ angular.module('starter')
       $ionicLoading.hide();
       $ionicPopup.alert({
         title: 'Erro!',
-        template: 'Não foi possivel adicionar aos favoritos!'
+        template: 'Não é possivel dar like duas vezes!'
       });
     });
   }

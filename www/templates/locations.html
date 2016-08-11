@@ -1,7 +1,7 @@
 <ion-view view-title="Informe onde você está">
   <ion-content ng-init="allLocations()"overflow-scroll="false">
     <ion-list ng-repeat="location in locations">
-      <a class="item item-thumbnail-left" ng-click="viewLocation(location);doCheckin(location)">
+      <a class="item item-thumbnail-left" ng-click="doCheckin(location)">
         <img ng-src="{{location.image}}"/>
         <h2>{{location.name}}</h2>
       </a>
