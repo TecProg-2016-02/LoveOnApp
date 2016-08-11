@@ -7,7 +7,7 @@
     </div>
     <img ng-src="{{loc.image}}"/> -->
     <div class="list">
-      <div class="row responsive-md" ng-if="$index % 2 === 0">
+      <div class="row responsive-md">
         <div class="col col-50" ng-repeat="user in loc.users" width="100%">
           <div>
             <img ng-src="data:image/jpeg;base64,{{user.avatar}}"ng-controller="UsersCtrl" ng-click="viewUser(user.token)"/>
@@ -18,6 +18,8 @@
             </button> -->
           </div>
         </div>
+      <div class="row responsive-md">
+
         <div class="col col-50" ng-repeat="user in loc.female_users" width="100%">
           <div>
             <img ng-src="data:image/jpeg;base64,{{user.avatar}}"ng-controller="UsersCtrl" ng-click="viewUser(user.token)"/>
@@ -28,6 +30,8 @@
             </button> -->
           </div>
         </div>
+      <div class="row responsive-md">
+
         <div class="col col-50" ng-repeat="user in loc.male_users" width="100%">
           <div>
             <img ng-src="data:image/jpeg;base64,{{user.avatar}}"ng-controller="UsersCtrl" ng-click="viewUser(user.token)"/>
