@@ -12,6 +12,12 @@
   width: 100%;
 }
 
+.description {
+  position: absolute;
+  margin-top: 33%;
+  margin-left: 10%
+}
+
 .eai {
   position: absolute;
   background-color: #03881f;
@@ -162,9 +168,9 @@
 }
 
 .meucu {
-  position: relative;
-  right: calc(5% - 5px);
-  top: 35px;
+  position: absolute;
+  right: calc(50% - 30px);
+  top: 110px;
 }
 
 .man-class {
@@ -180,8 +186,14 @@
 .light {
   position: relative;
   font-size: 18pt;
-  top: 40px;
+  top: 80px;
   left: calc(20% - 20px);
+}
+
+.district {
+  position: absolute;
+  margin-top: 24%;
+  margin-left: 40%;
 }
 
 .blabla {

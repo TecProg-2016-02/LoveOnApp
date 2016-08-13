@@ -3,9 +3,12 @@
         <div class="hero slide-up" style="background-image: url('img/blue.png');">
             <div class="blabla">
                 <div class="avatar" style="background-image: url('data:image/jpeg;base64,{{user.avatar}}');"></div>
-                <h3><a class="light">{{user.name}}</a></h3>
-                <h4><div class="meucu">{{user.age}} anos</div></h4>
+
             </div>
+            <h3><a class="light">{{user.name}}</a></h3>
+            <h4><div class="meucu">{{user.age}} anos</div></h4>
+            <div class="description">{{user.description}}</div>
+            <div class="district">{{user.district}}, {{user.city}}</div>
             <div class="tabs tabs-light tabs-icon-only static ">
                 <a class="tab-item">
                     <i ng-controller="locationsCtrl" ng-if="user.last_place" class="icon mcfly" style="background-image: url('{{user.last_place.image}}');" ng-click="viewLocation(user.last_place)"></i>
