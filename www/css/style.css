@@ -11,13 +11,25 @@
 #bar-footer-message-box .list {
   width: 100%;
 }
+
+.eai {
+  position: absolute;
+  background-color: #03881f;
+  margin-left:10px;
+  margin-top:10px;
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+}
+
 .tabs .tab-item .icon.mcfly {
   background-repeat: no-repeat;
   background-position: 50%;
+  border-radius: 50%;
+  width: 65%;
   height: 100%;
-  background-image: url('/img/local_map.png');
   background-size:contain;
-  margin-top: 10
+  margin-top: 70
 }
 .cuzaum {
   position: relative;
