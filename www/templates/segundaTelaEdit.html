@@ -32,11 +32,19 @@
       </div>
     </div>
     <div class="padding-tela1">
-      <div class="item range">
+      <div class="list">
+        <label class="item item-input item-floating-label">
+          <span class="input-label">Idade</span>
+          <input type="text" placeholder="Idade" ng-model="user.search_range">
+        </label>
+      </div>
+    </div>
+    <div class="padding-tela1">
+      <!-- <div class="item range">
         <i class="icon ion-calendar"></i>
         <input type="range" name="age" ng-model="user.search_range" min="18" max="100" value="28">
       </div>
-      {{search_range}}
+      {{user.search_range}} -->
       <span class="labels"></br></span>
       <button class="sparara2" ng-click="updateProfile(user)" ui-sref="app.profile">Concluir</button>
     </div>

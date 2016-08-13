@@ -22,7 +22,7 @@ angular.module('starter')
 
 .factory("factoryUpdate", function($resource,URL) {
   return $resource(URL+"/users/update", {}, {
-      'update': { method:'PATCH',
+      'update': { method:'POST',
                   params:{  token:'@token' }
       }
     })
