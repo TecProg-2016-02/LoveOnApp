@@ -90,12 +90,12 @@
         </div>
       </div>
       <div class="padding-tela1">
-        <div class="item range">
-          <i class="icon ion-calendar"></i>
-          <input type="range" name="age" ng-model="user.search_range" min="18" max="100" value="28">
+        <div class="list">
+          <label class="item item-input item-floating-label">
+            <span class="input-label">Idade máxima de busca</span>
+            <input type="text" placeholder="Idade máxima de busca" ng-model="user.search_range">
+          </label>
         </div>
-        {{user.search_range}}
-        <span class="labels"></br></span>
       </div>
         <div class="grid" width="100%">
           <button class=" btCamera font button button-block icon ion-images" ng-click="selImages()"> Adicionar fotos</button>
