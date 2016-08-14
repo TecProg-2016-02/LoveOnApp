@@ -3,10 +3,19 @@ angular.module('starter')
 .controller('LoginCtrl', function($ionicPopup ,$scope, $state, factoryLogout,
   $rootScope, $ionicLoading, factoryRegister, factoryLogin, serviceLogin,
   serviceLoginSocial, serviceRegisterSocial, factoryConfirmEmail, $timeout,
-  factoryUpdate, $cordovaCamera, $cordovaImagePicker) {
+  factoryUpdate, $cordovaCamera, $cordovaImagePicker, $ionicPopover) {
 
   $scope.alerta = function(text) {
     alert(text);
+  };
+
+  $ionicPopover.fromTemplateUrl('templates/popover.html', {
+    scope: $scope,
+  }).then(function(popover) {
+    $scope.popover = popover;
+  });
+  var closePopover = function() {
+    $scope.popover.hide();
   };
 
   var toDataURL = function(src, callback, outputFormat) {
@@ -165,7 +174,6 @@ angular.module('starter')
           $rootScope.matches[i].roomId=user.matches_token[i].token;
         }
         $rootScope.galleryitems=[];
-        console.log("gallery", user.gallery);
         for (var i = 0; i < user.gallery.length; i++) {
           $rootScope.galleryitems.push({
             src: user.gallery[i],
@@ -246,7 +254,6 @@ angular.module('starter')
         $rootScope.matches[i].roomId=user.matches_token[i].token;
       }
       $rootScope.galleryitems=[];
-      console.log("gallery", user.gallery);
       for (var i = 0; i < user.gallery.length; i++) {
         $rootScope.galleryitems.push({
           src: user.gallery[i],
@@ -275,9 +282,10 @@ angular.module('starter')
 
   $scope.logout = function() {
     $ionicLoading.show({
-      template: 'Carregando... <ion-spinner icon="android"></ion-spinner>'
+      template: 'Saindo... <ion-spinner icon="android"></ion-spinner>'
     });
-    factoryLogout.get(serviceLogin.getUser(), function(user) {
+    closePopover();
+    factoryLogout.save(serviceLogin.getUser(), function(user) {
       serviceLogin.setUser(
         null,
         null,
@@ -289,7 +297,7 @@ angular.module('starter')
         null
       );
       $ionicLoading.hide();
-      console.log("logout",user);
+      $state.go('app.home');
     }, function(error) {
       $ionicLoading.hide();
     })
@@ -486,6 +494,83 @@ angular.module('starter')
         $rootScope.user.gallery.push("data:image/png;base64,"+ imageUri);
         user.gallery = $rootScope.user.gallery;
         console.log(imageUri);
+        factoryUpdate.update({
+          token: serviceLogin.getUser().token
+        }, {
+          user: user
+        }, function(user) {
+
+          console.log(user);
+        }, function(error) {
+          alert("erro", error.message);
+        });
+
+      }, 1000)
+
+
+    }, function cameraError(error) {
+      console.debug("Unable to obtain picture: " + error, "app");
+
+    }, options);
+
+
+  }
+
+  $scope.changeBackground = function() {
+
+    function setOptions(srcType) {
+      var options = {
+        // Some common settings are 20, 50, and 100
+        quality: 50,
+        destinationType: Camera.DestinationType.DATA_URL,
+        // In this app, dynamically set the picture source, Camera or photo gallery
+        sourceType: srcType,
+        encodingType: Camera.PictureSourceType.PHOTOLIBRARY,
+        mediaType: Camera.MediaType.PICTURE,
+        allowEdit: true,
+        correctOrientation: true //Corrects Android orientation quirks
+      }
+      return options;
+    }
+
+    function createNewFileEntry(imgUri) {
+      window.resolveLocalFileSystemURL(cordova.file.cacheDirectory, function success(dirEntry) {
+
+        // JPEG file
+        dirEntry.getFile("tempFile.jpeg", {
+          create: true,
+          exclusive: false
+        }, function(fileEntry) {
+
+          // Do something with it, like write to it, upload it, etc.
+          // writeFile(fileEntry, imgUri);
+          console.log("got file: " + fileEntry.fullPath);
+          // displayFileData(fileEntry.fullPath, "File copied to");
+
+        }, onErrorCreateFile);
+
+      }, onErrorResolveUrl);
+    }
+
+
+    var srcType = Camera.PictureSourceType.PHOTOLIBRARY;
+    var options = setOptions(srcType);
+    var func = createNewFileEntry;
+
+    navigator.camera.getPicture(function cameraSuccess(imageUri) {
+      $ionicLoading.show({
+        template: 'Carregando... <ion-spinner icon="android"></ion-spinner>'
+      });
+
+
+      $timeout(function() {
+
+
+        $ionicLoading.hide();
+        $scope.$apply();
+        var user = {};
+        $rootScope.user.background = imageUri;
+        user.background = $rootScope.user.background;
         factoryUpdate.update({
           token: serviceLogin.getUser().token
         }, {
