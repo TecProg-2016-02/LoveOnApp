@@ -99,6 +99,7 @@
       </div>
         <div class="grid" width="100%">
           <button class=" btCamera font button button-block icon ion-images" ng-click="selImages()"> Adicionar fotos</button>
+          <a class="icon ion-ios-help-outline" ng-click="galleryHelp()"></a>
             <div class="row" ng-repeat="img in user.gallery" ng-if="$index % 2 === 0">
                 <div class="col col-50" ng-if="$index < user.gallery.length">
                     <img ng-src="{{user.gallery[$index]}}" width="100%" on-hold="removeItem($index)"/>

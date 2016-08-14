@@ -196,3 +196,9 @@ angular.module('starter', ['ionic', 'firebase', 'ngResource', 'ngCordova', 'ionM
   ;
   $urlRouterProvider.otherwise("app/home");
 })
+.run(function($ionicPickerI18n) {
+    $ionicPickerI18n.weekdays = ["D", "S", "T", "Q", "Q", "S", "S"];
+    $ionicPickerI18n.months =  ["Jan", "Fev", "Mar", "Abr", "Maio", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"];
+    $ionicPickerI18n.ok = "Ok";
+    $ionicPickerI18n.cancel = "Cancelar";
+  });
