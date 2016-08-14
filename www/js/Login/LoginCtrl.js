@@ -420,7 +420,6 @@ angular.module('starter')
         $ionicLoading.hide();
         $scope.$apply();
         $rootScope.user.avatar = imageUri;
-        console.log("image",$rootScope.user.avatar);
 
       }, 1000)
 
