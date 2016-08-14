@@ -9,6 +9,15 @@ angular.module('starter')
     alert(text);
   };
 
+  $scope.galleryHelp = function () {
+    $ionicPopup.alert({
+      title: 'Ajuda',
+      template: 'Para deletar uma imagem da sua galeria\n'+
+        'aperte e segure em cima da imagem desejada.\n'+ 
+        'Sua ação só será executada\n'+
+        'quando você apertar o botão salvar.'
+    });
+  }
   $ionicPopover.fromTemplateUrl('templates/popover.html', {
     scope: $scope,
   }).then(function(popover) {
