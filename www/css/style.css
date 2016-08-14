@@ -99,8 +99,9 @@
 }
 .chat-bubble.left:before {
   background-color: #e6e5eb;
-  left: 10px;
-  -webkit-transform: rotate(70deg) skew(5deg);
+  -webkit-transform: rotate(45deg) skew(5deg);
+  left: -3px;
+  top: 30px;
 }
 .chat-bubble.right {
   background-color: #1C8BB3;
@@ -109,8 +110,9 @@
 }
 .chat-bubble.right:before {
   background-color: #1C8BB3;
-  right: 10px;
-  -webkit-transform: rotate(118deg) skew(-5deg);
+  -webkit-transform: rotate(135deg) skew(-5deg);
+  right: -3px;
+  top: 30px;
 }
 .chat-bubble.right a.autolinker {
   color: #fff;
