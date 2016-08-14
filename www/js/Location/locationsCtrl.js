@@ -47,9 +47,14 @@ angular.module('starter')
       $ionicLoading.hide();
       console.log(location);
       $rootScope.loc = location;
+      console.log("local", location);
       $state.go('app.location');
     }, function(error) {
       $ionicLoading.hide();
+      $ionicPopup.alert({
+        title: 'Erro!',
+        template: 'Erro ao carregar localização!'
+      });
     })
 
   };

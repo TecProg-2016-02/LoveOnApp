@@ -14,7 +14,7 @@ angular.module('starter')
   }).then(function(popover) {
     $scope.popover = popover;
   });
-  var closePopover = function() {
+  $scope.closePopover = function() {
     $scope.popover.hide();
   };
 
@@ -206,8 +206,7 @@ angular.module('starter')
                 // Encode URI to Base64
                 window.plugins.Base64.encodeFile(results[i], function(base64){
                    // Save images in Base64
-                   $scope.images.push(base64);
-                   $scope.imag = $scope.images[0];
+                   $rootScope.user.gallery.push(base64);
                 });
 
              }
@@ -219,7 +218,6 @@ angular.module('starter')
          }, function(error) {
              // error getting photos
          });
-         $scope.$apply();
 
      };
 
@@ -284,7 +282,7 @@ angular.module('starter')
     $ionicLoading.show({
       template: 'Saindo... <ion-spinner icon="android"></ion-spinner>'
     });
-    closePopover();
+    $scope.closePopover();
     factoryLogout.save(serviceLogin.getUser(), function(user) {
       serviceLogin.setUser(
         null,
@@ -349,20 +347,22 @@ angular.module('starter')
   }
 
   $scope.updateProfile = function(user) {
+    $ionicLoading.show({
+      template: 'Carregando... <ion-spinner icon="android"></ion-spinner>'
+    });
     user.avatar = $rootScope.user.avatar;
     user.gallery = $rootScope.user.gallery;
-    for (var i = 0; i < $scope.images.length; i++) {
-      user.gallery.push($scope.images[i]);
-    }
 
     factoryUpdate.update({
       token: serviceLogin.getUser().token
     }, {
       user: user
     }, function(user) {
-
+      $ionicLoading.hide();
       console.log(user);
+      $state.go('app.profile');
     }, function(error) {
+      $ionicLoading.hide();
       alert("erro", error.message);
     });
   }
@@ -593,5 +593,8 @@ angular.module('starter')
 
   }
 
+  $scope.removeItem = function (index) {
+     $rootScope.user.gallery.splice(index, 1);
+   };
 
 });
