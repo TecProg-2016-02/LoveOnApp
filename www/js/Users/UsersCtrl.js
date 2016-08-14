@@ -99,8 +99,8 @@ angular.module('starter')
     factoryInteract.save(interaction, function(interaction) {
       $ionicLoading.hide();
       $ionicPopup.alert({
-        title: 'Sucesso!',
-        template: 'Adicionado aos favoritos!'
+        title: '',
+        template: 'Like!'
       });
       console.log("Before create", interaction);
       if(interaction.matched){

@@ -1,6 +1,6 @@
 <ion-view view-title="{{userp.name}}">
     <ion-content>
-        <div class="hero slide-up" style="background-image: url('img/blue.png');">
+        <div class="hero slide-up" style="background-image: url('data:image/jpeg;base64,{{userp.background}}');">
             <div class="blabla">
                 <div class="avatar" style="background-image: url('data:image/jpeg;base64,{{userp.avatar}}');" ng-if="userp.avatar !== null"></div>
                 <div class="avatar" err="img/ionic.png" ng-if="userp.avatar === null"></div>
@@ -27,6 +27,8 @@
             </div>
         </div>
         <span class="labels"></br></span>
+
+        <ion-gallery ion-gallery-items="usergallery" ion-gallery-toggle="false"></ion-gallery>
 
     </ion-content>
     <ion-tabs ng-if="isLogged" class="tabs-light tabs-icon-only">
