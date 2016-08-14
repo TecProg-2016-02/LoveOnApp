@@ -174,6 +174,25 @@ angular.module('starter', ['ionic', 'firebase', 'ngResource', 'ngCordova', 'ionM
       }
     }
   })
+  .state('app.followers', {
+    url: '/followers',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/followers.html',
+        controller: 'LoginCtrl'
+      }
+    }
+  })
+  .state('app.following', {
+    url: '/following',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/following.html',
+        controller: 'LoginCtrl'
+      }
+    }
+  })
+
   ;
   $urlRouterProvider.otherwise("app/home");
 })

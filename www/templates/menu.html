@@ -10,7 +10,7 @@
   </ion-side-menu-content>
 </ion-side-menus>
 <script id="templates/popover.html" type="text/ng-template">
-  <ion-popover-view style="height:180px;">
+  <ion-popover-view>
     <ion-content>
       <div class="list">
         <a class="item" ng-click="closePopover()"ui-sref="app.editprofile">
@@ -18,6 +18,12 @@
         </a>
         <a class="item" ng-click="changeBackground()">
           Alterar foto de capa
+        </a>
+        <a class="item" ng-click="reloadUser('app.followers');closePopover()">
+          Seguidores
+        </a>
+        <a class="item" ng-click="reloadUser('app.following');closePopover()">
+          Seguindo
         </a>
         <a class="item" ng-click="logout()" >
           Sair

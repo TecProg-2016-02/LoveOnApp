@@ -1,12 +1,16 @@
-<ion-view view-title="Notificações">
+<ion-view view-title="Seguindo">
 
   <ion-content overflow-scroll="false">
 
     <div class="list">
-      <ion-list ng-repeat="follower in user.followers">
+      <ion-list ng-repeat="following in user.following">
         <div class="item item-avatar item-button-right">
-          <img src="data:image/jpeg;base64,{{follower.avatar}}" ng-controller="UsersCtrl" ng-click="viewUser(follower.token)" >
-          <p>{{follower.name}} está te seguindo.</p>
+          <img src="data:image/jpeg;base64,{{following.avatar}}" ng-controller="UsersCtrl" ng-click="viewUser(following.token)" >
+          <h2>{{following.name}}</h2>
+          <p>{{following.description}}</p>
+          <button class="button button-positive" ng-click="chatRoom(match.roomId)" ui-sref="app.chat">
+            <i class="icon ion-chatbubbles" ></i>
+          </button>
         </div>
       </ion-list>
     </div>
