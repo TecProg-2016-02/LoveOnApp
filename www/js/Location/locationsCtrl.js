@@ -86,4 +86,14 @@ angular.module('starter')
     });
   }
 
+  DEFAULT_PAGE_SIZE_STEP = 5;
+
+  $scope.currentPage = 1;
+  $scope.pageSize = $scope.currentPage * DEFAULT_PAGE_SIZE_STEP;
+
+  $scope.loadNextPage = function(){
+    $scope.currentPage++;
+    $scope.pageSize = $scope.currentPage * DEFAULT_PAGE_SIZE_STEP;
+  }
+
 })

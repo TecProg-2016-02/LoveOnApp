@@ -1,6 +1,6 @@
 angular.module('starter', ['ionic', 'firebase', 'ngResource', 'ngCordova', 'ionMdInput', 'ion-datetime-picker', 'ion-gallery'])
 
-.constant('URL', 'http://localhost:3000')
+.constant('URL', 'http://loversappserver.herokuapp.com')
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {

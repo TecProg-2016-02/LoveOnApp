@@ -360,7 +360,6 @@ angular.module('starter')
     }, function(user) {
       $ionicLoading.hide();
       console.log(user);
-      $state.go('app.profile');
     }, function(error) {
       $ionicLoading.hide();
       alert("erro", error.message);
