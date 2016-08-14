@@ -11,16 +11,21 @@
       Configure seu perfil
     </div>
     <div class="profile-image padding">
-      <img ng-src="data:image/jpeg;base64,{{user.avatar}}" err-src="/img/ionic.png" />
+      <img ng-src="data:image/jpeg;base64,{{image}}" err-src="/img/ionic.png" />
     </div>
     <button class="profile-edit-button" ng-click="alterarFoto()">Alterar foto</button>
-    <div class="padding-tela1">
+    <form name="testForm" class="padding-tela1" novalidate>
       <div class="fields">
         <div class="distance">
           <span class="labels"></span>
           <label class="item item-input inputs-register">
-            <input placeholder="Nome" type="text" ng-model='user.name'>
+            <input name="name" placeholder="Nome" type="text" ng-model='user.name' ng-required="true" ng-minlength="3" ng-maxlength="20">
           </label>
+          <div class="errors">
+            <p ng-show="testForm.name.$error.required">firstname is required</p>
+            <p ng-show="testForm.name.$error.minlength">firstname is too short</p>
+            <p ng-show="testForm.name.$error.maxlength">firstname is too long</p>
+          </div>
         </div>
         <div class="distance">
           <span class="labels"></br></span>
@@ -31,14 +36,24 @@
         <div class="distance">
           <span class="labels"></br></span>
           <label class="item item-input inputs-register">
-            <input placeholder="Bairro" type="text" ng-model='user.district'>
+            <input name="district" placeholder="Bairro" type="text" ng-model='user.district' ng-required="true" ng-minlength="3" ng-maxlength="20">
           </label>
+          <div class="errors">
+            <p ng-show="testForm.district.$error.required">firstname is required</p>
+            <p ng-show="testForm.district.$error.minlength">firstname is too short</p>
+            <p ng-show="testForm.district.$error.maxlength">firstname is too long</p>
+          </div>
         </div>
         <div class="distance">
           <span class="labels"></br></span>
           <label class="item item-input inputs-register">
-            <input placeholder="Cidade" type="text" ng-model='user.city'>
+            <input name="city" placeholder="Cidade" type="text" ng-model='user.city' ng-required="true" ng-minlength="3" ng-maxlength="20">
           </label>
+          <div class="errors">
+            <p ng-show="testForm.city.$error.required">firstname is required</p>
+            <p ng-show="testForm.city.$error.minlength">firstname is too short</p>
+            <p ng-show="testForm.city.$error.maxlength">firstname is too long</p>
+          </div>
         </div>
 
         <div class="row">
@@ -46,13 +61,13 @@
           <div class="col col-50">
             <span class="labels"></br></span>
             <label class="item item-input inputs-register">
-              <input placeholder="Altura" type="text" ng-model='user.height'>
+              <input placeholder="Altura" type="number" ng-model='user.height'>
             </label>
           </div>
           <div class="col col-50">
             <span class="labels"></br></span>
             <label class="item item-input inputs-register">
-              <input placeholder="Peso" type="text" ng-model='user.weight'>
+              <input placeholder="Peso" type="number" ng-model='user.weight'>
             </label>
           </div>
         </div>
@@ -67,6 +82,6 @@
         <button class="sparara" ui-sref="app.segundaTelaEdit" ng-click="updateProfile(user)">Continuar</button>
         <span class="labels"></br></span>
         <span class="labels"></br></span>
-    </div>
+    </form>
   </ion-content>
 </ion-view>

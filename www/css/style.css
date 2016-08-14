@@ -12,6 +12,10 @@
   width: 100%;
 }
 
+.errors {
+  color: red;
+}
+
 .description {
   position: absolute;
   margin-top: 33%;
@@ -32,10 +36,9 @@
   background-repeat: no-repeat;
   background-position: 50%;
   border-radius: 50%;
-  width: 65%;
+  width: 45px;
   height: 100%;
   background-size:contain;
-  margin-top: 70
 }
 .cuzaum {
   position: relative;
