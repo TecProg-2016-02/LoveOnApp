@@ -8,21 +8,22 @@
                 <h4><div class="meucu">{{userp.age}} anos</div></h4>
                 <button class="cuzaum button button-assertive" ng-click="follow(userp)">Seguir</button>
             </div>
-            <div class="tabs tabs-light tabs-icon-only static">
+            <div class="tabs tabs-light tabs-icon-only static ">
                 <a class="tab-item">
-                    <i class="icon mcfly"></i>
+                    <i ng-controller="locationsCtrl" ng-if="userp.last_place" class="icon mcfly" style="background-image: url('{{user.last_place.image}}');" ng-click="viewLocation(userp.last_place)"></i>
+                    <i ng-controller="locationsCtrl" ng-if="!userp.last_place" class="icon mcfly" style="background-image: url('/img/local_map.png');"></i>
                 </a>
                 <a class="tab-item">
-                    <i class="icon mcfly"></i>
+                  <i class="icon mcfly" style="background-image: url('/img/local_map.png');"></i>
                 </a>
                 <a class="tab-item">
-                    <i class="icon mcfly"></i>
+                  <i class="icon mcfly" style="background-image: url('/img/local_map.png');"></i>
                 </a>
                 <a class="tab-item">
-                    <i class="icon mcfly"></i>
+                  <i class="icon mcfly" style="background-image: url('/img/local_map.png');"></i>
                 </a>
                 <a class="tab-item">
-                    <i class="icon"></i>
+                  <i class="icon mcfly" style="background-image: url('/img/local_map.png');"></i>
                 </a>
             </div>
         </div>
@@ -41,8 +42,7 @@
         ui-sref="app.matches" ng-controller="LoginCtrl" ng-click="reloadUser('app.matches')">
       </ion-tab>
 
-      <ion-tab icon-on="ion-ios-camera-outline" icon-off="ion-ios-camera-outline"
-        ng-controller="LoginCtrl"ng-click="newPicture()">
+      <ion-tab icon-off="icon coelho">
       </ion-tab>
 
       <ion-tab icon-on="ion-ios-bell" icon-off="ion-ios-bell-outline"

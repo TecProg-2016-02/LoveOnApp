@@ -1,4 +1,4 @@
-angular.module('starter', ['ionic', 'firebase', 'ngResource', 'ngCordova', 'ionMdInput', 'ion-datetime-picker', 'ion-gallery'])
+angular.module('starter', ['ionic', 'firebase', 'ngResource', 'ngCordova', 'ionMdInput', 'ion-datetime-picker', 'ion-gallery', 'nl2br'])
 
 .constant('URL', 'http://loversappserver.herokuapp.com')
 
