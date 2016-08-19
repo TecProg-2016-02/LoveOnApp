@@ -1,6 +1,6 @@
 <ion-view>
     <ion-content>
-      <ion-nav-bar class="bar bar-header bar-light">
+      <ion-nav-bar class="bar bar-header nao bar-light">
           <h1 class="title">Meu Curriculum</h1>
           <ion-nav-buttons side="right">
               <button class="button-icon icon ion-gear-b" style="color: white" ng-controller="LoginCtrl"ng-click="popover.show($event)">
@@ -12,7 +12,7 @@
                 <div class="avatar" style="background-image: url('data:image/jpeg;base64,{{user.avatar}}');"></div>
 
             </div>
-            <div class="light">{{user.name}}</div>
+            <div class="light1">{{user.name}}</div>
             <h4><div class="meucu">{{user.age}} anos</div></h4>
             <div class="description">{{user.description}}</div>
             <div class="district">{{user.district}}, {{user.city}}</div>
@@ -67,7 +67,7 @@
       </ion-tab>
 
       <ion-tab icon-on="ion-ios-person" icon-off="ion-ios-person-outline"
-        ui-sref="app.profile">
+        href="#/app/profile">
       </ion-tab>
 
     </ion-tabs>

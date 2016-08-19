@@ -15,7 +15,7 @@
   margin-bottom: 50px;
 }
 
-.bar.bar-header {
+.bar.bar-header.nao {
   background: rgba(255,255,255,.0);
   border-bottom-width: 0;
 }
@@ -38,7 +38,7 @@
 
 .description {
   position: absolute;
-  margin-top: 33%;
+  top: 220px;
   margin-left: 10%
 }
 
@@ -207,7 +207,7 @@
 .meucu {
   position: absolute;
   right: calc(50% - 30px);
-  top: 110px;
+  top: 175px;
 }
 
 .man-class {
@@ -220,22 +220,22 @@
   color: green;
 }
 
-.light {
+.light1 {
   position: relative;
   font-size: 18pt;
-  top: 80px;
-  left: calc(20% - 20px);
+  top: 130px;
+  margin-left: 110px;
 }
 
 .district {
   position: absolute;
-  margin-top: 24%;
-  margin-left: 40%;
+  top: 155px;
+  margin-left: 150px;
 }
 
 .blabla {
   position: relative;
-  top: 45px;
+  top: 100px;
 }
 
 .woman-class {
@@ -399,7 +399,7 @@ a,
   background-size: cover;
   box-shadow: 0px 2px 5px 0 rgba(0, 0, 0, 0.26);
   color: #fff;
-  height: 250px;
+  height: 300px;
   position: relative;
   text-align: center;
   -webkit-transition: all 1s cubic-bezier(0.55, 0, 0.1, 1);

@@ -1,4 +1,11 @@
 <ion-view view-title="Informe onde você está">
+  <ion-nav-bar class="bar bar-light">
+    <ion-nav-back-button ></ion-nav-back-button>
+    <ion-nav-buttons side="right">
+        <button class="button-icon icon ion-gear-b" ng-controller="LoginCtrl"ng-click="popover.show($event)">
+        </button>
+    </ion-nav-buttons>
+  </ion-nav-bar>
   <ion-content ng-init="allLocations()" style="margin-bottom:10%;">
 
     <label class="item item-input">
