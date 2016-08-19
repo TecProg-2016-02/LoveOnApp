@@ -1,5 +1,12 @@
-<ion-view view-title="Meu Curriculum" hide-back-button="true">
+<ion-view>
     <ion-content>
+      <ion-nav-bar class="bar bar-header bar-light">
+          <h1 class="title">Meu Curriculum</h1>
+          <ion-nav-buttons side="right">
+              <button class="button-icon icon ion-gear-b" style="color: white" ng-controller="LoginCtrl"ng-click="popover.show($event)">
+              </button>
+          </ion-nav-buttons>
+        </ion-nav-bar>
         <div class="hero slide-up" style="background-image: url('data:image/jpeg;base64,{{user.background}}');">
             <div class="blabla">
                 <div class="avatar" style="background-image: url('data:image/jpeg;base64,{{user.avatar}}');"></div>
@@ -12,19 +19,19 @@
             <div class="tabs tabs-light tabs-icon-only static ">
                 <a class="tab-item">
                     <i ng-controller="locationsCtrl" ng-if="user.last_place" class="icon mcfly" style="background-image: url('{{user.last_place.image}}');" ng-click="viewLocation(user.last_place)"></i>
-                    <i ng-controller="locationsCtrl" ng-if="!user.last_place" class="icon mcfly" style="background-image: url('/img/local_map.png');"></i>
+                    <i ng-controller="locationsCtrl" ng-if="!user.last_place" class="icon mcfly" style="background-image: url('../img/local_map.png');"></i>
                 </a>
                 <a class="tab-item">
-                  <i class="icon mcfly" style="background-image: url('/img/local_map.png');"></i>
+                  <i class="icon mcfly" style="background-image: url('../img/local_map.png');"></i>
                 </a>
                 <a class="tab-item">
-                  <i class="icon mcfly" style="background-image: url('/img/local_map.png');"></i>
+                  <i class="icon mcfly" style="background-image: url('../img/local_map.png');"></i>
                 </a>
                 <a class="tab-item">
-                  <i class="icon mcfly" style="background-image: url('/img/local_map.png');"></i>
+                  <i class="icon mcfly" style="background-image: url('../img/local_map.png');"></i>
                 </a>
                 <a class="tab-item">
-                  <i class="icon mcfly" style="background-image: url('/img/local_map.png');"></i>
+                  <i class="icon mcfly" style="background-image: url('../img/local_map.png');"></i>
                 </a>
             </div>
         </div>

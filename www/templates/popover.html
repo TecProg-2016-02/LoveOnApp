@@ -1,0 +1,21 @@
+<ion-popover-view>
+  <ion-content>
+    <div class="list">
+      <a class="item" ng-click="closePopover()"ui-sref="app.editprofile">
+        Configurar Perfil
+      </a>
+      <a class="item" ng-click="changeBackground()">
+        Alterar foto de capa
+      </a>
+      <a class="item" ng-click="reloadUser('app.followers');closePopover()">
+        Seguidores
+      </a>
+      <a class="item" ng-click="reloadUser('app.following');closePopover()">
+        Seguindo
+      </a>
+      <a class="item" ng-click="logout()" >
+        Sair
+      </a>
+    </div>
+  </ion-content>
+</ion-popover-view>

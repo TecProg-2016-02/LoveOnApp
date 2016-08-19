@@ -15,13 +15,13 @@
   margin-bottom: 50px;
 }
 
-/*.bar.bar-header {
-  background: rgba(255,255,255,.10);
+.bar.bar-header {
+  background: rgba(255,255,255,.0);
   border-bottom-width: 0;
 }
 
 .bar.bar-header h1 {
-  color: black !important;
+  color: white !important;
 }
 
 .scroll-content {
@@ -30,7 +30,7 @@
 
 .platform-ios.platform-cordova:not(.fullscreen) .has-header {
   top:0px;
-}*/
+}
 
 .errors {
   color: red;
@@ -57,7 +57,7 @@
   background-position: 50%;
   border-radius: 50%;
   width: 45px;
-  height: 100%;
+  height: 45px;
   background-size:contain;
 }
 
@@ -68,7 +68,7 @@
   width: 45px;
   height: 100%;
   background-size:contain;
-  background-image: url('/img/unnamed.png');
+  background-image: url('../img/unnamed.png');
 }
 
 .cuzaum {

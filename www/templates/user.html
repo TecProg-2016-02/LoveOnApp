@@ -11,26 +11,29 @@
             <div class="tabs tabs-light tabs-icon-only static ">
                 <a class="tab-item">
                     <i ng-controller="locationsCtrl" ng-if="userp.last_place" class="icon mcfly" style="background-image: url('{{user.last_place.image}}');" ng-click="viewLocation(userp.last_place)"></i>
-                    <i ng-controller="locationsCtrl" ng-if="!userp.last_place" class="icon mcfly" style="background-image: url('/img/local_map.png');"></i>
+                    <i ng-controller="locationsCtrl" ng-if="!userp.last_place" class="icon mcfly" style="background-image: url('../img/local_map.png');"></i>
                 </a>
                 <a class="tab-item">
-                  <i class="icon mcfly" style="background-image: url('/img/local_map.png');"></i>
+                  <i class="icon mcfly" style="background-image: url('../img/local_map.png');"></i>
                 </a>
                 <a class="tab-item">
-                  <i class="icon mcfly" style="background-image: url('/img/local_map.png');"></i>
+                  <i class="icon mcfly" style="background-image: url('../img/local_map.png');"></i>
                 </a>
                 <a class="tab-item">
-                  <i class="icon mcfly" style="background-image: url('/img/local_map.png');"></i>
+                  <i class="icon mcfly" style="background-image: url('../img/local_map.png');"></i>
                 </a>
-                <a class="tab-item">
-                  <i class="icon mcfly" style="background-image: url('/img/local_map.png');"></i>
+                <a class="tab-item" ng-controller="LoginCtrl"ng-click="popover.show($event)">
+                  <i class="icon ion-android-more-vertical"></i>
                 </a>
             </div>
         </div>
         <span class="labels"></br></span>
-
-        <ion-gallery ion-gallery-items="usergallery" ion-gallery-toggle="false"></ion-gallery>
-
+        <div ng-if="user.gallery !== null">
+          <ion-gallery ion-gallery-items="usergallery" ion-gallery-toggle="false"></ion-gallery>
+        </div>
+        <div ng-if="user.gallery === null">
+          <img src="../img/local_map.png"/>
+        </div>
     </ion-content>
     <ion-tabs ng-if="isLogged" class="tabs-light tabs-icon-only">
 
