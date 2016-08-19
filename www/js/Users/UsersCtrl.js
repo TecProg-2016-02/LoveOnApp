@@ -104,6 +104,10 @@ angular.module('starter')
       });
       console.log("Before create", interaction);
       if(interaction.matched){
+        $ionicPopup.alert({
+          title: 'Match!',
+          template: 'É um match!'
+        });
         $scope.createRoom(interaction.match.token);
       }
     }, function(error) {
@@ -158,6 +162,9 @@ angular.module('starter')
   };
 
   $scope.follow = function(user) {
+    $ionicLoading.show({
+      template: 'Carregando... <ion-spinner icon="android"></ion-spinner>'
+    });
     user.main_user_auth_token = serviceLogin.getUser().token;
     factoryFollow.save(user, function(user) {
       $ionicLoading.hide();
