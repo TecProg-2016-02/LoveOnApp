@@ -228,9 +228,9 @@
 }
 
 .district {
-  position: absolute;
-  top: 155px;
-  margin-left: 150px;
+  position: relative;
+  top: 120px;
+  margin-left: 50px;
 }
 
 .blabla {
