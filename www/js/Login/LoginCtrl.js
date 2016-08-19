@@ -13,7 +13,7 @@ angular.module('starter')
     $ionicPopup.alert({
       title: 'Ajuda',
       template: 'Para deletar uma imagem da sua galeria\n'+
-        'aperte e segure em cima da imagem desejada.\n'+ 
+        'aperte e segure em cima da imagem desejada.\n'+
         'Sua ação só será executada\n'+
         'quando você apertar o botão salvar.'
     });
@@ -76,7 +76,6 @@ angular.module('starter')
               authData.facebook.email,
               authData.facebook.id,
               authData.facebook.cachedUserProfile.gender,
-              new Date(authData.facebook.cachedUserProfile.birthday),
               $scope.fbimage
             );
             console.log("Usr:", serviceRegisterSocial.getUser());
@@ -121,7 +120,6 @@ angular.module('starter')
                 authData.google.displayName,
                 authData.google.email,
                 authData.google.id,
-                authData.google.cachedUserProfile.birthday,
                 authData.google.cachedUserProfile.gender,
                 $scope.fbimage
               );
@@ -130,7 +128,6 @@ angular.module('starter')
                 authData.google.email,
                 authData.google.id,
                 authData.google.cachedUserProfile.gender,
-                new Date(authData.google.cachedUserProfile.birthday),
                 $scope.fbimage
               );
               console.log("Usr:", serviceRegisterSocial.getUser());
@@ -170,7 +167,6 @@ angular.module('starter')
           user.name,
           user.email,
           user.token,
-          user.birthday,
           user.gender,
           user.id,
           user.email_confirmed,
@@ -248,7 +244,6 @@ angular.module('starter')
         user.name,
         user.email,
         user.token,
-        user.birthday,
         user.gender,
         user.id,
         user.email_confirmed,

@@ -21,14 +21,10 @@
     "cordova-plugin-splashscreen",
     "cordova-plugin-statusbar",
     "ionic-plugin-keyboard",
-    "cordova-plugin-background-mode",
     "cordova-plugin-camera",
-    "cordova-plugin-inappbrowser",
     "cordova-plugin-image-picker",
-    "com-badrit-base64"
+    "com-badrit-base64",
+    "cordova-plugin-inappbrowser"
   ],
-  "cordovaPlatforms": [
-    "android",
-    "ios"
-  ]
+  "cordovaPlatforms": []
 }
