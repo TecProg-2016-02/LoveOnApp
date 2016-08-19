@@ -5,11 +5,14 @@
 
 #bar-footer-message-box {
   height: initial;
-  margin-bottom: 50px;
 }
 
 #bar-footer-message-box .list {
   width: 100%;
+}
+
+.chat-message{
+  margin-bottom: 50px;
 }
 
 .errors {
@@ -106,6 +109,7 @@
 }
 .chat-bubble.left {
   background-color: #e6e5eb;
+  color: #000;
   float: left;
 }
 .chat-bubble.left:before {
@@ -115,12 +119,12 @@
   top: 30px;
 }
 .chat-bubble.right {
-  background-color: #1C8BB3;
-  color: #fff;
+  background-color: #DCF8C6;
+  color: #000;
   float: right;
 }
 .chat-bubble.right:before {
-  background-color: #1C8BB3;
+  background-color: #DCF8C6;
   -webkit-transform: rotate(135deg) skew(-5deg);
   right: -3px;
   top: 30px;
