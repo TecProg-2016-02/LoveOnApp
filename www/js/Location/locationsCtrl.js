@@ -111,7 +111,7 @@ angular.module('starter')
            var lat  = position.coords.latitude;
            var long = position.coords.longitude;
            $ionicLoading.hide();
-           alert(position.coords);
+           console.log(position.coords);
        }, function(err) {
            $ionicLoading.hide();
            console.log(err);
