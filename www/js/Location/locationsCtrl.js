@@ -2,7 +2,7 @@ angular.module('starter')
 
 .controller('locationsCtrl', function($ionicPopup ,$scope, $state, $stateParams,
   $rootScope, $ionicLoading, serviceLogin, factoryLocations, factoryCheckins,
-  factoryLocation, factoryCheckin) {
+  factoryLocation, factoryCheckin, $cordovaGeolocation, $ionicPlatform) {
 
   $scope.allLocations = function() {
     $ionicLoading.show({
@@ -96,4 +96,25 @@ angular.module('starter')
     $scope.pageSize = $scope.currentPage * DEFAULT_PAGE_SIZE_STEP;
   }
 
+  $ionicPlatform.ready(function() {
+
+       $ionicLoading.show({
+           template: '<ion-spinner icon="bubbles"></ion-spinner><br/>Adquirindo localização!'
+       });
+
+       var posOptions = {
+           enableHighAccuracy: true,
+           timeout: 3000,
+           maximumAge: 0
+       };
+       $cordovaGeolocation.getCurrentPosition(posOptions).then(function (position) {
+           var lat  = position.coords.latitude;
+           var long = position.coords.longitude;
+           $ionicLoading.hide();
+           alert(position.coords);
+       }, function(err) {
+           $ionicLoading.hide();
+           console.log(err);
+       });
+   });
 })
