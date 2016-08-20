@@ -161,6 +161,14 @@ angular.module('starter')
     })
   };
 
+  $scope.imglocation = {
+    img: 'img/local_map.png'
+  };
+
+  $scope.imgheart = {
+    img: 'img/unnamed.png'
+  };
+
   $ionicPopover.fromTemplateUrl('templates/popoverUser.html', {
     scope: $scope,
   }).then(function(popover) {
