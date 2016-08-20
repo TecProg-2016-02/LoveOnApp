@@ -38,7 +38,7 @@
 
 .description {
   position: absolute;
-  top: 220px;
+  top: 227px;
   margin-left: 10%
 }
 
@@ -220,17 +220,22 @@
   color: green;
 }
 
+.ovocru {
+
+}
+
 .light1 {
-  position: relative;
+  padding: 130px 20px;
   font-size: 18pt;
-  top: 130px;
-  margin-left: 110px;
+  position: relative;
+  top: 0px;
+  left:133px;
 }
 
 .district {
-  position: relative;
-  top: 120px;
-  margin-left: 50px;
+  position: absolute;
+  top: 155px;
+  margin-left: 155px;
 }
 
 .blabla {
@@ -401,7 +406,6 @@ a,
   color: #fff;
   height: 300px;
   position: relative;
-  text-align: center;
   -webkit-transition: all 1s cubic-bezier(0.55, 0, 0.1, 1);
   transition: all 1s cubic-bezier(0.55, 0, 0.1, 1);
   -webkit-transform: translate3d(0, 0, 0);
