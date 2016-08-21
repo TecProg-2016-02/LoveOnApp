@@ -1,8 +1,11 @@
 <ion-popover-view>
   <ion-content>
     <div class="list">
-      <a class="item" ng-click="follow(userp);closePopover()">
+      <a ng-if="!isFollowing"class="item" ng-click="follow(userp);closePopover()">
         Seguir
+      </a>
+      <a ng-if="isFollowing"class="item" ng-click="unfollow(userp);closePopover()">
+        Deixar de seguir
       </a>
     </div>
   </ion-content>

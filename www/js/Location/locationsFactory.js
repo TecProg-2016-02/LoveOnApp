@@ -4,6 +4,10 @@ angular.module('starter')
   return $resource(URL+"/locations/", {}, {
       'get': {
               method:'GET',
+              params:{
+                latitude:'@latitude',
+                longitude:'@longitude'
+              },
               isArray:true
             }
     })

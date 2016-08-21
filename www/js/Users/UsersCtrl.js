@@ -2,7 +2,8 @@ angular.module('starter')
 
 .controller('UsersCtrl', function($ionicPopup ,$scope, $state, $firebaseArray,
   $rootScope, $ionicLoading, serviceLogin, factoryInteract, factoryUsers,
-  $timeout, factoryUser, factoryFollow, $ionicScrollDelegate, $ionicPopover) {
+  $timeout, factoryUser, factoryFollow, $ionicScrollDelegate, $ionicPopover,
+  factoryUnfollow) {
 
   var ref = new Firebase('https://loveonapp.firebaseio.com/opened_rooms');
   // var roomRef = new Firebase('https://loveonapp.firebaseio.com/opened_rooms/');
@@ -139,18 +140,22 @@ angular.module('starter')
       template: 'Carregando... <ion-spinner icon="android"></ion-spinner>'
     });
     factoryUser.get({
-      token: token
+      token: token,
+      id_facebook: $rootScope.user.id_facebook
     }, function(userp) {
+      console.log("Usuario", userp);
       $ionicLoading.hide();
-      $rootScope.userp = userp;
+      $rootScope.userp = userp.user;
+      $rootScope.userp.locations = userp.locations;
+      $rootScope.isFollowing = userp.is_following;
+      $rootScope.isMatched = userp.matched;
       $rootScope.usergallery=[];
-      for (var i = 0; i < userp.gallery.length; i++) {
+      for (var i = 0; i < userp.user.gallery.length; i++) {
         $rootScope.usergallery.push({
-          src: userp.gallery[i],
+          src: userp.user.gallery[i],
           sub: ''
         });
       }
-      console.log($rootScope.userp);
       $state.go('app.user');
     }, function(error) {
       $ionicLoading.hide();
@@ -189,12 +194,35 @@ angular.module('starter')
         title: 'Sucesso!',
         template: 'Voce esta seguindo {{userp.name}}!'
       });
+      $rootScope.isFollowing = true;
       console.log("BF create", user);
     }, function(error) {
       $ionicLoading.hide();
       $ionicPopup.alert({
         title: 'Erro!',
         template: 'Você já está seguindo {{userp.name}}'
+      });
+    });
+  };
+
+  $scope.unfollow = function(user) {
+    $ionicLoading.show({
+      template: 'Carregando... <ion-spinner icon="android"></ion-spinner>'
+    });
+    user.main_user_auth_token = serviceLogin.getUser().token;
+    factoryUnfollow.save(user, function(user) {
+      $ionicLoading.hide();
+      $ionicPopup.alert({
+        title: 'Sucesso!',
+        template: 'Voce deixou de seguir {{userp.name}}!'
+      });
+      $rootScope.isFollowing = false;
+      console.log("BF create", user);
+    }, function(error) {
+      $ionicLoading.hide();
+      $ionicPopup.alert({
+        title: 'Erro!',
+        template: 'Erro ao processar operação'
       });
     });
   };

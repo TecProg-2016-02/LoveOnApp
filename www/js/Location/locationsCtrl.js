@@ -8,7 +8,13 @@ angular.module('starter')
     $ionicLoading.show({
       template: 'Carregando... <ion-spinner icon="android"></ion-spinner>'
     });
-    factoryLocations.get(function(locations) {
+    origin = {};
+    origin.latitude = $scope.lat;
+    origin.longitude = $scope.long;
+    factoryLocations.get({
+      latitude:$scope.lat,
+      longitude:$scope.long      
+    }, function(locations) {
       $ionicLoading.hide();
       $rootScope.locations = locations;
       console.log($rootScope.locations);
@@ -108,8 +114,8 @@ angular.module('starter')
            maximumAge: 0
        };
        $cordovaGeolocation.getCurrentPosition(posOptions).then(function (position) {
-           var lat  = position.coords.latitude;
-           var long = position.coords.longitude;
+           $scope.lat  = position.coords.latitude;
+           $scope.long = position.coords.longitude;
            $ionicLoading.hide();
            console.log(position.coords);
        }, function(err) {
