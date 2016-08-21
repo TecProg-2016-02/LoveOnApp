@@ -35,9 +35,8 @@
                   <i ng-if="userp.locations[3]" class="icon mcfly" style="background-image: url('{{userp.locations[3].image}}');"></i>
                   <i ng-if="!userp.locations[3]" class="icon mcfly" style="background-image: url('../img/local_map.png');"></i>
               </a>
-              <a class="tab-item">
-                  <i ng-if="userp.locations[4]" class="icon mcfly" style="background-image: url('{{userp.locations[4].image}}');"></i>
-                  <i ng-if="!userp.locations[4]" class="icon mcfly" style="background-image: url('../img/local_map.png');"></i>
+              <a class="tab-item" ng-controller="UsersCtrl"ng-click="popover.show($event)">
+                  <i class="icon ion-android-more-vertical"></i>
               </a>
             </div>
         </div>
