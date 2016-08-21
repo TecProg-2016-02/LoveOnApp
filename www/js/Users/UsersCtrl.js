@@ -3,7 +3,7 @@ angular.module('starter')
 .controller('UsersCtrl', function($ionicPopup ,$scope, $state, $firebaseArray,
   $rootScope, $ionicLoading, serviceLogin, factoryInteract, factoryUsers,
   $timeout, factoryUser, factoryFollow, $ionicScrollDelegate, $ionicPopover,
-  factoryUnfollow) {
+  factoryUnfollow, $ionicModal) {
 
   var ref = new Firebase('https://loveonapp.firebaseio.com/opened_rooms');
   // var roomRef = new Firebase('https://loveonapp.firebaseio.com/opened_rooms/');
@@ -87,9 +87,24 @@ angular.module('starter')
     scrollBottom();
   };
 
+  $scope.openModal = function() {
+    $ionicModal.fromTemplateUrl('templates/modalMatch.html', {
+      scope: $scope,
+      animation: 'slide-in-up'
+    }).then(function(modal) {
+      $scope.modal = modal;
+      $scope.modal.show();
+    });
+  };
+
+  $scope.closeModal = function() {
+    $scope.modal.hide();
+  };
+
   $scope.addInteraction = function(user) {
     var interaction = {};
-
+    console.log("penis", $rootScope.userp);
+    console.log("vagina", $rootScope.user);
     interaction.user_one_id = serviceLogin.getUser().id;
     interaction.user_two_id = user.id;
     interaction.like = true;
@@ -99,17 +114,13 @@ angular.module('starter')
     });
     factoryInteract.save(interaction, function(interaction) {
       $ionicLoading.hide();
-      $ionicPopup.alert({
-        title: '',
-        template: 'Like!'
-      });
       console.log("Before create", interaction);
+
       if(interaction.matched){
-        $ionicPopup.alert({
-          title: 'Match!',
-          template: 'É um match!'
-        });
+        $scope.openModal();
+
         $scope.createRoom(interaction.match.token);
+        console.log("cu", $rootScope.user);
       }
     }, function(error) {
       $ionicLoading.hide();

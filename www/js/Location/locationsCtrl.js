@@ -13,7 +13,7 @@ angular.module('starter')
     origin.longitude = $scope.long;
     factoryLocations.get({
       latitude:$scope.lat,
-      longitude:$scope.long      
+      longitude:$scope.long
     }, function(locations) {
       $ionicLoading.hide();
       $rootScope.locations = locations;
@@ -74,21 +74,14 @@ angular.module('starter')
     });
     factoryCheckin.save(checkin, function(checkin) {
       $ionicLoading.hide();
-      $ionicPopup.alert({
-        title: 'Sucesso!',
-        template: 'Você fez checkin neste local,\n'+
-          'só poderá fazer checkin novamente dentro de 30 minutos!'
-      });
       $scope.viewLocation(location);
       console.log("BF create", checkin);
     }, function(error) {
       $ionicLoading.hide();
       $ionicPopup.alert({
         title: 'Erro!',
-        template: 'Não é possível trocar de localização,\n'+
-          ' aguarde 30 minutos!'
+        template: 'Não foi possível fazer check-in nesta localização.'
       });
-      $state.go('app.locations');
     });
   }
 
