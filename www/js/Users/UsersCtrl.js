@@ -200,7 +200,7 @@ angular.module('starter')
       $ionicLoading.hide();
       $ionicPopup.alert({
         title: 'Erro!',
-        template: 'Você já está seguindo {{userp.name}}'
+        template: 'Você já está seguindo {{userp.name}}!'
       });
     });
   };
@@ -222,7 +222,7 @@ angular.module('starter')
       $ionicLoading.hide();
       $ionicPopup.alert({
         title: 'Erro!',
-        template: 'Erro ao processar operação'
+        template: 'Erro ao processar operação.'
       });
     });
   };

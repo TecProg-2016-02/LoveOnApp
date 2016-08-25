@@ -13,7 +13,7 @@ angular.module('starter')
     origin.longitude = $scope.long;
     factoryLocations.get({
       latitude:$scope.lat,
-      longitude:$scope.long      
+      longitude:$scope.long
     }, function(locations) {
       $ionicLoading.hide();
       $rootScope.locations = locations;
@@ -24,7 +24,7 @@ angular.module('starter')
       $ionicLoading.hide();
       $ionicPopup.alert({
         title: 'Erro!',
-        template: 'Falha de comunicação com o banco'
+        template: 'Falha de comunicação com o banco de dados'
       });
     })
   }
@@ -39,7 +39,7 @@ angular.module('starter')
       $ionicLoading.hide();
       $ionicPopup.alert({
         title: 'Erro!',
-        template: 'Falha de comunicação com o banco'
+        template: 'Falha de comunicação com o banco de dados'
       });
     })
   };
@@ -74,19 +74,13 @@ angular.module('starter')
     });
     factoryCheckin.save(checkin, function(checkin) {
       $ionicLoading.hide();
-      $ionicPopup.alert({
-        title: 'Sucesso!',
-        template: 'Você fez checkin neste local,\n'+
-          'só poderá fazer checkin novamente dentro de 30 minutos!'
-      });
       $scope.viewLocation(location);
       console.log("BF create", checkin);
     }, function(error) {
       $ionicLoading.hide();
       $ionicPopup.alert({
         title: 'Erro!',
-        template: 'Não é possível trocar de localização,\n'+
-          ' aguarde 30 minutos!'
+        template: 'Não foi possível acessar essa localização!'
       });
       $state.go('app.locations');
     });
@@ -104,10 +98,6 @@ angular.module('starter')
 
   $ionicPlatform.ready(function() {
 
-       $ionicLoading.show({
-           template: '<ion-spinner icon="bubbles"></ion-spinner><br/>Adquirindo localização!'
-       });
-
        var posOptions = {
            enableHighAccuracy: true,
            timeout: 3000,
@@ -120,6 +110,10 @@ angular.module('starter')
            console.log(position.coords);
        }, function(err) {
            $ionicLoading.hide();
+           $ionicPopup.alert({
+             title: 'GPS não disponivel!',
+             template: 'Por favor, ligue seu GPS para que possamos mostrar os locais próximos.'
+           });
            console.log(err);
        });
    });

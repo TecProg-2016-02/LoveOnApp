@@ -70,6 +70,15 @@
   background-size:contain;
   background-image: url('../img/unnamed.png');
 }
+.tabs .tab-item .icon.coelho2 {
+  background-repeat: no-repeat;
+  background-position: 50%;
+  border-radius: 50%;
+  width: 45px;
+  height: 100%;
+  background-size:contain;
+  background-image: url('../img/splashygygy.png');
+}
 
 .cuzaum {
   position: relative;
