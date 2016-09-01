@@ -3,7 +3,7 @@ angular.module('starter')
 .controller('LoginCtrl', function($ionicPopup ,$scope, $state, factoryLogout,
   $rootScope, $ionicLoading, factoryRegister, factoryLogin, serviceLogin,
   serviceLoginSocial, serviceRegisterSocial, factoryConfirmEmail, $timeout,
-  factoryUpdate, $cordovaCamera, $cordovaImagePicker, $ionicPopover) {
+  factoryUpdate, $cordovaCamera, $cordovaImagePicker, $ionicPopover, $ionicModal) {
 
   $scope.alerta = function(text) {
     alert(text);
@@ -599,4 +599,16 @@ angular.module('starter')
      $rootScope.user.gallery.splice(index, 1);
    };
 
+   $ionicModal.fromTemplateUrl('templates/terms.html', {
+    scope: $scope,
+    animation: 'slide-in-up'
+  }).then(function(modal) {
+    $scope.modal = modal;
+  });
+  $scope.openModal = function() {
+    $scope.modal.show();
+  };
+  $scope.closeModal = function() {
+    $scope.modal.hide();
+  };
 });
