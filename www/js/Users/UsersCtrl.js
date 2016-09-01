@@ -3,7 +3,7 @@ angular.module('starter')
 .controller('UsersCtrl', function($ionicPopup ,$scope, $state, $firebaseArray,
   $rootScope, $ionicLoading, serviceLogin, factoryInteract, factoryUsers,
   $timeout, factoryUser, factoryFollow, $ionicScrollDelegate, $ionicPopover,
-  factoryUnfollow, $ionicModal) {
+  factoryUnfollow, $ionicModal, factoryBlock) {
 
   var ref = new Firebase('https://loveonapp.firebaseio.com/opened_rooms');
   // var roomRef = new Firebase('https://loveonapp.firebaseio.com/opened_rooms/');
@@ -119,13 +119,34 @@ angular.module('starter')
         $scope.openModal();
 
         $scope.createRoom(interaction.match.token);
-        console.log("cu", $rootScope.user);
+        console.log($rootScope.user);
       }
     }, function(error) {
       $ionicLoading.hide();
       $ionicPopup.alert({
         title: 'Erro!',
         template: 'Não é possivel dar like duas vezes!'
+      });
+    });
+  }
+
+  $scope.blockUser = function(user) {
+    var block = {};
+    block.user_one_id = serviceLogin.getUser().id;
+    block.user_two_id = user.id;
+    block.like = true;
+    console.log("interação",block);
+    $ionicLoading.show({
+      template: 'Carregando... <ion-spinner icon="android"></ion-spinner>'
+    });
+    factoryBlock.save(block, function(block) {
+      $ionicLoading.hide();
+      console.log(block);
+    }, function(error) {
+      $ionicLoading.hide();
+      $ionicPopup.alert({
+        title: 'Erro!',
+        template: 'você já bloqueou essa pessoa!'
       });
     });
   }

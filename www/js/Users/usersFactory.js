@@ -30,6 +30,9 @@ angular.module('starter')
 .factory('factoryUnfollow', function($resource,URL) {
   return $resource(URL+'/users/unfollow')
 })
+.factory('factoryBlock', function($resource,URL) {
+  return $resource(URL+"/users/block")
+})
 // .factory('factoryConfirmEmail', function($resource,URL) {
 //   return $resource(URL+users/confirm_email/", {}, {
 //       'get': { method:'GET',
