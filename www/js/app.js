@@ -1,6 +1,6 @@
 angular.module('starter', ['ionic', 'firebase', 'ngResource', 'ngCordova', 'ionMdInput', 'ion-datetime-picker', 'ion-gallery', 'nl2br'])
 
-.constant('URL', 'http://loversappserver.herokuapp.com')
+.constant('URL', 'http://localhost:3000')
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -23,7 +23,7 @@ angular.module('starter', ['ionic', 'firebase', 'ngResource', 'ngCordova', 'ionM
 .config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
 
   $ionicConfigProvider.backButton.previousTitleText(false).text('');
-
+  $ionicConfigProvider.tabs.position('bottom');
   $stateProvider
   .state('app', {
     url: '/app',
