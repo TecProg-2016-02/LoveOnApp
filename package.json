@@ -1,7 +1,7 @@
 {
-  "name": "loveonapp",
+  "name": "lovers",
   "version": "1.1.1",
-  "description": "LoveOnApp: An Ionic project",
+  "description": "",
   "dependencies": {
     "gulp": "^3.5.6",
     "gulp-sass": "^2.0.4",

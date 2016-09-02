@@ -433,8 +433,8 @@ a,
   right: 0;
   bottom: 0;
   left: 0;
-  padding: 1rem;
   background-color: #fbfbfb;
+  text-align: center;
 }
 
 .padding-bla {
@@ -961,4 +961,7 @@ a,
 }
 .more-button{
   margin-right: 20px;
+}
+.terms-tab{
+  margin-left:15px;
 }
