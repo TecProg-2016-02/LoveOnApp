@@ -7,8 +7,11 @@
       <a ng-if="isFollowing"class="item" ng-click="unfollow(userp);closePopover()">
         Deixar de seguir
       </a>
-      <a class="item" ng-click="blockUser(userp);closePopover()">
+      <a ng-if="!isBlocked" class="item" ng-click="blockUser(userp);closePopover()">
         Bloquear usuário
+      </a>
+      <a ng-if="isBlocked"class="item" ng-click="unblockUser(userp);closePopover()">
+        Desbloquear usuário
       </a>
     </div>
   </ion-content>

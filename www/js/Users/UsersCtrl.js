@@ -3,7 +3,7 @@ angular.module('starter')
 .controller('UsersCtrl', function($ionicPopup ,$scope, $state, $firebaseArray,
   $rootScope, $ionicLoading, serviceLogin, factoryInteract, factoryUsers,
   $timeout, factoryUser, factoryFollow, $ionicScrollDelegate, $ionicPopover,
-  factoryUnfollow, $ionicModal, factoryBlock) {
+  factoryUnfollow, $ionicModal, factoryBlock, factoryUnblock) {
 
   var ref = new Firebase('https://loveonapp.firebaseio.com/opened_rooms');
   // var roomRef = new Firebase('https://loveonapp.firebaseio.com/opened_rooms/');
@@ -142,11 +142,43 @@ angular.module('starter')
     factoryBlock.save(block, function(block) {
       $ionicLoading.hide();
       console.log(block);
+      $ionicPopup.alert({
+        title: '',
+        template: 'Essa pessoa foi bloqueada!'
+      });
+      $rootScope.isBlocked = true;
     }, function(error) {
       $ionicLoading.hide();
       $ionicPopup.alert({
         title: 'Erro!',
         template: 'você já bloqueou essa pessoa!'
+      });
+    });
+  }
+
+  $scope.unblockUser = function(user,index) {
+    var block = {};
+    block.user_one_id = serviceLogin.getUser().id;
+    block.user_two_id = user.id;
+    block.like = true;
+    console.log("interação",block);
+    $ionicLoading.show({
+      template: 'Carregando... <ion-spinner icon="android"></ion-spinner>'
+    });
+    factoryUnblock.save(block, function(block) {
+      $rootScope.user.blocks.splice(index, 1);
+      $ionicLoading.hide();
+      $ionicPopup.alert({
+        title: '',
+        template: 'Essa pessoa foi desbloqueada!'
+      });
+      console.log(block);
+      $rootScope.isBlocked = false;
+    }, function(error) {
+      $ionicLoading.hide();
+      $ionicPopup.alert({
+        title: 'Erro!',
+        template: 'Não foi possível realizar essa operação!'
       });
     });
   }
@@ -180,6 +212,7 @@ angular.module('starter')
       $rootScope.userp.locations = userp.locations;
       $rootScope.isFollowing = userp.is_following;
       $rootScope.isMatched = userp.matched;
+      $rootScope.isBlocked = userp.blocked;
       $rootScope.usergallery=[];
       for (var i = 0; i < userp.user.gallery.length; i++) {
         $rootScope.usergallery.push({

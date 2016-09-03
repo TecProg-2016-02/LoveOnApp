@@ -6,7 +6,7 @@
   <ion-content overflow-scroll="false">
 
     <div class="list">
-      <ion-list ng-repeat="follower in user.followers">
+      <ion-list ng-repeat="follower in user.follow_user">
         <div class="item item-avatar item-button-right">
           <img src="data:image/jpeg;base64,{{follower.avatar}}" ng-controller="UsersCtrl" ng-click="viewUser(follower.token)" >
           <h2>{{follower.name}}</h2>

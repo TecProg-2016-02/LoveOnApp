@@ -33,6 +33,9 @@ angular.module('starter')
 .factory('factoryBlock', function($resource,URL) {
   return $resource(URL+"/users/block")
 })
+.factory('factoryUnblock', function($resource,URL) {
+  return $resource(URL+"/users/unblock")
+})
 // .factory('factoryConfirmEmail', function($resource,URL) {
 //   return $resource(URL+users/confirm_email/", {}, {
 //       'get': { method:'GET',

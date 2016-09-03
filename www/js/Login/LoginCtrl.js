@@ -84,12 +84,12 @@ angular.module('starter')
               var user ={};
               user.email = serviceRegisterSocial.getUser().email;
               user.password = serviceRegisterSocial.getUser().password;
-              $scope.loginEmail(user);
+              $scope.loginEmail(user,"Google");
             }, function(error) {
               $ionicLoading.hide();
               $ionicPopup.alert({
-                title: 'Ops!',
-                template: 'Erro! Verifique se sua conta foi criada com Google+, ou tente novamente!'
+                title: 'Erro!',
+                template: 'Verifique se sua conta foi criada com Google+, ou tente novamente!'
               });
             });
             $rootScope.user = serviceLogin.getUser();
@@ -107,6 +107,11 @@ angular.module('starter')
       });
         ref.authWithOAuthPopup("google", function(error, authData) {
           if (error) {
+            $ionicPopup.alert({
+              title: 'Ops!',
+              template: 'Login cancelado!'
+            });
+            $ionicLoading.hide();
             console.log("Login Failed!", error);
           } else {
             toDataURL(authData.google.profileImageURL, function(base64Img) {
@@ -136,12 +141,12 @@ angular.module('starter')
                 var user ={};
                 user.email = serviceRegisterSocial.getUser().email;
                 user.password = serviceRegisterSocial.getUser().password;
-                $scope.loginEmail(user);
+                $scope.loginEmail(user, "Facebook");
               }, function(error) {
                 $ionicLoading.hide();
                 $ionicPopup.alert({
-                  title: 'Ops!',
-                  template: 'Erro! Verifique se sua conta foi criada com Facebook, ou tente novamente!'
+                  title: 'Erro!',
+                  template: 'Verifique se sua conta foi criada com Facebook, ou tente novamente!'
                 });
               });
               $rootScope.user = serviceLogin.getUser();
@@ -235,7 +240,7 @@ angular.module('starter')
     }
   };
 
-  $scope.loginEmail = function(user) {
+  $scope.loginEmail = function(user, social) {
     $ionicLoading.show({
       template: 'Carregando... <ion-spinner icon="android"></ion-spinner>'
     });
@@ -277,7 +282,7 @@ angular.module('starter')
       $ionicLoading.hide();
       $ionicPopup.alert({
         title: 'Erro!',
-        template: 'Falha ao carregar dados'
+        template: 'Falha ao carregar dados, verifique sua conta já foi criada com o '+social
       });
     })
   }
