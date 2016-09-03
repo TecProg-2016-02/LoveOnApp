@@ -14,10 +14,12 @@
         <h2>{{location.name}}</h2>
       </a>
     </ion-list>
-    <button ng-if="locations.length > 5"class=" btnPlus font button button-block icon ion-ios-plus-empty"
-      ng-click="loadNextPage()">
+    <div class="show-more">
+      <button ng-if="locations.length > 4"class=" btnPlus font button button-block icon ion-ios-plus-empty"
+        ng-click="loadNextPage()">
         Mostrar mais
-    </button>
+      </button>
+    </div>
     <button ng-if="locations.length == 0" ng-controller="locationsCtrl" ng-click="allLocations()"class=" btnPlus font button button-block">
         Não há locais disponíveis onde você está
     </button>

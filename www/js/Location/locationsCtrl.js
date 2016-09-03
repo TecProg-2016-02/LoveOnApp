@@ -86,7 +86,7 @@ angular.module('starter')
     });
   }
 
-  DEFAULT_PAGE_SIZE_STEP = 5;
+  DEFAULT_PAGE_SIZE_STEP = 4;
 
   $scope.currentPage = 1;
   $scope.pageSize = $scope.currentPage * DEFAULT_PAGE_SIZE_STEP;

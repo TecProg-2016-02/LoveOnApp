@@ -81,18 +81,13 @@ angular.module('starter')
             console.log("Usr:", serviceRegisterSocial.getUser());
             factoryRegister.save(serviceRegisterSocial.getUser(), function(user) {
               $ionicLoading.hide();
+            }, function(error) {
               var user ={};
               user.email = serviceRegisterSocial.getUser().email;
               user.password = serviceRegisterSocial.getUser().password;
               $scope.loginEmail(user,"Google");
-            }, function(error) {
               $ionicLoading.hide();
-              $ionicPopup.alert({
-                title: 'Erro!',
-                template: 'Verifique se sua conta foi criada com Google+, ou tente novamente!'
-              });
             });
-            $rootScope.user = serviceLogin.getUser();
             console.log("User:", $rootScope.user);
           }, 4000);
         }
@@ -138,18 +133,13 @@ angular.module('starter')
               console.log("Usr:", serviceRegisterSocial.getUser());
               factoryRegister.save(serviceRegisterSocial.getUser(), function(user) {
                 $ionicLoading.hide();
+              }, function(error) {
                 var user ={};
                 user.email = serviceRegisterSocial.getUser().email;
                 user.password = serviceRegisterSocial.getUser().password;
                 $scope.loginEmail(user, "Facebook");
-              }, function(error) {
                 $ionicLoading.hide();
-                $ionicPopup.alert({
-                  title: 'Erro!',
-                  template: 'Verifique se sua conta foi criada com Facebook, ou tente novamente!'
-                });
               });
-              $rootScope.user = serviceLogin.getUser();
               console.log("User:", $rootScope.user);
             }, 4000);
           }
@@ -603,14 +593,15 @@ angular.module('starter')
   $scope.removeItem = function (index) {
      $rootScope.user.gallery.splice(index, 1);
    };
-
-   $ionicModal.fromTemplateUrl('templates/terms.html', {
-    scope: $scope,
-    animation: 'slide-in-up'
-  }).then(function(modal) {
-    $scope.modal = modal;
-  });
-  $scope.openModal = function() {
+   $scope.temp = 'terms';
+   $ionicModal.fromTemplateUrl('templates/'+$scope.temp+'.html', {
+     scope: $scope,
+     animation: 'slide-in-up'
+   }).then(function(modal) {
+     $scope.modal = modal;
+   });
+  $scope.openModal = function(modal) {
+    $scope.temp = modal;
     $scope.modal.show();
   };
   $scope.closeModal = function() {
