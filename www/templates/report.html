@@ -1,0 +1,29 @@
+<ion-view hide-nav-bar="true">
+  <ion-content class="background-home">
+    <div class="center-carai">
+      <div class="circle-number">1
+      </div>
+    </div>
+    <div class="damn">
+      Diga-nos o motivo de sua denuncia
+    </div>
+    {{userp.name}}
+    <form name="testForm" class="padding-tela1" novalidate>
+        <div class="distance">
+          <span class="labels"></br></span>
+          <label class="item item-input inputs-register">
+            <input name="district" placeholder="Comentário" type="text" ng-model='comment' ng-required="true" ng-minlength="20" ng-maxlength="240">
+          </label>
+          <div class="errors">
+            <p ng-show="testForm.district.$error.required">Comentário é necessário</p>
+            <p ng-show="testForm.district.$error.minlength">Comentário muito curto</p>
+            <p ng-show="testForm.district.$error.maxlength">Comentário muito longo</p>
+          </div>
+        </div>
+    <span class="labels"></br></span>
+        <button class="sparara2" ng-click="reportUser(userp, comment)">Continuar</button>
+        <span class="labels"></br></span>
+        <span class="labels"></br></span>
+    </form>
+  </ion-content>
+</ion-view>

@@ -89,7 +89,7 @@ angular.module('starter')
               $ionicLoading.hide();
             });
             console.log("User:", $rootScope.user);
-          }, 4000);
+          }, 1500);
         }
       }, {
         remember: "sessionOnly",
@@ -141,7 +141,7 @@ angular.module('starter')
                 $ionicLoading.hide();
               });
               console.log("User:", $rootScope.user);
-            }, 4000);
+            }, 1500);
           }
         }, {
           remember: "sessionOnly",
@@ -154,9 +154,6 @@ angular.module('starter')
       user.email = serviceRegisterSocial.getUser().email;
       user.password = serviceRegisterSocial.getUser().password;
       console.log(user);
-      $ionicLoading.show({
-        template: 'Carregando... <ion-spinner icon="android"></ion-spinner>'
-      });
       factoryLogin.get(user, function(user) {
         serviceLogin.setUser(
           user.name,
@@ -214,7 +211,7 @@ angular.module('starter')
                if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') {
                  $scope.$apply();
                }
-             }, 2000)
+             }, 1000)
          }, function(error) {
              // error getting photos
          });
@@ -593,18 +590,17 @@ angular.module('starter')
   $scope.removeItem = function (index) {
      $rootScope.user.gallery.splice(index, 1);
    };
-   $scope.temp = 'terms';
-   $ionicModal.fromTemplateUrl('templates/'+$scope.temp+'.html', {
+
+   $ionicModal.fromTemplateUrl('templates/terms.html', {
      scope: $scope,
      animation: 'slide-in-up'
    }).then(function(modal) {
      $scope.modal = modal;
    });
-  $scope.openModal = function(modal) {
-    $scope.temp = modal;
-    $scope.modal.show();
-  };
-  $scope.closeModal = function() {
-    $scope.modal.hide();
-  };
+   $scope.openModal = function() {
+     $scope.modal.show();
+   };
+   $scope.closeModal = function() {
+     $scope.modal.hide();
+   };
 });

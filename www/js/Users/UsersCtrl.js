@@ -3,7 +3,7 @@ angular.module('starter')
 .controller('UsersCtrl', function($ionicPopup ,$scope, $state, $firebaseArray,
   $rootScope, $ionicLoading, serviceLogin, factoryInteract, factoryUsers,
   $timeout, factoryUser, factoryFollow, $ionicScrollDelegate, $ionicPopover,
-  factoryUnfollow, $ionicModal, factoryBlock, factoryUnblock) {
+  factoryUnfollow, $ionicModal, factoryBlock, factoryUnblock, factoryReport) {
 
   var ref = new Firebase('https://loveonapp.firebaseio.com/opened_rooms');
   // var roomRef = new Firebase('https://loveonapp.firebaseio.com/opened_rooms/');
@@ -134,7 +134,6 @@ angular.module('starter')
     var block = {};
     block.user_one_id = serviceLogin.getUser().id;
     block.user_two_id = user.id;
-    block.like = true;
     console.log("interação",block);
     $ionicLoading.show({
       template: 'Carregando... <ion-spinner icon="android"></ion-spinner>'
@@ -152,6 +151,32 @@ angular.module('starter')
       $ionicPopup.alert({
         title: 'Erro!',
         template: 'você já bloqueou essa pessoa!'
+      });
+    });
+  }
+
+  $scope.reportUser = function(user, comment) {
+    var report = {};
+    report.reporter_id = serviceLogin.getUser().id;
+    report.reported_id = user.id;
+    report.comment = comment;
+
+    $ionicLoading.show({
+      template: 'Carregando... <ion-spinner icon="android"></ion-spinner>'
+    });
+    factoryReport.save(report, function(report) {
+      $ionicLoading.hide();
+      console.log(report);
+      $ionicPopup.alert({
+        title: '',
+        template: 'Sua denuncia foi efetuada!'
+      });
+      $state.go('app.profile');
+    }, function(error) {
+      $ionicLoading.hide();
+      $ionicPopup.alert({
+        title: 'Erro!',
+        template: 'você já denunciou essa pessoa!'
       });
     });
   }
