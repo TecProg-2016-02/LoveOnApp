@@ -229,7 +229,7 @@ angular.module('starter')
     });
     factoryUser.get({
       token: token,
-      id_facebook: $rootScope.user.id_facebook
+      current_user_token: $rootScope.user.token
     }, function(userp) {
       console.log("Usuario", userp);
       $ionicLoading.hide();
@@ -238,12 +238,14 @@ angular.module('starter')
       $rootScope.isFollowing = userp.is_following;
       $rootScope.isMatched = userp.matched;
       $rootScope.isBlocked = userp.blocked;
-      $rootScope.usergallery=[];
-      for (var i = 0; i < userp.user.gallery.length; i++) {
-        $rootScope.usergallery.push({
-          src: userp.user.gallery[i],
-          sub: ''
-        });
+      if (userp.gallery) {
+        $rootScope.usergallery=[];
+        for (var i = 0; i < userp.user.gallery.length; i++) {
+          $rootScope.usergallery.push({
+            src: userp.user.gallery[i],
+            sub: ''
+          });
+        }
       }
       $state.go('app.user');
     }, function(error) {

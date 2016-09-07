@@ -6,6 +6,10 @@
   <ion-content overflow-scroll="false">
 
     <div class="list">
+      <span class="labels"></br></span>
+      <button ng-if="matches.length == 0" class=" btnPlus font button button-block">
+        Você ainda não encontrou nenhum lover
+      </button>
       <ion-list ng-repeat="match in matches">
         <div class="item item-avatar item-button-right">
           <img src="data:image/jpeg;base64,{{match.avatar}}" ng-controller="UsersCtrl" ng-click="viewUser(match.token)" >

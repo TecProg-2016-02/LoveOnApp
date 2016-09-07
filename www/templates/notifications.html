@@ -1,12 +1,14 @@
 <ion-view view-title="Notificações">
   <ion-nav-bar class="bar bar-light">
-    <ion-nav-back-button ></ion-nav-back-button>
   </ion-nav-bar>
 
   <ion-content overflow-scroll="false">
-
+    <span class="labels"></br></span>
+    <button ng-if="user.follow_user.length == 0" class=" btnPlus font button button-block">
+      Sem notificações
+    </button>
     <div class="list">
-      <ion-list ng-repeat="follower in user.followers">
+      <ion-list ng-repeat="follower in user.follow_user">
         <div class="item item-avatar item-button-right">
           <img src="data:image/jpeg;base64,{{follower.avatar}}" ng-controller="UsersCtrl" ng-click="viewUser(follower.token)" >
           <p>{{follower.name}} está te seguindo.</p>

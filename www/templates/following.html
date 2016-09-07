@@ -3,7 +3,10 @@
     <ion-nav-back-button ></ion-nav-back-button>
   </ion-nav-bar>
   <ion-content overflow-scroll="false">
-
+    <span class="labels"></br></span>
+    <button ng-if="user.user_follows.length == 0" class=" btnPlus font button button-block">
+      Você não está seguindo ninguém
+    </button>
     <div class="list">
       <ion-list ng-repeat="following in user.user_follows">
         <div class="item item-avatar item-button-right">

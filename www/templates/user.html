@@ -42,12 +42,11 @@
             </div>
         </div>
         <span class="labels"></br></span>
-        <div ng-if="userp.gallery !== null">
-          <ion-gallery ion-gallery-items="userpgallery" ion-gallery-toggle="false"></ion-gallery>
-        </div>
-        <div ng-if="userp.gallery === null">
-          <img src="../img/local_map.png"/>
-        </div>
+        <button ng-if="!userp.gallery" class=" btnPlus font button button-block">
+          Não há fotos
+        </button>
+        <ion-gallery ion-gallery-items="userpgallery" ion-gallery-toggle="false"></ion-gallery>
+        
     </ion-content>
     <ion-tabs ng-if="isMatched" class="tabs-light tabs-icon-only">
 

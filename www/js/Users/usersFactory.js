@@ -18,7 +18,7 @@ angular.module('starter')
               method:'GET',
               params:{
                 token:'@token',
-                id_facebook:'@id_facebook'
+                current_user_token:'@current_user_token'
               }
             }
     })

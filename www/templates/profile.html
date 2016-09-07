@@ -47,6 +47,9 @@
           <img ng-src="{{img}}"/>
         </p> -->
         <!-- <a ui-sref="app.editprofile">Cadastre-se</a> -->
+        <button ng-if="!user.gallery" class=" btnPlus font button button-block">
+          Não há fotos
+        </button>
         <ion-gallery ion-gallery-items="galleryitems" ion-gallery-toggle="false"></ion-gallery>
         <!-- <h1>Onde estou:</h1> -->
         <!-- <a class="item item-thumbnail-left" ng-controller="locationsCtrl"ng-click="viewLocation(user.last_place)">

@@ -81,6 +81,10 @@ angular.module('starter')
             console.log("Usr:", serviceRegisterSocial.getUser());
             factoryRegister.save(serviceRegisterSocial.getUser(), function(user) {
               $ionicLoading.hide();
+              var user ={};
+              user.email = serviceRegisterSocial.getUser().email;
+              user.password = serviceRegisterSocial.getUser().password;
+              $scope.loginEmail(user,"Google");
             }, function(error) {
               var user ={};
               user.email = serviceRegisterSocial.getUser().email;
@@ -133,6 +137,10 @@ angular.module('starter')
               console.log("Usr:", serviceRegisterSocial.getUser());
               factoryRegister.save(serviceRegisterSocial.getUser(), function(user) {
                 $ionicLoading.hide();
+                var user ={};
+                user.email = serviceRegisterSocial.getUser().email;
+                user.password = serviceRegisterSocial.getUser().password;
+                $scope.loginEmail(user, "Facebook");
               }, function(error) {
                 var user ={};
                 user.email = serviceRegisterSocial.getUser().email;
@@ -172,12 +180,14 @@ angular.module('starter')
         for (var i = 0; i < user.matches.length; i++) {
           $rootScope.matches[i].roomId=user.matches_token[i].token;
         }
-        $rootScope.galleryitems=[];
-        for (var i = 0; i < user.gallery.length; i++) {
-          $rootScope.galleryitems.push({
-            src: user.gallery[i],
-            sub: ''
-          });
+        if(user.gallery){
+          $rootScope.galleryitems=[];
+          for (var i = 0; i < user.gallery.length; i++) {
+            $rootScope.galleryitems.push({
+              src: user.gallery[i],
+              sub: ''
+            });
+          }
         }
         $state.go(state);
         $ionicLoading.hide();
@@ -250,12 +260,14 @@ angular.module('starter')
         for (var i = 0; i < user.matches.length; i++) {
           $rootScope.matches[i].roomId=user.matches_token[i].token;
         }
-        $rootScope.galleryitems=[];
-        for (var i = 0; i < user.gallery.length; i++) {
-          $rootScope.galleryitems.push({
-            src: user.gallery[i],
-            sub: ''
-          });
+        if(user.gallery){
+          $rootScope.galleryitems=[];
+          for (var i = 0; i < user.gallery.length; i++) {
+            $rootScope.galleryitems.push({
+              src: user.gallery[i],
+              sub: ''
+            });
+          }
         }
 
         $rootScope.username = user.name;

@@ -5,6 +5,10 @@
   <ion-content>
     <!-- <img ng-src="{{loc.image}}"/> -->
     <div class="grid">
+      <span class="labels"></br></span>
+      <button ng-if="!loc.users" class=" btnPlus font button button-block">
+        Não há ninguém neste local
+      </button>
         <div class="row" ng-repeat="user in loc.users" ng-if="$index % 2 === 0">
             <div class="col col-50" ng-if="$index < loc.users.length">
                 <span class="eai" ng-if="loc.users[$index].status"></span>
