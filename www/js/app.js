@@ -1,7 +1,7 @@
 angular.module('starter', ['ionic', 'firebase', 'ngResource', 'ngCordova', 'ionMdInput', 'ion-datetime-picker', 'ion-gallery', 'nl2br'])
 
-// .constant('URL', 'http://localhost:3000')
-.constant('URL', 'http://loversappserver.herokuapp.com')
+.constant('URL', 'http://localhost:3000')
+// .constant('URL', 'http://loversappserver.herokuapp.com')
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -199,6 +199,15 @@ angular.module('starter', ['ionic', 'firebase', 'ngResource', 'ngCordova', 'ionM
       'menuContent': {
         templateUrl: 'templates/report.html',
         controller: 'UsersCtrl'
+      }
+    }
+  })
+  .state('app.terms', {
+    url: '/terms',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/terms.html',
+        controller: 'LoginCtrl'
       }
     }
   })

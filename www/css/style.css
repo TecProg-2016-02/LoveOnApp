@@ -12,12 +12,20 @@
 }
 
 .modal-init {
-  height: 50vh;
+  min-height: 40vh;
+  height: 40vh;
   width: 80vw;
   margin-left: 10vw;
   margin-top: 25vh;
 }
 
+.modal-init2 {
+  min-height: 30vh;
+  height: 30vh;
+  width: 80vw;
+  margin-left: 10vw;
+  margin-top: 25vh;
+}
 
 .poop{
   background-color: gray;
@@ -968,4 +976,14 @@ a,
 
 .show-more {
   margin-bottom: 75px;
+}
+
+.icon-modal{
+  margin-top: 10%;
+  font-size: 75px;
+  text-align: center;
+}
+
+.modal-camera{
+  background-color: #ccc;
 }

@@ -136,7 +136,7 @@ angular.module('starter')
     block.user_two_id = user.id;
     console.log("interação",block);
     $ionicLoading.show({
-      template: 'Carregando... <ion-spinner icon="android"></ion-spinner>'
+      template: 'Bloqueando usuário... <ion-spinner icon="android"></ion-spinner>'
     });
     factoryBlock.save(block, function(block) {
       $ionicLoading.hide();
@@ -162,7 +162,7 @@ angular.module('starter')
     report.comment = comment;
 
     $ionicLoading.show({
-      template: 'Carregando... <ion-spinner icon="android"></ion-spinner>'
+      template: 'Denunciando usuário... <ion-spinner icon="android"></ion-spinner>'
     });
     factoryReport.save(report, function(report) {
       $ionicLoading.hide();
@@ -225,7 +225,7 @@ angular.module('starter')
 
   $scope.viewUser = function(token) {
     $ionicLoading.show({
-      template: 'Carregando... <ion-spinner icon="android"></ion-spinner>'
+      template: 'Carregando perfil... <ion-spinner icon="android"></ion-spinner>'
     });
     factoryUser.get({
       token: token,

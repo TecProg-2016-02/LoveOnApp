@@ -46,7 +46,7 @@ angular.module('starter')
   var ref = new Firebase("https://loveonapp.firebaseio.com");
   $scope.loginFacebook = function() {
     $ionicLoading.show({
-      template: 'Carregando... <ion-spinner icon="android"></ion-spinner>'
+      template: 'Carregando seus dados... <ion-spinner icon="android"></ion-spinner>'
     });
       ref.authWithOAuthPopup("facebook", function(error, authData) {
         if (error) {
@@ -98,7 +98,7 @@ angular.module('starter')
     }
     $scope.loginGoogle = function() {
       $ionicLoading.show({
-        template: 'Carregando... <ion-spinner icon="android"></ion-spinner>'
+        template: 'Carregando seus dados... <ion-spinner icon="android"></ion-spinner>'
       });
         ref.authWithOAuthPopup("google", function(error, authData) {
           if (error) {
@@ -140,7 +140,6 @@ angular.module('starter')
                 $scope.loginEmail(user, "Facebook");
                 $ionicLoading.hide();
               });
-              console.log("User:", $rootScope.user);
             }, 1500);
           }
         }, {
@@ -355,7 +354,7 @@ angular.module('starter')
 
   $scope.updateProfile = function(user) {
     $ionicLoading.show({
-      template: 'Carregando... <ion-spinner icon="android"></ion-spinner>'
+      template: 'Atualizando seu perfil... <ion-spinner icon="android"></ion-spinner>'
     });
     user.avatar = $rootScope.user.avatar;
     user.gallery = $rootScope.user.gallery;
@@ -439,7 +438,7 @@ angular.module('starter')
 
   }
 
-  $scope.newPicture = function() {
+  $scope.newPicture = function(device) {
 
     function setOptions(srcType) {
       var options = {
@@ -448,7 +447,7 @@ angular.module('starter')
         destinationType: Camera.DestinationType.DATA_URL,
         // In this app, dynamically set the picture source, Camera or photo gallery
         sourceType: srcType,
-        encodingType: Camera.PictureSourceType.CAMERA,
+        encodingType: device,
         mediaType: Camera.MediaType.PICTURE,
         allowEdit: true,
         correctOrientation: true //Corrects Android orientation quirks
@@ -476,7 +475,7 @@ angular.module('starter')
     }
 
 
-    var srcType = Camera.PictureSourceType.CAMERA;
+    var srcType = device;
     var options = setOptions(srcType);
     var func = createNewFileEntry;
 
@@ -602,7 +601,7 @@ angular.module('starter')
      $rootScope.user.gallery.splice(index, 1);
    };
 
-   $ionicModal.fromTemplateUrl('templates/terms.html', {
+   $ionicModal.fromTemplateUrl('templates/modalCamera.html', {
      scope: $scope,
      animation: 'slide-in-up'
    }).then(function(modal) {
