@@ -151,6 +151,9 @@ angular.module('starter')
 
     $scope.reloadUser=function(state){
       var user={};
+      $ionicLoading.show({
+        template: 'Carregando... <ion-spinner icon="android"></ion-spinner>'
+      });
       user.email = serviceRegisterSocial.getUser().email;
       user.password = serviceRegisterSocial.getUser().password;
       console.log(user);
@@ -232,39 +235,47 @@ angular.module('starter')
       template: 'Carregando... <ion-spinner icon="android"></ion-spinner>'
     });
     factoryLogin.get(user, function(user) {
-      serviceLogin.setUser(
-        user.name,
-        user.email,
-        user.token,
-        user.gender,
-        user.id,
-        user.email_confirmed,
-        user.avatar
-      );
-      $ionicLoading.hide();
-      $rootScope.user = user;
-      $rootScope.matches = user.matches;
-      for (var i = 0; i < user.matches.length; i++) {
-        $rootScope.matches[i].roomId=user.matches_token[i].token;
-      }
-      $rootScope.galleryitems=[];
-      for (var i = 0; i < user.gallery.length; i++) {
-        $rootScope.galleryitems.push({
-          src: user.gallery[i],
-          sub: ''
+      if(!user.account_blocked) {
+        serviceLogin.setUser(
+          user.name,
+          user.email,
+          user.token,
+          user.gender,
+          user.id,
+          user.email_confirmed,
+          user.avatar
+        );
+        $ionicLoading.hide();
+        $rootScope.user = user;
+        $rootScope.matches = user.matches;
+        for (var i = 0; i < user.matches.length; i++) {
+          $rootScope.matches[i].roomId=user.matches_token[i].token;
+        }
+        $rootScope.galleryitems=[];
+        for (var i = 0; i < user.gallery.length; i++) {
+          $rootScope.galleryitems.push({
+            src: user.gallery[i],
+            sub: ''
+          });
+        }
+
+        $rootScope.username = user.name;
+        console.log("Logado", $rootScope.user);
+        console.log(user.email_confirmed);
+        if(!user.email_confirmed) {
+          $state.go('app.primeiraTelaEdit');
+        } else {
+          $state.go('app.profile');
+        }
+        $ionicLoading.hide();
+        $rootScope.isLogged = true;
+      }else{
+        $ionicLoading.hide();
+        $ionicPopup.alert({
+          title: 'Atenção!',
+          template: 'Essa conta foi bloqueada por não respeitar os termos de uso, estaremos entrando em contato. Por favor verifique seu e-mail.'
         });
       }
-
-      $rootScope.username = user.name;
-      console.log("Logado", $rootScope.user);
-      console.log(user.email_confirmed);
-      if(!user.email_confirmed) {
-        $state.go('app.primeiraTelaEdit');
-      } else {
-        $state.go('app.profile');
-      }
-      $ionicLoading.hide();
-      $rootScope.isLogged = true;
     }, function(error) {
       $ionicLoading.hide();
       $ionicPopup.alert({
