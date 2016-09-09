@@ -180,15 +180,14 @@ angular.module('starter')
         for (var i = 0; i < user.matches.length; i++) {
           $rootScope.matches[i].roomId=user.matches_token[i].token;
         }
-        if(user.gallery){
-          $rootScope.galleryitems=[];
-          for (var i = 0; i < user.gallery.length; i++) {
-            $rootScope.galleryitems.push({
-              src: user.gallery[i],
-              sub: ''
-            });
-          }
+        $rootScope.galleryitems=[];
+        for (var i = 0; i < user.gallery.length; i++) {
+          $rootScope.galleryitems.push({
+            src: user.gallery[i],
+            sub: ''
+          });
         }
+
         $state.go(state);
         $ionicLoading.hide();
       }, function(error) {
@@ -260,14 +259,12 @@ angular.module('starter')
         for (var i = 0; i < user.matches.length; i++) {
           $rootScope.matches[i].roomId=user.matches_token[i].token;
         }
-        if(user.gallery){
-          $rootScope.galleryitems=[];
-          for (var i = 0; i < user.gallery.length; i++) {
-            $rootScope.galleryitems.push({
-              src: user.gallery[i],
-              sub: ''
-            });
-          }
+        $rootScope.galleryitems=[];
+        for (var i = 0; i < user.gallery.length; i++) {
+          $rootScope.galleryitems.push({
+            src: user.gallery[i],
+            sub: ''
+          });
         }
 
         $rootScope.username = user.name;
@@ -450,7 +447,7 @@ angular.module('starter')
 
   }
 
-  $scope.newPicture = function(device) {
+  $scope.newPicture = function() {
 
     function setOptions(srcType) {
       var options = {
@@ -459,10 +456,9 @@ angular.module('starter')
         destinationType: Camera.DestinationType.DATA_URL,
         // In this app, dynamically set the picture source, Camera or photo gallery
         sourceType: srcType,
-        encodingType: device,
+        encodingType: Camera.PictureSourceType.CAMERA,
         mediaType: Camera.MediaType.PICTURE,
-        allowEdit: true,
-        correctOrientation: true //Corrects Android orientation quirks
+        allowEdit: true
       }
       return options;
     }
@@ -487,7 +483,87 @@ angular.module('starter')
     }
 
 
-    var srcType = device;
+    var srcType = Camera.PictureSourceType.CAMERA;
+    var options = setOptions(srcType);
+    var func = createNewFileEntry;
+
+    navigator.camera.getPicture(function cameraSuccess(imageUri) {
+      $ionicLoading.show({
+        template: 'Carregando... <ion-spinner icon="android"></ion-spinner>'
+      });
+
+
+      $timeout(function() {
+
+
+        $ionicLoading.hide();
+        $scope.$apply();
+        $rootScope.galleryitems.push({
+          src: "data:image/png;base64,"+ imageUri,
+          sub: ''
+        })
+        var user = {};
+        $rootScope.user.gallery.push("data:image/png;base64,"+ imageUri);
+        user.gallery = $rootScope.user.gallery;
+        console.log(imageUri);
+        factoryUpdate.update({
+          token: serviceLogin.getUser().token
+        }, {
+          user: user
+        }, function(user) {
+
+          console.log(user);
+        }, function(error) {
+          alert("erro", error.message);
+        });
+
+      }, 1000)
+
+
+    }, function cameraError(error) {
+      console.debug("Unable to obtain picture: " + error, "app");
+
+    }, options);
+
+
+  }
+
+  $scope.newPictureLib = function() {
+
+    function setOptions(srcType) {
+      var options = {
+        // Some common settings are 20, 50, and 100
+        quality: 50,
+        destinationType: Camera.DestinationType.DATA_URL,
+        // In this app, dynamically set the picture source, Camera or photo gallery
+        sourceType: srcType,
+        encodingType: Camera.PictureSourceType.PHOTOLIBRARY,
+        mediaType: Camera.MediaType.PICTURE
+      }
+      return options;
+    }
+
+    function createNewFileEntry(imgUri) {
+      window.resolveLocalFileSystemURL(cordova.file.cacheDirectory, function success(dirEntry) {
+
+        // JPEG file
+        dirEntry.getFile("tempFile.jpeg", {
+          create: true,
+          exclusive: false
+        }, function(fileEntry) {
+
+          // Do something with it, like write to it, upload it, etc.
+          // writeFile(fileEntry, imgUri);
+          console.log("got file: " + fileEntry.fullPath);
+          // displayFileData(fileEntry.fullPath, "File copied to");
+
+        }, onErrorCreateFile);
+
+      }, onErrorResolveUrl);
+    }
+
+
+    var srcType = Camera.PictureSourceType.PHOTOLIBRARY;
     var options = setOptions(srcType);
     var func = createNewFileEntry;
 
