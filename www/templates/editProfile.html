@@ -1,5 +1,5 @@
 <ion-view hide-nav-bar="true">
-  <ion-content class="background-home">
+  <ion-content overflow-scroll="false" class="background-home">
     <div class="damn">
       Configure seu perfil
     </div>
@@ -54,13 +54,13 @@
           <div class="col col-50">
             <span class="labels"></br></span>
             <label class="item item-input inputs-register">
-              <input placeholder="Altura" type="number" ng-model='user.height'>
+              <input placeholder="Altura" type="number" step="0.01" ng-model='user.height'>
             </label>
           </div>
           <div class="col col-50">
             <span class="labels"></br></span>
             <label class="item item-input inputs-register">
-              <input placeholder="Peso" type="number" ng-model='user.weight'>
+              <input placeholder="Peso" type="number" step="0.01" ng-model='user.weight'>
             </label>
           </div>
         </div>
@@ -93,12 +93,12 @@
         <div class="list">
           <label class="item item-input item-floating-label">
             <span class="input-label">Idade máxima de busca</span>
-            <input type="text" placeholder="Idade máxima de busca" ng-model="user.search_range">
+            <input type="number" placeholder="Idade máxima de busca" ng-model="user.search_range">
           </label>
         </div>
       </div>
         <div class="grid" width="100%">
-          <button class=" btCamera font button button-block icon ion-images" ng-click="selImages()"> Adicionar fotos</button>
+          <button class=" btCamera font button button-block icon ion-images" ng-click="modal.show()"> Adicionar fotos</button>
           <a class="icon ion-ios-help-outline" ng-click="galleryHelp()"></a>
             <div class="row" ng-repeat="img in user.gallery" ng-if="$index % 2 === 0">
                 <div class="col col-50" ng-if="$index < user.gallery.length">

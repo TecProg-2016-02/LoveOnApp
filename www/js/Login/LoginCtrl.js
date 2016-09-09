@@ -158,9 +158,8 @@ angular.module('starter')
 
     $scope.reloadUser=function(state){
       var user={};
-      $ionicLoading.show({
-        template: 'Carregando... <ion-spinner icon="android"></ion-spinner>'
-      });
+      $state.go(state);
+
       user.email = serviceRegisterSocial.getUser().email;
       user.password = serviceRegisterSocial.getUser().password;
       console.log(user);
@@ -188,13 +187,12 @@ angular.module('starter')
           });
         }
 
-        $state.go(state);
         $ionicLoading.hide();
       }, function(error) {
         $ionicLoading.hide();
         $ionicPopup.alert({
           title: 'Erro!',
-          template: 'Falha ao carregar dados'
+          template: 'Falha ao atualizar dados'
         });
       })
     };
@@ -209,9 +207,6 @@ angular.module('starter')
        $cordovaImagePicker.getPictures(options)
          .then(function (results) {
              for (var i = 0; i < results.length; i++) {
-                //  console.log('Image URI: ' + results[i]);
-                 $scope.imagens.push(results[i]);
-                // Encode URI to Base64
                 window.plugins.Base64.encodeFile(results[i], function(base64){
                    // Save images in Base64
                    $rootScope.user.gallery.push(base64);
@@ -362,9 +357,9 @@ angular.module('starter')
   }
 
   $scope.updateProfile = function(user) {
-    $ionicLoading.show({
-      template: 'Atualizando seu perfil... <ion-spinner icon="android"></ion-spinner>'
-    });
+    // $ionicLoading.show({
+    //   template: 'Atualizando seu perfil... <ion-spinner icon="android"></ion-spinner>'
+    // });
     user.avatar = $rootScope.user.avatar;
     user.gallery = $rootScope.user.gallery;
 
@@ -687,6 +682,7 @@ angular.module('starter')
 
   $scope.removeItem = function (index) {
      $rootScope.user.gallery.splice(index, 1);
+     $rootScope.galleryitems.splice(index, 1);
    };
 
    $ionicModal.fromTemplateUrl('templates/modalCamera.html', {
