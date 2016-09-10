@@ -67,7 +67,7 @@ angular.module('starter')
 
   $scope.doCheckin = function(location) {
     var checkin = {};
-    checkin.user_token = serviceLogin.getUser().token;
+    checkin.user_token = $rootScope.user.token;
     checkin.location_token = location.token;
     $ionicLoading.show({
       template: 'Carregando... <ion-spinner icon="android"></ion-spinner>'

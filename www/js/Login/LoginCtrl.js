@@ -5,10 +5,6 @@ angular.module('starter')
   serviceLoginSocial, serviceRegisterSocial, factoryConfirmEmail, $timeout,
   factoryUpdate, $cordovaCamera, $cordovaImagePicker, $ionicPopover, $ionicModal) {
 
-  $scope.alerta = function(text) {
-    alert(text);
-  };
-
   $scope.galleryHelp = function () {
     $ionicPopup.alert({
       title: 'Ajuda',
@@ -56,7 +52,7 @@ angular.module('starter')
           });
           $ionicLoading.hide();
         } else {
-          toDataURL("https://graph.facebook.com/"+ authData.facebook.id +"/picture?width=700&height=700", function(base64Img) {
+          toDataURL("https://graph.facebook.com/"+ authData.facebook.id +"/picture?width=400&height=00", function(base64Img) {
             $scope.fbimage = (base64Img.slice(22, base64Img.length));
             $rootScope.$apply();
           });
@@ -67,7 +63,6 @@ angular.module('starter')
               authData.facebook.displayName,
               authData.facebook.email,
               authData.facebook.id,
-              authData.facebook.cachedUserProfile.birthday,
               authData.facebook.cachedUserProfile.gender,
               $scope.fbimage
             );
@@ -83,17 +78,19 @@ angular.module('starter')
               $ionicLoading.hide();
               var user ={};
               user.email = serviceRegisterSocial.getUser().email;
+              user.id_social = serviceRegisterSocial.getUser().id_social;
               user.password = serviceRegisterSocial.getUser().password;
               $scope.loginEmail(user,"Google");
             }, function(error) {
               var user ={};
               user.email = serviceRegisterSocial.getUser().email;
+              user.id_social = serviceRegisterSocial.getUser().id_social;
               user.password = serviceRegisterSocial.getUser().password;
               $scope.loginEmail(user,"Google");
               $ionicLoading.hide();
             });
             console.log("User:", $rootScope.user);
-          }, 1500);
+          }, 3500);
         }
       }, {
         remember: "sessionOnly",
@@ -139,11 +136,13 @@ angular.module('starter')
                 $ionicLoading.hide();
                 var user ={};
                 user.email = serviceRegisterSocial.getUser().email;
+                user.id_social = serviceRegisterSocial.getUser().id_social;
                 user.password = serviceRegisterSocial.getUser().password;
                 $scope.loginEmail(user, "Facebook");
               }, function(error) {
                 var user ={};
                 user.email = serviceRegisterSocial.getUser().email;
+                user.id_social = serviceRegisterSocial.getUser().id_social;
                 user.password = serviceRegisterSocial.getUser().password;
                 $scope.loginEmail(user, "Facebook");
                 $ionicLoading.hide();

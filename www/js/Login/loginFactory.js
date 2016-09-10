@@ -6,7 +6,7 @@ angular.module('starter')
 })
 
 .factory('factoryLogin', function($resource,URL) {
-  return $resource(URL+"/users/login/:email")
+  return $resource(URL+"/users/login/")
 })
 .factory('factoryLogout', function($resource,URL) {
   return $resource(URL+"/users/logout")
