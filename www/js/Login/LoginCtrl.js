@@ -160,9 +160,11 @@ angular.module('starter')
       $state.go(state);
 
       user.email = serviceRegisterSocial.getUser().email;
+      user.id_social = serviceRegisterSocial.getUser().id_social;
       user.password = serviceRegisterSocial.getUser().password;
       console.log(user);
       factoryLogin.get(user, function(user) {
+        console.log("update", user);
         serviceLogin.setUser(
           user.name,
           user.email,
