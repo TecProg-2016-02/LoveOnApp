@@ -19,7 +19,7 @@
         <div class="distance">
           <span class="labels"></span>
           <label class="item item-input inputs-register">
-            <input name="name" placeholder="Nome" type="text" ng-model='user.name' ng-required="true" ng-minlength="3" ng-maxlength="20">
+            <input name="name" placeholder="Nome" type="text" ng-model='user.name' ng-required="true" ng-minlength="3" ng-maxlength="40">
           </label>
           <div class="errors">
             <p ng-show="testForm.name.$error.required">Nome é necessário</p>
@@ -28,10 +28,15 @@
           </div>
         </div>
         <div class="distance">
-          <span class="labels"></br></span>
-          <ionic-datepicker ion-datetime-picker date="dateValue" min="minDate" max="maxDate" callback="datePickerCallback" date ng-model="user.birthday">
-            <button class="button button-block icon-right ion-calendar"> {{ user.birthday | date:'dd/MM/yy' }}</button>
+        </br>
+          <span class="labels">Data de nascimento:</br></span>
+          <ionic-datepicker idate="currentDate" ng-required="true"disablepreviousdates="true"  ng-click="openDatePicker()">
+            <button class="button button-block icon-right ion-calendar" > {{ currentDate | date:'dd/MM/yy' }}</button>
           </ionic-datepicker>
+
+          <div class="errors">
+            <p ng-show="currentDate.$error.required">Data de nascimento é necessária</p>
+          </div>
         </div>
         <div class="distance">
           <span class="labels"></br></span>
@@ -79,7 +84,7 @@
         </div>
       </div>
     <span class="labels"></br></span>
-        <button class="sparara" ui-sref="app.segundaTelaEdit" ng-click="updateProfile(user)">Continuar</button>
+        <button ng-disabled="testForm.$invalid" class="sparara" ui-sref="app.segundaTelaEdit" ng-click="updateProfile(user)">Continuar</button>
         <span class="labels"></br></span>
         <span class="labels"></br></span>
     </form>

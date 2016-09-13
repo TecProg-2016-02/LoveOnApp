@@ -1,4 +1,5 @@
-angular.module('starter', ['ionic', 'firebase', 'ngResource', 'ngCordova', 'ionMdInput', 'ion-datetime-picker', 'ion-gallery', 'nl2br'])
+angular.module('starter', ['ionic', 'firebase', 'ngResource', 'ngCordova',
+  'ionMdInput', 'ion-datetime-picker', 'ion-gallery', 'nl2br', 'ionic-datepicker'])
 
 // .constant('URL', 'http://localhost:3000')
 // .constant('URL', 'http://fd992ef2.ngrok.io')
@@ -215,9 +216,22 @@ angular.module('starter', ['ionic', 'firebase', 'ngResource', 'ngCordova', 'ionM
   ;
   $urlRouterProvider.otherwise("app/home");
 })
-.run(function($ionicPickerI18n) {
-    $ionicPickerI18n.weekdays = ["D", "S", "T", "Q", "Q", "S", "S"];
-    $ionicPickerI18n.months =  ["Jan", "Fev", "Mar", "Abr", "Maio", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"];
-    $ionicPickerI18n.ok = "Ok";
-    $ionicPickerI18n.cancel = "Cancelar";
-  });
+
+.config(function (ionicDatePickerProvider) {
+    var datePickerObj = {
+      inputDate: new Date(),
+      setLabel: 'Ok',
+      closeLabel: 'Fechar',
+      mondayFirst: false,
+      weeksList: ["D", "S", "T", "Q", "Q", "S", "S"],
+      monthsList: ["Jan", "Fev", "Mar", "Abril", "Maio", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"],
+      templateType: 'popup',
+      from: new Date(2012, 8, 1),
+      to: new Date(2018, 8, 1),
+      showTodayButton: false,
+      dateFormat: 'dd MMMM yyyy',
+      closeOnSelect: false,
+      disableWeekdays: []
+    };
+    ionicDatePickerProvider.configDatePicker(datePickerObj);
+  })

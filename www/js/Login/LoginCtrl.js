@@ -3,7 +3,25 @@ angular.module('starter')
 .controller('LoginCtrl', function($ionicPopup ,$scope, $state, factoryLogout,
   $rootScope, $ionicLoading, factoryRegister, factoryLogin, serviceLogin,
   serviceLoginSocial, serviceRegisterSocial, factoryConfirmEmail, $timeout,
-  factoryUpdate, $cordovaCamera, $cordovaImagePicker, $ionicPopover, $ionicModal) {
+  factoryUpdate, $cordovaCamera, $cordovaImagePicker, $ionicPopover, $ionicModal,
+  ionicDatePicker) {
+
+
+  $scope.currentDate = "";
+  var birthday = {
+      callback: function (val) {
+        console.log('Return value from the datepicker popup is : ' + val, $scope.currentDate = new Date(val));
+      },
+      from: new Date(1900, 1, 1),
+      to: new Date(1998, 9, 1),
+      inputDate: new Date(1998, 1, 1),
+      closeOnSelect: true,
+      templateType: 'popup'
+    };
+
+  $scope.openDatePicker = function(){
+    ionicDatePicker.openDatePicker(birthday);
+  };
 
   $scope.galleryHelp = function () {
     $ionicPopup.alert({
@@ -71,7 +89,8 @@ angular.module('starter')
               authData.facebook.email,
               authData.facebook.id,
               authData.facebook.cachedUserProfile.gender,
-              $scope.fbimage
+              $scope.fbimage,
+              authData.facebook.cachedUserProfile.birthday
             );
             console.log("Usr:", serviceRegisterSocial.getUser());
             factoryRegister.save(serviceRegisterSocial.getUser(), function(user) {
@@ -363,7 +382,7 @@ angular.module('starter')
     // });
     user.avatar = $rootScope.user.avatar;
     user.gallery = $rootScope.user.gallery;
-
+    user.birthday = $scope.currentDate;
     factoryUpdate.update({
       token: serviceLogin.getUser().token
     }, {
