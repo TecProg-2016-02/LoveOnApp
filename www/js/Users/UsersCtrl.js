@@ -45,6 +45,7 @@ angular.module('starter')
     });
   };
 
+  $rootScope.roomId = "";
   $scope.chatRoom = function(roomId) {
     $rootScope.roomId = roomId;
   }
@@ -101,6 +102,7 @@ angular.module('starter')
     $scope.modal.hide();
   };
 
+  $rootScope.userp = {};
   $scope.addInteraction = function(user) {
     var interaction = {};
     $rootScope.userp = user;
@@ -130,8 +132,13 @@ angular.module('starter')
     });
   }
 
+  $rootScope.isBlocked = false;
+
   $scope.blockUser = function(user) {
     var block = {};
+    block.user_one_id = 0;
+    block.user_two_id = 0;
+    
     block.user_one_id = serviceLogin.getUser().id;
     block.user_two_id = user.id;
     console.log("interação",block);
@@ -157,6 +164,10 @@ angular.module('starter')
 
   $scope.reportUser = function(user, comment) {
     var report = {};
+    report.reporter_id = 0;
+    report.reported_id = 0;
+    report.comment = "";
+
     report.reporter_id = serviceLogin.getUser().id;
     report.reported_id = user.id;
     report.comment = comment;
@@ -183,6 +194,9 @@ angular.module('starter')
 
   $scope.unblockUser = function(user,index) {
     var block = {};
+    block.user_one_id = 0;
+    block.user_two_id = 0;
+
     block.user_one_id = serviceLogin.getUser().id;
     block.user_two_id = user.id;
     block.like = true;
@@ -208,6 +222,7 @@ angular.module('starter')
     });
   }
 
+  $rootScope.users = {};
   $scope.allUsers = function() {
     factoryUsers.get(function(users) {
       $ionicLoading.hide();
@@ -223,6 +238,8 @@ angular.module('starter')
     })
   }
 
+  $rootScope.isFollowing = false;
+  $rootScope.isMatched = false;
   $scope.viewUser = function(token) {
     $ionicLoading.show({
       template: 'Carregando perfil... <ion-spinner icon="android"></ion-spinner>'
@@ -278,6 +295,7 @@ angular.module('starter')
     $ionicLoading.show({
       template: 'Carregando... <ion-spinner icon="android"></ion-spinner>'
     });
+    user.main_user_auth_token = "";
     user.main_user_auth_token = serviceLogin.getUser().token;
     factoryFollow.save(user, function(user) {
       $ionicLoading.hide();
@@ -300,6 +318,7 @@ angular.module('starter')
     $ionicLoading.show({
       template: 'Carregando... <ion-spinner icon="android"></ion-spinner>'
     });
+    user.main_user_auth_token = "";
     user.main_user_auth_token = serviceLogin.getUser().token;
     factoryUnfollow.save(user, function(user) {
       $ionicLoading.hide();
