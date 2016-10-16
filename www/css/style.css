@@ -111,10 +111,10 @@
   background-image: url('../img/splashygygy.png');
 }
 
-.cuzaum {
+/*.cuzaum {
   position: relative;
   left: calc(50% - 50px);
-}
+}*/
 
 .bold {
   font-weight: bold;
