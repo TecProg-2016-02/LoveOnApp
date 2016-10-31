@@ -51,7 +51,7 @@ angular.module('starter')
     $ionicLoading.show({
       template: 'Carregando... <ion-spinner icon="android"></ion-spinner>'
     });
-    params.user_token = null;
+    params.user_token = '';
     params.user_token = $rootScope.user.token;
     factoryLocation.save(params, function(location) {
       $ionicLoading.hide();
@@ -72,8 +72,8 @@ angular.module('starter')
 
   $scope.doCheckin = function(location) {
     var checkin = {};
-    checkin.user_token = null;
-    checkin.location_token = null;
+    checkin.user_token = '';
+    checkin.location_token = '';
     checkin.user_token = $rootScope.user.token;
     checkin.location_token = location.token;
     $ionicLoading.show({
