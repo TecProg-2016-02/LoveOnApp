@@ -8,11 +8,15 @@ angular.module('starter')
 
 
   $scope.currentDate = "";
-  
+
   var birthday = {};
   birthday = {
       callback: function (val) {
-        console.log('Return value from the datepicker popup is : ' + val, $scope.currentDate = new Date(val));
+        if (val === null) {
+          alert("Null value!");
+        } else {
+          console.log('Return value from the datepicker popup is : ' + val, $scope.currentDate = new Date(val));
+        }
       },
       from: new Date(1900, 1, 1),
       to: new Date(1998, 9, 1),
@@ -34,7 +38,7 @@ angular.module('starter')
         'quando você apertar o botão salvar.'
     });
   }
-  
+
   $ionicPopover.fromTemplateUrl('templates/popover.html', {
     scope: $scope,
   }).then(function(popover) {
@@ -44,52 +48,58 @@ angular.module('starter')
   $scope.closePopover = function() {
     $scope.popover.hide();
   };
-	
+
   var toDataURL = function(src, callback, outputFormat) {
+    console.log("Image URL", src);
+    console.log("Image format", outputFormat);
+
     var img = new Image();
     img.crossOrigin = 'Anonymous';
     img.onload = function() {
       var canvas = document.createElement('CANVAS');
       var ctx = canvas.getContext('2d');
       var dataURL;
-      
+
       canvas.height = this.height;
       canvas.width = this.width;
-      
+
       ctx.drawImage(this, 0, 0);
-      
+
       dataURL = canvas.toDataURL(outputFormat);
-      
+
       callback(dataURL);
-      
+
       return dataURL
     };
     img.src = src;
   }
-  
+
   var ref = new Firebase("https://loveonapp.firebaseio.com");
-  
+
   $scope.fbimage = '';
-  
+
   $scope.loginFacebook = function() {
     $ionicLoading.show({
       template: 'Carregando seus dados... <ion-spinner icon="android"></ion-spinner>'
     });
-      
+
       ref.authWithOAuthPopup("facebook", function(error, authData) {
+
         if (error) {
           $ionicPopup.alert({
             title: 'Ops!',
             template: 'Login cancelado!'
           });
-          
+
           $ionicLoading.hide();
+
+          console.log("Firebase Error!", error);
         } else {
           toDataURL("https://graph.facebook.com/"+ authData.facebook.id +"/picture?width=400&height=00", function(base64Img) {
             $scope.fbimage = (base64Img.slice(22, base64Img.length));
             $rootScope.$apply();
           });
-          
+
           $timeout(function () {
             console.log("Data from Firebase:", authData);
 
@@ -100,7 +110,7 @@ angular.module('starter')
               authData.facebook.cachedUserProfile.gender,
               $scope.fbimage
             );
-            
+
             serviceRegisterSocial.setUser(
               authData.facebook.displayName,
               authData.facebook.email,
@@ -109,30 +119,30 @@ angular.module('starter')
               $scope.fbimage,
               authData.facebook.cachedUserProfile.birthday
             );
-            
+
             console.log("Usr:", serviceRegisterSocial.getUser());
-            
+
             factoryRegister.save(serviceRegisterSocial.getUser(), function(user) {
               $ionicLoading.hide();
-              
+
               var user ={};
-              
+
               user.email = serviceRegisterSocial.getUser().email;
               user.id_social = serviceRegisterSocial.getUser().id_social;
               user.password = serviceRegisterSocial.getUser().password;
-              
+
               $scope.loginEmail(user,"Google");
             }, function(error) {
               var user ={};
               user.email = serviceRegisterSocial.getUser().email;
               user.id_social = serviceRegisterSocial.getUser().id_social;
               user.password = serviceRegisterSocial.getUser().password;
-              
+
               $scope.loginEmail(user,"Google");
-              
+
               $ionicLoading.hide();
             });
-            
+
             console.log("User:", $rootScope.user);
           }, 3500);
         }
@@ -145,23 +155,23 @@ angular.module('starter')
       $ionicLoading.show({
         template: 'Carregando seus dados... <ion-spinner icon="android"></ion-spinner>'
       });
-        
+
         ref.authWithOAuthPopup("google", function(error, authData) {
           if (error) {
             $ionicPopup.alert({
               title: 'Ops!',
               template: 'Login cancelado!'
             });
-            
-            $ionicLoading.hide();
-            
+
             console.log("Login Failed!", error);
+            $ionicLoading.hide();
+
           } else {
             toDataURL(authData.google.profileImageURL, function(base64Img) {
               $scope.fbimage = (base64Img.slice(22, base64Img.length));
               $rootScope.$apply();
             });
-            
+
             $timeout(function () {
               console.log("Data from Firebase:", authData);
 
@@ -172,7 +182,7 @@ angular.module('starter')
                 authData.google.cachedUserProfile.gender,
                 $scope.fbimage
               );
-              
+
               serviceRegisterSocial.setUser(
                 authData.google.displayName,
                 authData.google.email,
@@ -180,26 +190,26 @@ angular.module('starter')
                 authData.google.cachedUserProfile.gender,
                 $scope.fbimage
               );
-              
+
               console.log("Usr:", serviceRegisterSocial.getUser());
-              
+
               factoryRegister.save(serviceRegisterSocial.getUser(), function(user) {
                 $ionicLoading.hide();
-                
+
                 var user ={};
                 user.email = serviceRegisterSocial.getUser().email;
                 user.id_social = serviceRegisterSocial.getUser().id_social;
                 user.password = serviceRegisterSocial.getUser().password;
-                
+
                 $scope.loginEmail(user, "Facebook");
               }, function(error) {
                 var user ={};
                 user.email = serviceRegisterSocial.getUser().email;
                 user.id_social = serviceRegisterSocial.getUser().id_social;
                 user.password = serviceRegisterSocial.getUser().password;
-                
+
                 $scope.loginEmail(user, "Facebook");
-                
+
                 $ionicLoading.hide();
               });
             }, 1500);
@@ -209,23 +219,23 @@ angular.module('starter')
           scope: "email, profile"
         });
       }
-		
+
 		$rootScope.user = {};
 		$rootScope.matches = {};
-    
+
     $scope.reloadUser=function(state){
       $state.go(state);
-      
+
       var user={};
       user.email = serviceRegisterSocial.getUser().email;
       user.id_social = serviceRegisterSocial.getUser().id_social;
       user.password = serviceRegisterSocial.getUser().password;
-      
+
       console.log(user);
-      
+
       factoryLogin.get(user, function(user) {
         console.log("update", user);
-        
+
         serviceLogin.setUser(
           user.name,
           user.email,
@@ -235,18 +245,18 @@ angular.module('starter')
           user.email_confirmed,
           user.avatar
         );
-        
+
         $ionicLoading.hide();
-        
+
         $rootScope.user = user;
         $rootScope.matches = user.matches;
-        
+
         for (var i = 0; i < user.matches.length; i++) {
           $rootScope.matches[i].roomId=user.matches_token[i].token;
         }
-        
+
         $rootScope.galleryitems=[];
-        
+
         for (var i = 0; i < user.gallery.length; i++) {
           $rootScope.galleryitems.push({
             src: user.gallery[i],
@@ -257,14 +267,14 @@ angular.module('starter')
         $ionicLoading.hide();
       }, function(error) {
         $ionicLoading.hide();
-        
+
         $ionicPopup.alert({
           title: 'Erro!',
           template: 'Falha ao atualizar dados'
         });
       })
     };
-    
+
     $scope.selImages = function() {
        var options = {
          maximumImagesCount: 10,
@@ -303,10 +313,12 @@ angular.module('starter')
   };
 
   $scope.loginEmail = function(user, social) {
+
     $ionicLoading.show({
       template: 'Carregando... <ion-spinner icon="android"></ion-spinner>'
     });
-    
+
+    assert(typeof user !== null);
     factoryLogin.get(user, function(user) {
       if(!user.account_blocked) {
         serviceLogin.setUser(
@@ -318,16 +330,16 @@ angular.module('starter')
           user.email_confirmed,
           user.avatar
         );
-        
+
         $ionicLoading.hide();
-        
+
         $rootScope.user = user;
         $rootScope.matches = user.matches;
-        
+
         for (var i = 0; i < user.matches.length; i++) {
           $rootScope.matches[i].roomId=user.matches_token[i].token;
         }
-        
+
         $rootScope.galleryitems=[];
         for (var i = 0; i < user.gallery.length; i++) {
           $rootScope.galleryitems.push({
@@ -335,25 +347,25 @@ angular.module('starter')
             sub: ''
           });
         }
-				
+
 				$rootScope.username = '';
         $rootScope.username = user.name;
-        
+
         console.log("Logado", $rootScope.user);
         console.log(user.email_confirmed);
-        
+
         if(!user.email_confirmed) {
           $state.go('app.primeiraTelaEdit');
         } else {
           $state.go('app.profile');
         }
-        
+
         $ionicLoading.hide();
-        
+
         $rootScope.isLogged = true;
       }else{
         $ionicLoading.hide();
-        
+
         $ionicPopup.alert({
           title: 'Atenção!',
           template: 'Essa conta foi bloqueada por não respeitar os termos de uso, estaremos entrando em contato. Por favor verifique seu e-mail.'
@@ -361,7 +373,7 @@ angular.module('starter')
       }
     }, function(error) {
       $ionicLoading.hide();
-      
+
       $ionicPopup.alert({
         title: 'Erro!',
         template: 'Falha ao carregar dados, verifique sua conta já foi criada com o '+social
@@ -373,9 +385,9 @@ angular.module('starter')
     $ionicLoading.show({
       template: 'Saindo... <ion-spinner icon="android"></ion-spinner>'
     });
-    
+
     $scope.closePopover();
-    
+
     factoryLogout.save(serviceLogin.getUser(), function(user) {
       serviceLogin.setUser(
         null,
@@ -387,9 +399,9 @@ angular.module('starter')
         null,
         null
       );
-      
+
       $ionicLoading.hide();
-      
+
       $state.go('app.home');
     }, function(error) {
       $ionicLoading.hide();
@@ -403,18 +415,18 @@ angular.module('starter')
 
     factoryRegister.save(user, function(user) {
       $ionicLoading.hide();
-      
+
       $ionicPopup.alert({
         title: 'Sucesso!',
         template: 'Cadastro efetuado com sucesso!'
       });
-      
+
       $state.go('app.home');
-      
+
       console.log("BF create", user);
     }, function(error) {
       $ionicLoading.hide();
-      
+
       $ionicPopup.alert({
         title: 'Erro!',
         template: 'Cadastro falhou, verifique os dados ou se o email ja foi cadastrado'
@@ -423,26 +435,28 @@ angular.module('starter')
   }
 
   $scope.confirmEmail = function(confirm_token) {
+
+    assert(typeof confirm_token === "string");
     $ionicLoading.show({
       template: 'Carregando... <ion-spinner icon="android"></ion-spinner>'
     });
-    
+
     factoryConfirmEmail.get({
       confirm_token: confirm_token
     }, function(user) {
       $ionicLoading.hide();
-      
+
       $ionicPopup.alert({
         title: 'Sucesso!',
         template: 'Cadastro efetuado com sucesso!'
       });
-      
+
       $state.go('app.primeiraTelaEdit');
-      
+
       console.log("BF create", user);
     }, function(error) {
       $ionicLoading.hide();
-      
+
       $ionicPopup.alert({
         title: 'Erro!',
         template: 'Cadastro falhou, verifique os dados ou se o email ja foi cadastrado'
@@ -460,18 +474,18 @@ angular.module('starter')
     user.avatar = $rootScope.user.avatar;
     user.gallery = $rootScope.user.gallery;
     user.birthday = $scope.currentDate;
-    
+
     factoryUpdate.update({
       token: serviceLogin.getUser().token
     }, {
       user: user
     }, function(user) {
       $ionicLoading.hide();
-      
+
       console.log(user);
     }, function(error) {
       $ionicLoading.hide();
-      
+
       alert("erro", error.message);
     });
   }
@@ -529,9 +543,9 @@ angular.module('starter')
       $timeout(function() {
 
         $ionicLoading.hide();
-        
+
         $scope.$apply();
-        
+
         $rootScope.user.avatar = imageUri;
       }, 1000)
     }, function cameraError(error) {
@@ -589,21 +603,21 @@ angular.module('starter')
 
       $timeout(function() {
         $ionicLoading.hide();
-        
+
         $scope.$apply();
-        
+
         $rootScope.galleryitems.push({
           src: "data:image/png;base64,"+ imageUri,
           sub: ''
         })
-        
+
         var user = {};
         user.gallery = $rootScope.user.gallery;
-        
+
         $rootScope.user.gallery.push("data:image/png;base64,"+ imageUri);
-        
+
         console.log(imageUri);
-        
+
         factoryUpdate.update({
           token: serviceLogin.getUser().token
         }, {
@@ -664,24 +678,24 @@ angular.module('starter')
       $ionicLoading.show({
         template: 'Carregando... <ion-spinner icon="android"></ion-spinner>'
       });
-      
+
       $timeout(function() {
         $ionicLoading.hide();
-        
+
         $scope.$apply();
-        
+
         $rootScope.galleryitems.push({
           src: "data:image/png;base64,"+ imageUri,
           sub: ''
         })
-        
+
         var user = {};
         user.gallery = $rootScope.user.gallery;
-        
+
         $rootScope.user.gallery.push("data:image/png;base64,"+ imageUri);
-        
+
         console.log(imageUri);
-        
+
         factoryUpdate.update({
           token: serviceLogin.getUser().token
         }, {
@@ -747,12 +761,12 @@ angular.module('starter')
       });
       $timeout(function() {
 				$ionicLoading.hide();
-        
+
         $scope.$apply();
-        
+
         var user = {};
         user.background = $rootScope.user.background;
-        
+
         $rootScope.user.background = imageUri;
         factoryUpdate.update({
           token: serviceLogin.getUser().token
