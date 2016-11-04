@@ -8,44 +8,44 @@
     </ion-nav-buttons>
   </ion-nav-bar>
     <ion-content>
-        <div class="hero slide-up" style="background-image: url('data:image/jpeg;base64,{{userp.background}}');">
+        <div class="hero slide-up" style="background-image: url('data:image/jpeg;base64,{{otherUser.background}}');">
             <div class="avatar-container">
-                <div class="avatar" style="background-image: url('data:image/jpeg;base64,{{userp.avatar}}');"></div>
+                <div class="avatar" style="background-image: url('data:image/jpeg;base64,{{otherUser.avatar}}');"></div>
 
             </div>
-            <div class="light1">{{userp.name}}</div>
-            <h4><div class="user-age">{{userp.age}} anos</div></h4>
-            <div class="description">{{userp.description}}</div>
-            <div class="district">{{userp.district}}, {{userp.city}}</div>
+            <div class="light1">{{otherUser.name}}</div>
+            <h4><div class="user-age">{{otherUser.age}} anos</div></h4>
+            <div class="description">{{otherUser.description}}</div>
+            <div class="district">{{otherUser.district}}, {{otherUser.city}}</div>
             <div class="tabs tabs-light tabs-icon-only static ">
               <a class="tab-item">
-                  <i ng-if="userp.locations[0]" class="icon mcfly" style="background-image: url('{{userp.locations[0].image}}');"></i>
-                  <i ng-if="!userp.locations[0]" class="icon mcfly" style="background-image: url('../img/local_map.png');"></i>
+                  <i ng-if="otherUser.locations[0]" class="icon mcfly" style="background-image: url('{{otherUser.locations[0].image}}');"></i>
+                  <i ng-if="!otherUser.locations[0]" class="icon mcfly" style="background-image: url('../img/local_map.png');"></i>
               </a>
               <a class="tab-item">
-                  <i ng-if="userp.locations[1]" class="icon mcfly" style="background-image: url('{{userp.locations[1].image}}');"></i>
-                  <i ng-if="!userp.locations[1]" class="icon mcfly" style="background-image: url('../img/local_map.png');"></i>
+                  <i ng-if="otherUser.locations[1]" class="icon mcfly" style="background-image: url('{{otherUser.locations[1].image}}');"></i>
+                  <i ng-if="!otherUser.locations[1]" class="icon mcfly" style="background-image: url('../img/local_map.png');"></i>
               </a>
               <a class="tab-item">
-                  <i ng-if="userp.locations[2]" class="icon mcfly" style="background-image: url('{{userp.locations[2].image}}');"></i>
-                  <i ng-if="!userp.locations[2]" class="icon mcfly" style="background-image: url('../img/local_map.png');"></i>
+                  <i ng-if="otherUser.locations[2]" class="icon mcfly" style="background-image: url('{{otherUser.locations[2].image}}');"></i>
+                  <i ng-if="!otherUser.locations[2]" class="icon mcfly" style="background-image: url('../img/local_map.png');"></i>
               </a>
               <a class="tab-item">
-                  <i ng-if="userp.locations[3]" class="icon mcfly" style="background-image: url('{{userp.locations[3].image}}');"></i>
-                  <i ng-if="!userp.locations[3]" class="icon mcfly" style="background-image: url('../img/local_map.png');"></i>
+                  <i ng-if="otherUser.locations[3]" class="icon mcfly" style="background-image: url('{{otherUser.locations[3].image}}');"></i>
+                  <i ng-if="!otherUser.locations[3]" class="icon mcfly" style="background-image: url('../img/local_map.png');"></i>
               </a>
               <a class="tab-item">
-                  <i ng-if="userp.locations[4]" class="icon mcfly" style="background-image: url('{{userp.locations[4].image}}');"></i>
-                  <i ng-if="!userp.locations[4]" class="icon mcfly" style="background-image: url('../img/local_map.png');"></i>
+                  <i ng-if="otherUser.locations[4]" class="icon mcfly" style="background-image: url('{{otherUser.locations[4].image}}');"></i>
+                  <i ng-if="!otherUser.locations[4]" class="icon mcfly" style="background-image: url('../img/local_map.png');"></i>
               </a>
 
             </div>
         </div>
         <span class="labels"></br></span>
-        <button ng-if="!userp.gallery" class=" btnPlus font button button-block">
+        <button ng-if="!otherUser.gallery" class=" btnPlus font button button-block">
           Não há fotos
         </button>
-        <ion-gallery ion-gallery-items="userpgallery" ion-gallery-toggle="false"></ion-gallery>
+        <ion-gallery ion-gallery-items="otherUsergallery" ion-gallery-toggle="false"></ion-gallery>
 
     </ion-content>
     <ion-tabs ng-if="isMatched" class="tabs-light tabs-icon-only">
@@ -60,7 +60,7 @@
 
       <ion-tab icon-off="icon coelho2">
       </ion-tab>
-      <ion-tab ng-if="!isMatched" icon-off="icon coelho" ng-controller="UsersCtrl" ng-click="addInteraction(userp)">
+      <ion-tab ng-if="!isMatched" icon-off="icon coelho" ng-controller="UsersCtrl" ng-click="addInteraction(otherUser)">
       </ion-tab>
 
       <ion-tab icon-on="ion-ios-bell" icon-off="ion-ios-bell-outline"
@@ -83,7 +83,7 @@
         ui-sref="app.matches" ng-controller="LoginCtrl" ng-click="reloadUser('app.matches')">
       </ion-tab>
 
-      <ion-tab icon-off="icon coelho" ng-controller="UsersCtrl" ng-click="addInteraction(userp)">
+      <ion-tab icon-off="icon coelho" ng-controller="UsersCtrl" ng-click="addInteraction(otherUser)">
       </ion-tab>
 
       <ion-tab icon-on="ion-ios-bell" icon-off="ion-ios-bell-outline"

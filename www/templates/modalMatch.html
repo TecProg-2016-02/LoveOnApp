@@ -4,12 +4,12 @@
 
    <ion-content>
      <div class="title-modal" >Parabéns, Lover!</div>
-     <div class="subtitle-modal">{{userp.name}} também gostou de você!</div>
+     <div class="subtitle-modal">{{otherUser.name}} também gostou de você!</div>
      <div class="padding">
      <div class="row">
          <div class="col col-50">
            <div class="profile-image2">
-             <img ng-src="data:image/jpeg;base64,{{userp.avatar}}" err-src="/img/ionic.png" />
+             <img ng-src="data:image/jpeg;base64,{{otherUser.avatar}}" err-src="/img/ionic.png" />
            </div>
          </div>
          <div class="col col-50">
@@ -21,7 +21,7 @@
    </div>
      <div class="padding">
        <button class="button button-block button-assertive" ui-sref="app.matches" ng-controller="LoginCtrl" ng-click="reloadUser('app.matches'); closeModal()">Enviar mensagem</button>
-       <button class="button button-block view-user-modal" ng-controller="UsersCtrl" ng-click = "viewUser(userp.token); closeModal()">Ver perfil</button>
+       <button class="button button-block view-user-modal" ng-controller="UsersCtrl" ng-click = "viewUser(otherUser.token); closeModal()">Ver perfil</button>
     </div>
 
    </ion-content>

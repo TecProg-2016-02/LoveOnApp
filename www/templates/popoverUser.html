@@ -1,16 +1,16 @@
 <ion-popover-view>
   <ion-content>
     <div class="list">
-      <a ng-if="!isFollowing"class="item" ng-click="follow(userp);closePopover()">
+      <a ng-if="!isFollowing"class="item" ng-click="follow(otherUser);closePopover()">
         Seguir
       </a>
-      <a ng-if="isFollowing"class="item" ng-click="unfollow(userp);closePopover()">
+      <a ng-if="isFollowing"class="item" ng-click="unfollow(otherUser);closePopover()">
         Deixar de seguir
       </a>
-      <a ng-if="!isBlocked" class="item" ng-click="blockUser(userp);closePopover()">
+      <a ng-if="!isBlocked" class="item" ng-click="blockUser(otherUser);closePopover()">
         Bloquear usuário
       </a>
-      <a ng-if="isBlocked"class="item" ng-click="unblockUser(userp);closePopover()">
+      <a ng-if="isBlocked"class="item" ng-click="unblockUser(otherUser);closePopover()">
         Desbloquear usuário
       </a>
       <a class="item" ng-click="closePopover()" ui-sref='app.report'>

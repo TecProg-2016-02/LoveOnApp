@@ -5,10 +5,10 @@ angular.module('starter')
   $timeout, factoryUser, factoryFollow, $ionicScrollDelegate, $ionicPopover,
   factoryUnfollow, $ionicModal, factoryBlock, factoryUnblock, factoryReport) {
 
-  var ref = new Firebase('https://loveonapp.firebaseio.com/opened_rooms');
+  var firebase = new Firebase('https://loveonapp.firebaseio.com/opened_rooms');
   // var roomRef = new Firebase('https://loveonapp.firebaseio.com/opened_rooms/');
 
-  $scope.rooms = $firebaseArray(ref);
+  $scope.rooms = $firebaseArray(firebase);
 
   $scope.createRoom = function(roomId) {
     if (!roomId) return;
@@ -50,16 +50,16 @@ angular.module('starter')
     $rootScope.roomId = roomId;
   }
   console.log("sala",$rootScope.roomId);
-  var messagesRef = new Firebase('https://loveonapp.firebaseio.com/rooms/' + $rootScope.roomId);
-  var ref = messagesRef;
-  $rootScope.messagesObj = $firebaseArray(messagesRef);
+  var firebaseRoom = new Firebase('https://loveonapp.firebaseio.com/rooms/' + $rootScope.roomId);
+  var room = firebaseRoom;
+  $rootScope.messagesObj = $firebaseArray(firebaseRoom);
   console.log($rootScope.messagesObj);
 
   var now = Date.now();
   var cutoff = now - 7 * 24 * 60 * 60 * 1000;
-  var old = ref.orderByChild('created_at').endAt(cutoff).limitToLast(1);
+  var old = room.orderByChild('created_at').endAt(cutoff).limitToLast(1);
   var listener = old.on('child_added', function(shot) {
-      shot.ref().remove();
+      shot.room().remove();
   });
 
   $scope.$watch('messagesObj', function (value) {
@@ -102,10 +102,10 @@ angular.module('starter')
     $scope.modal.hide();
   };
 
-  $rootScope.userp = {};
+  $rootScope.otherUser = {};
   $scope.addInteraction = function(user) {
     var interaction = {};
-    $rootScope.userp = user;
+    $rootScope.otherUser = user;
     interaction.user_one_id = serviceLogin.getUser().id;
     interaction.user_two_id = user.id;
     interaction.like = true;
@@ -138,7 +138,7 @@ angular.module('starter')
     var block = {};
     block.user_one_id = 0;
     block.user_two_id = 0;
-    
+
     block.user_one_id = serviceLogin.getUser().id;
     block.user_two_id = user.id;
     console.log("interação",block);
@@ -247,19 +247,19 @@ angular.module('starter')
     factoryUser.get({
       token: token,
       current_user_token: $rootScope.user.token
-    }, function(userp) {
-      console.log("Usuario", userp);
+    }, function(otherUser) {
+      console.log("Usuario", otherUser);
       $ionicLoading.hide();
-      $rootScope.userp = userp.user;
-      $rootScope.userp.locations = userp.locations;
-      $rootScope.isFollowing = userp.is_following;
-      $rootScope.isMatched = userp.matched;
-      $rootScope.isBlocked = userp.blocked;
-      if (userp.gallery) {
+      $rootScope.otherUser = otherUser.user;
+      $rootScope.otherUser.locations = otherUser.locations;
+      $rootScope.isFollowing = otherUser.is_following;
+      $rootScope.isMatched = otherUser.matched;
+      $rootScope.isBlocked = otherUser.blocked;
+      if (otherUser.gallery) {
         $rootScope.usergallery=[];
-        for (var i = 0; i < userp.user.gallery.length; i++) {
+        for (var i = 0; i < otherUser.user.gallery.length; i++) {
           $rootScope.usergallery.push({
-            src: userp.user.gallery[i],
+            src: otherUser.user.gallery[i],
             sub: ''
           });
         }
@@ -301,7 +301,7 @@ angular.module('starter')
       $ionicLoading.hide();
       $ionicPopup.alert({
         title: 'Sucesso!',
-        template: 'Voce esta seguindo {{userp.name}}!'
+        template: 'Voce esta seguindo {{otherUser.name}}!'
       });
       $rootScope.isFollowing = true;
       console.log("BF create", user);
@@ -309,7 +309,7 @@ angular.module('starter')
       $ionicLoading.hide();
       $ionicPopup.alert({
         title: 'Erro!',
-        template: 'Você já está seguindo {{userp.name}}!'
+        template: 'Você já está seguindo {{otherUser.name}}!'
       });
     });
   };
@@ -324,7 +324,7 @@ angular.module('starter')
       $ionicLoading.hide();
       $ionicPopup.alert({
         title: 'Sucesso!',
-        template: 'Voce deixou de seguir {{userp.name}}!'
+        template: 'Voce deixou de seguir {{otherUser.name}}!'
       });
       $rootScope.isFollowing = false;
       console.log("BF create", user);
