@@ -389,4 +389,4 @@ angular.module('starter')
     });
   };
 
-})
+})	
