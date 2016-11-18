@@ -116,8 +116,7 @@ angular.module('starter')
               authData.facebook.email,
               authData.facebook.id,
               authData.facebook.cachedUserProfile.gender,
-              $scope.fbimage,
-              authData.facebook.cachedUserProfile.birthday
+              $scope.fbimage
             );
 
             console.log("Usr:", serviceRegisterSocial.getUser());
