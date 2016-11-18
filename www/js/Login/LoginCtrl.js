@@ -318,7 +318,7 @@ angular.module('starter')
       template: 'Carregando... <ion-spinner icon="android"></ion-spinner>'
     });
 
-    assert(typeof user !== null);
+    // assert(typeof user !== null);
     factoryLogin.get(user, function(user) {
       if(!user.account_blocked) {
         serviceLogin.setUser(
