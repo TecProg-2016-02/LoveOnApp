@@ -1,11 +1,22 @@
+
 angular.module('starter', ['ionic', 'firebase', 'ngResource', 'ngCordova',
   'ionMdInput', 'ion-datetime-picker', 'ion-gallery', 'nl2br', 'ionic-datepicker'])
 
+/*
+*  Set link to databases
+*  @param 'URL' Defines link type
+*  @param 'link' Database address 
+*/
 .constant('URL', 'http://localhost:3000')
 // .constant('URL', 'http://fd992ef2.ngrok.io')
 //.constant('URL', 'http://loversappserver.herokuapp.com')
 
+/*
+*  This is to prevent further system configuration during application run time.
+*  @param $ionicPlatform Defined variable for the ionic platform according to the DOM
+*/
 .run(function($ionicPlatform) {
+  // Performs activities within the function if the ionic platform is ready
   $ionicPlatform.ready(function() {
     if(window.cordova && window.cordova.plugins.Keyboard) {
       // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
@@ -23,6 +34,10 @@ angular.module('starter', ['ionic', 'firebase', 'ngResource', 'ngCordova',
   });
 })
 
+/*
+*  This is to prevent accidental instantiation of services before they have been fully configured
+*  @params All service variables for configuration
+*/
 .config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
 
   $ionicConfigProvider.backButton.previousTitleText(false).text('');
