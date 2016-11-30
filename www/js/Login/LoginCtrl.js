@@ -80,7 +80,7 @@ angular.module('starter')
 
   $scope.loginFacebook = function() {
     $ionicLoading.show({
-      template: 'Carregando seus dados... <ion-spinner icon="android"></ion-spinner>'
+      template: 'Loading your data... <ion-spinner icon="android"></ion-spinner>'
     });
 
       ref.authWithOAuthPopup("facebook", function(error, authData) {
@@ -88,7 +88,7 @@ angular.module('starter')
         if (error) {
           $ionicPopup.alert({
             title: 'Ops!',
-            template: 'Login cancelado!'
+            template: 'Login canceled!'
           });
 
           $ionicLoading.hide();
@@ -152,14 +152,14 @@ angular.module('starter')
     }
     $scope.loginGoogle = function() {
       $ionicLoading.show({
-        template: 'Carregando seus dados... <ion-spinner icon="android"></ion-spinner>'
+        template: 'Loading your data... <ion-spinner icon="android"></ion-spinner>'
       });
 
         ref.authWithOAuthPopup("google", function(error, authData) {
           if (error) {
             $ionicPopup.alert({
               title: 'Ops!',
-              template: 'Login cancelado!'
+              template: 'Login canceled!'
             });
 
             console.log("Login Failed!", error);
@@ -268,8 +268,8 @@ angular.module('starter')
         $ionicLoading.hide();
 
         $ionicPopup.alert({
-          title: 'Erro!',
-          template: 'Falha ao atualizar dados'
+          title: 'Error!',
+          template: 'Failed to update data'
         });
       })
     };
@@ -314,7 +314,7 @@ angular.module('starter')
   $scope.loginEmail = function(user, social) {
 
     $ionicLoading.show({
-      template: 'Carregando... <ion-spinner icon="android"></ion-spinner>'
+      template: 'Loading... <ion-spinner icon="android"></ion-spinner>'
     });
 
     // assert(typeof user !== null);
@@ -350,7 +350,7 @@ angular.module('starter')
 				$rootScope.username = '';
         $rootScope.username = user.name;
 
-        console.log("Logado", $rootScope.user);
+        console.log("Logged", $rootScope.user);
         console.log(user.email_confirmed);
 
         if(!user.email_confirmed) {
@@ -366,23 +366,23 @@ angular.module('starter')
         $ionicLoading.hide();
 
         $ionicPopup.alert({
-          title: 'Atenção!',
-          template: 'Essa conta foi bloqueada por não respeitar os termos de uso, estaremos entrando em contato. Por favor verifique seu e-mail.'
+          title: 'Attention!',
+          template: 'This account has been blocked because it does not respect the terms of use, we will be contacting you. Please check your email.'
         });
       }
     }, function(error) {
       $ionicLoading.hide();
 
       $ionicPopup.alert({
-        title: 'Erro!',
-        template: 'Falha ao carregar dados, verifique sua conta já foi criada com o '+social
+        title: 'Error!',
+        template: 'Failed to load data, check your account already created with '+social
       });
     })
   }
 
   $scope.logout = function() {
     $ionicLoading.show({
-      template: 'Saindo... <ion-spinner icon="android"></ion-spinner>'
+      template: 'Going out... <ion-spinner icon="android"></ion-spinner>'
     });
 
     $scope.closePopover();
@@ -409,15 +409,15 @@ angular.module('starter')
 
   $scope.registerEmail = function(user) {
     $ionicLoading.show({
-      template: 'Carregando... <ion-spinner icon="android"></ion-spinner>'
+      template: 'Loading... <ion-spinner icon="android"></ion-spinner>'
     });
 
     factoryRegister.save(user, function(user) {
       $ionicLoading.hide();
 
       $ionicPopup.alert({
-        title: 'Sucesso!',
-        template: 'Cadastro efetuado com sucesso!'
+        title: 'Success!',
+        template: 'Registration successfully Complete!'
       });
 
       $state.go('app.home');
@@ -427,8 +427,8 @@ angular.module('starter')
       $ionicLoading.hide();
 
       $ionicPopup.alert({
-        title: 'Erro!',
-        template: 'Cadastro falhou, verifique os dados ou se o email ja foi cadastrado'
+        title: 'Error!',
+        template: 'Registration failed, check the data or if the email has already been registered'
       });
     });
   }
@@ -437,7 +437,7 @@ angular.module('starter')
 
     assert(typeof confirm_token === "string");
     $ionicLoading.show({
-      template: 'Carregando... <ion-spinner icon="android"></ion-spinner>'
+      template: 'Loading... <ion-spinner icon="android"></ion-spinner>'
     });
 
     factoryConfirmEmail.get({
@@ -446,8 +446,8 @@ angular.module('starter')
       $ionicLoading.hide();
 
       $ionicPopup.alert({
-        title: 'Sucesso!',
-        template: 'Cadastro efetuado com sucesso!'
+        title: 'Success!',
+        template: 'Registration successfully Complete!'
       });
 
       $state.go('app.primeiraTelaEdit');
@@ -457,8 +457,8 @@ angular.module('starter')
       $ionicLoading.hide();
 
       $ionicPopup.alert({
-        title: 'Erro!',
-        template: 'Cadastro falhou, verifique os dados ou se o email ja foi cadastrado'
+        title: 'Error!',
+        template: 'Registration failed, check the data or if the email has already been registered'
       });
     });
   }
@@ -536,7 +536,7 @@ angular.module('starter')
 
     navigator.camera.getPicture(function cameraSuccess(imageUri) {
       $ionicLoading.show({
-        template: 'Carregando... <ion-spinner icon="android"></ion-spinner>'
+        template: 'Loading... <ion-spinner icon="android"></ion-spinner>'
       });
 
       $timeout(function() {
@@ -597,7 +597,7 @@ angular.module('starter')
 
     navigator.camera.getPicture(function cameraSuccess(imageUri) {
       $ionicLoading.show({
-        template: 'Carregando... <ion-spinner icon="android"></ion-spinner>'
+        template: 'Loading... <ion-spinner icon="android"></ion-spinner>'
       });
 
       $timeout(function() {
@@ -675,7 +675,7 @@ angular.module('starter')
 
     navigator.camera.getPicture(function cameraSuccess(imageUri) {
       $ionicLoading.show({
-        template: 'Carregando... <ion-spinner icon="android"></ion-spinner>'
+        template: 'Loading... <ion-spinner icon="android"></ion-spinner>'
       });
 
       $timeout(function() {
@@ -756,7 +756,7 @@ angular.module('starter')
 
     navigator.camera.getPicture(function cameraSuccess(imageUri) {
       $ionicLoading.show({
-        template: 'Carregando... <ion-spinner icon="android"></ion-spinner>'
+        template: 'Loading... <ion-spinner icon="android"></ion-spinner>'
       });
       $timeout(function() {
 				$ionicLoading.hide();
