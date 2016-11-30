@@ -6,7 +6,7 @@ angular.module('starter')
 
   $scope.allLocations = function() {
     $ionicLoading.show({
-      template: 'Carregando... <ion-spinner icon="android"></ion-spinner>'
+      template: 'Loading... <ion-spinner icon="android"></ion-spinner>'
     });
     
     origin = {};
@@ -33,8 +33,8 @@ angular.module('starter')
       $ionicLoading.hide();
       
       $ionicPopup.alert({
-        title: 'Erro!',
-        template: 'Falha de comunicação com o banco de dados'
+        title: 'Error!',
+        template: 'Failure to communicate with the database'
       });
     })
   }
@@ -51,15 +51,15 @@ angular.module('starter')
       $ionicLoading.hide();
       
       $ionicPopup.alert({
-        title: 'Erro!',
-        template: 'Falha de comunicação com o banco de dados'
+        title: 'Error!',
+        template: 'Failure to communicate with the database'
       });
     })
   };
 
   $scope.viewLocation = function(params) {
     $ionicLoading.show({
-      template: 'Carregando... <ion-spinner icon="android"></ion-spinner>'
+      template: 'Loading... <ion-spinner icon="android"></ion-spinner>'
     });
     params.user_token = '';
     params.user_token = $rootScope.user.token;
@@ -72,15 +72,15 @@ angular.module('starter')
       $rootScope.loc = {};
       $rootScope.loc = location;
       
-      console.log("local", location);
+      console.log("location", location);
       
       $state.go('app.location');
     }, function(error) {
       $ionicLoading.hide();
       
       $ionicPopup.alert({
-        title: 'Erro!',
-        template: 'Erro ao carregar localização!'
+        title: 'Error!',
+        template: 'Location error loading!'
       });
     })
 
@@ -94,7 +94,7 @@ angular.module('starter')
     checkin.location_token = location.token;
     
     $ionicLoading.show({
-      template: 'Carregando... <ion-spinner icon="android"></ion-spinner>'
+      template: 'Loading... <ion-spinner icon="android"></ion-spinner>'
     });
     
     factoryCheckin.save(checkin, function(checkin) {
@@ -107,8 +107,8 @@ angular.module('starter')
       $ionicLoading.hide();
       
       $ionicPopup.alert({
-        title: 'Erro!',
-        template: 'Não foi possível acessar essa localização!'
+        title: 'Error!',
+        template: 'Could not access this location!'
       });
       
       $state.go('app.locations');
@@ -147,8 +147,8 @@ angular.module('starter')
            $ionicLoading.hide();
            
            $ionicPopup.alert({
-             title: 'GPS não disponivel!',
-             template: 'Por favor, ligue seu GPS para que possamos mostrar os locais próximos.'
+             title: 'GPS not available!',
+             template: 'Please turn on your GPS so we can show nearby places.'
            });
            
            console.log(err);
